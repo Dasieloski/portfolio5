@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   verification: {
-    google: "",
+    google: "J9KJ0PyeOc0pT2c98S3kSwVQP6dXC4SLSqdA1EOfIwo",
   },
 };
 
