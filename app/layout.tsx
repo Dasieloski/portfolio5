@@ -25,28 +25,90 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const BASE_URL = "https://dasiel.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Dasiel — Fullstack Developer",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Dasiel Torres — Fullstack Developer",
+    template: "%s | Dasiel Torres",
+  },
   description:
-    "Desarrollador Fullstack especializado en crear aplicaciones web modernas y escalables. Experiencia en React, Next.js, Node.js, PostgreSQL y más.",
-  keywords: ["fullstack developer", "React", "Next.js", "Node.js", "portfolio", "Dasiel"],
-  authors: [{ name: "Dasiel", url: "https://dasiel.vercel.app" }],
+    "Dasiel Torres, Desarrollador Fullstack especializado en React, Next.js, Node.js y PostgreSQL. Portafolio de proyectos web modernos y escalables.",
+  keywords: [
+    "Dasiel",
+    "Dasiel Torres",
+    "Dasiel developer",
+    "Dasiel fullstack",
+    "fullstack developer",
+    "React developer",
+    "Next.js developer",
+    "Node.js",
+    "portfolio",
+    "desarrollador web",
+    "dasiel.vercel.app",
+  ],
+  authors: [{ name: "Dasiel Torres", url: BASE_URL }],
+  creator: "Dasiel Torres",
+  publisher: "Dasiel Torres",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
-    title: "Dasiel — Fullstack Developer",
+    title: "Dasiel Torres — Fullstack Developer",
     description:
-      "Desarrollador Fullstack especializado en crear aplicaciones web modernas y escalables.",
-    url: "https://dasiel.vercel.app",
-    siteName: "Dasiel Portfolio",
+      "Dasiel Torres, Desarrollador Fullstack especializado en React, Next.js, Node.js y PostgreSQL.",
+    url: BASE_URL,
+    siteName: "Dasiel Torres Portfolio",
+    locale: "es_ES",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dasiel Torres — Fullstack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dasiel — Fullstack Developer",
-    description: "Desarrollador Fullstack especializado en crear aplicaciones web modernas.",
+    title: "Dasiel Torres — Fullstack Developer",
+    description:
+      "Dasiel Torres, Desarrollador Fullstack especializado en React, Next.js, Node.js y PostgreSQL.",
+    images: ["/og-image.png"],
+  },
+  verification: {
+    google: "",
   },
 };
 
 import SmoothScrollProvider from '@/app/components/SmoothScrollProvider';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dasiel Torres",
+  url: "https://dasiel.vercel.app",
+  jobTitle: "Fullstack Developer",
+  description:
+    "Desarrollador Fullstack especializado en React, Next.js, Node.js y PostgreSQL.",
+  knowsAbout: ["React", "Next.js", "Node.js", "PostgreSQL", "TypeScript", "Fullstack Development"],
+  sameAs: [
+    "https://github.com/Dasieloski",
+  ],
+};
 
 export default function RootLayout({
   children,
@@ -56,6 +118,12 @@ export default function RootLayout({
       lang="es"
       className={`${syne.variable} ${dmMono.variable} ${fraunces.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <SmoothScrollProvider>
           {children}
