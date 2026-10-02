@@ -1,0 +1,218 @@
+/* Hero: blueprint ground, stage for the 3D stack, kinetic headline. */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  padding: 6.5rem var(--gutter) 1.5rem;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+/* Blueprint grid, bleeding to the viewport edges */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 62% 45%, #000 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 70% at 62% 45%, #000 20%, transparent 80%);
+  opacity: 0.55;
+}
+.hero-grid-bg i {
+  position: absolute;
+  font-style: normal;
+  color: var(--mute);
+  opacity: 0.8;
+}
+.eyebrow {
+  position: relative;
+  z-index: 35;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  max-width: 34rem;
+}
+
+/* The 3D stack aligns to this box; the SVG inside is the pre-WebGL / fallback drawing */
+.hero-stage {
+  position: absolute;
+  right: 0;
+  top: 5.5rem;
+  width: min(54vw, 50rem);
+  height: min(70vh, 42rem);
+  z-index: -1;
+}
+
+.hero-copy {
+  grid-row: 3;
+  position: relative;
+  z-index: 35; /* above the WebGL layer: the stack passes behind the headline */
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+.hero-title {
+  font-weight: 820;
+  font-stretch: 84%;
+  text-transform: uppercase;
+  font-size: clamp(3.2rem, 9.2vw, 9.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+}
+.hl {
+  display: block;
+  white-space: nowrap;
+}
+.hl-alt {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+}
+.hw {
+  display: inline-block;
+  white-space: nowrap;
+}
+.hc {
+  display: inline-block;
+  font-weight: 820;
+  font-stretch: 84%;
+  transition: font-weight 0.2s linear, font-stretch 0.2s linear;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hc {
+    animation: swell 1.3s var(--ease) backwards;
+  }
+}
+@keyframes swell {
+  from {
+    font-weight: 200;
+    font-stretch: 62%;
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+}
+
+.hero-row {
+  display: grid;
+  grid-template-columns: minmax(0, 36rem) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--ink);
+}
+.lede {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.4;
+  max-width: 36rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.hero-foot {
+  position: relative;
+  z-index: 35;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding-top: 1rem;
+  font-size: 0.92rem;
+}
+.now {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  max-width: 34rem;
+}
+.now .mono {
+  color: var(--sig);
+  white-space: nowrap;
+}
+.now-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--sig);
+  flex: none;
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .now-dot {
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+.layers-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+}
+.layers-strip .mono,
+.scroll-hint {
+  color: var(--mute);
+}
+.layers-strip ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+.layers-strip a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  font-weight: 600;
+  transition: color 0.2s, border-color 0.2s;
+}
+.layers-strip a:hover {
+  color: var(--sig);
+  border-color: var(--sig);
+}
+
+/* Phones: stage becomes a real block between eyebrow and headline; headline wraps to 3 lines */
+@media (max-width: 760px) {
+  .hero {
+    grid-template-rows: auto auto auto auto;
+    padding-top: 5.25rem;
+  }
+  .hero-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 44vh;
+    min-height: 15rem;
+    right: auto;
+    top: auto;
+  }
+  .hero-title {
+    font-size: clamp(2.7rem, 14.5vw, 4.4rem);
+    font-stretch: 78%;
+  }
+  .hl {
+    white-space: normal;
+  }
+  .hc {
+    font-stretch: 78%;
+  }
+  .hero-row {
+    grid-template-columns: 1fr;
+  }
+  .scroll-hint,
+  .hero-grid-bg i {
+    display: none;
+  }
+}

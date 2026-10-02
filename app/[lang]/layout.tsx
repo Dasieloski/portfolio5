@@ -1,17 +1,25 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Funnel_Display, Funnel_Sans } from "next/font/google";
+import { Archivo, Geist_Mono } from "next/font/google";
 import { getDictionary } from "@/content";
+import Smooth from "@/components/Smooth";
+import Cursor from "@/components/Cursor";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import "../globals.css";
+import "../hero.css";
 import "../sections.css";
 import "../visuals.css";
 
-const display = Funnel_Display({ variable: "--font-display", subsets: ["latin"], display: "swap" });
-const sans = Funnel_Sans({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
+const sans = Archivo({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
+});
+const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#efebe2",
+  themeColor: "#ece8df",
   colorScheme: "light",
 };
 
@@ -79,12 +87,14 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   };
 
   return (
-    <html lang={lang} className={`${display.variable} ${sans.variable}`}>
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
       <body>
         <a className="skip" href="#main">
           {nav.skip}
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Smooth />
+        <Cursor />
         {children}
       </body>
     </html>

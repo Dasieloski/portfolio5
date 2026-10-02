@@ -1,21 +1,20 @@
-/* System: cream paper + one ultramarine. Sections are "sheets" that slide over each other; a single blue disc is the thread (hero → work). */
+/* Tokens, base, texture, chrome (header, dock, HUD, cursor), buttons. Hero in hero.css, sections in sections.css, interactive pieces in visuals.css. */
 
 :root {
-  --cream: #efebe2;
-  --ink: #14120f;
-  --blue: #2433f5;
-  --sky: #dfe0f6;
-  --mute: #6b675d;
-  --line: rgba(20, 18, 15, 0.14);
-  --line-light: rgba(239, 235, 226, 0.24);
+  --paper: #ece8df;
+  --tint: #e0dace;
+  --ink: #121210;
+  --ink2: #1b1a16;
+  --sig: #e8431a;
+  --mute: #6a655a;
+  --line: rgba(18, 18, 16, 0.16);
+  --line-dark: rgba(236, 232, 223, 0.2);
 
-  --display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+  --mono: var(--font-mono), ui-monospace, monospace;
 
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
-  --max: 88rem;
-  --edge: max(var(--gutter), calc((100vw - var(--max)) / 2));
-  --radius-sheet: clamp(1.5rem, 4vw, 3.5rem);
+  --max: 90rem;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -24,21 +23,41 @@
 *::after {
   box-sizing: border-box;
 }
+
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
 }
+html:not(.lenis) {
+  scroll-behavior: smooth;
+}
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.5;
+  font-optical-sizing: auto;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Paper grain: one static layer, deliberately faint. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.2 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
 h1,
 h2,
 h3,
@@ -60,36 +79,20 @@ a {
   text-decoration: none;
 }
 ::selection {
-  background: var(--blue);
-  color: var(--cream);
+  background: var(--sig);
+  color: var(--paper);
 }
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--sig);
   outline-offset: 3px;
 }
-.work :focus-visible,
-.contact :focus-visible,
-.footer :focus-visible {
-  outline-color: var(--cream);
-}
 
+.mono,
 .label {
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-.h2 {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: clamp(2.2rem, 4.4vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-.section-intro {
-  color: var(--mute);
-  max-width: 32rem;
 }
 
 .skip {
@@ -98,7 +101,7 @@ a {
   top: -4rem;
   z-index: 100;
   background: var(--ink);
-  color: var(--cream);
+  color: var(--paper);
   padding: 0.75rem 1rem;
 }
 .skip:focus {
@@ -114,56 +117,74 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 0.75rem var(--gutter);
-  background: color-mix(in srgb, var(--cream) 90%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  padding: 0.7rem var(--gutter);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
 }
 .bar-mark {
-  font-family: var(--display);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-stretch: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 1.05rem;
 }
 .bar-nav {
   display: flex;
   gap: 2rem;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 .bar-nav a {
+  position: relative;
   padding: 0.4rem 0;
-  opacity: 0.7;
-  transition: opacity 0.2s;
 }
-.bar-nav a:hover {
-  opacity: 1;
+.bar-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+.bar-nav a:hover::after {
+  transform: scaleX(1);
 }
 .bar-end {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 .lang {
   display: flex;
-  font-size: 0.78rem;
-  font-weight: 600;
+  gap: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
 }
 .lang a {
-  padding: 0.6rem 0.45rem;
-  opacity: 0.45;
+  padding: 0.6rem 0.5rem;
+  opacity: 0.5;
 }
 .lang a[aria-current="true"] {
   opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .bar-cta {
-  background: var(--blue);
-  color: var(--cream);
+  border: 1px solid currentColor;
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background 0.3s, color 0.3s;
 }
 .bar-cta:hover {
   background: var(--ink);
+  color: var(--paper);
 }
 
 .dock {
@@ -186,7 +207,7 @@ a {
     padding: 0.35rem;
     border-radius: 999px;
     background: var(--ink);
-    color: var(--cream);
+    color: var(--paper);
     font-size: 0.82rem;
   }
   .dock a {
@@ -196,7 +217,8 @@ a {
     border-radius: 999px;
   }
   .dock-cta {
-    background: var(--blue);
+    background: var(--sig);
+    color: var(--paper);
     font-weight: 600;
   }
   .footer {
@@ -204,68 +226,142 @@ a {
   }
 }
 
-/* ---------- Buttons & links ---------- */
+/* ---------- HUD ruler (desktop) ---------- */
+.hud {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  z-index: 40;
+  transform: translateY(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+  color: var(--mute);
+}
+.hud-rule {
+  position: relative;
+  width: 7px;
+  height: 22vh;
+  background: repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 8px) 0 0 / 100% 100%;
+  opacity: 0.8;
+}
+.hud-fill {
+  position: absolute;
+  inset: 0 auto 0 3px;
+  width: 1px;
+  background: var(--sig);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+.hud-label {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.18em;
+}
+@media (max-width: 1100px) {
+  .hud {
+    display: none;
+  }
+}
+
+/* ---------- Cursor ---------- */
+.cursor {
+  position: fixed;
+  left: -18px;
+  top: -18px;
+  width: 36px;
+  height: 36px;
+  z-index: 90;
+  border: 1px solid var(--sig);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease), background 0.3s;
+}
+.cursor[data-on="true"] {
+  opacity: 1;
+}
+.cursor[data-hot="true"] {
+  width: 64px;
+  height: 64px;
+  margin: -14px 0 0 -14px;
+  background: color-mix(in srgb, var(--sig) 14%, transparent);
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   min-height: 3rem;
-  padding: 0.75rem 1.6rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.98rem;
-  border: 1px solid transparent;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: inherit;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 .btn:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: default;
 }
-.btn-blue {
-  background: var(--blue);
-  color: var(--cream);
-}
-.btn-blue:hover {
-  background: var(--ink);
-}
 .btn-sm {
-  min-height: 2.3rem;
-  padding: 0.35rem 0.95rem;
-  font-size: 0.84rem;
+  min-height: 2.4rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
   background: var(--ink);
-  color: var(--cream);
+  color: var(--paper);
 }
-.btn-line {
+.btn-sm.btn-line {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+}
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-solid:hover {
+  background: var(--sig);
+  border-color: var(--sig);
 }
 .btn-line:hover {
-  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
-.link-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 600;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid currentColor;
-  width: fit-content;
+.btn-paper {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.btn-paper:hover {
+  background: var(--sig);
+  border-color: var(--sig);
+  color: var(--paper);
+}
+.magnetic {
+  display: inline-block;
+  transition: transform 0.35s var(--ease);
 }
 .arrow {
   transition: transform 0.3s var(--ease);
 }
 a:hover > .arrow,
-.link-arrow:hover .arrow {
+.btn:hover .arrow {
   transform: translate(2px, -2px);
 }
 
 /* ---------- Page transition (opacity only: a transform would trap the fixed header) ---------- */
 @media (prefers-reduced-motion: no-preference) {
   .page-in {
-    animation: pagein 0.5s var(--ease) backwards;
+    animation: pagein 0.6s var(--ease) backwards;
   }
 }
 @keyframes pagein {
@@ -274,104 +370,37 @@ a:hover > .arrow,
   }
 }
 
-/* ---------- Hero: the disc ---------- */
-.hero-sticky {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: flex-end;
-  padding: 6rem var(--edge) 3.5rem;
-  overflow: hidden;
+/* ---------- WebGL layer ---------- */
+.scene-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
 }
-.hero-disc {
-  position: absolute;
-  right: -7vmin;
-  bottom: -12vmin;
-  width: 84vmin;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--blue);
+.scene-tip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 91;
+  padding: 0.3rem 0.6rem;
+  background: var(--ink);
+  color: var(--paper);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
-.hero-text {
-  position: relative;
-  display: grid;
-  gap: 1.5rem;
-  max-width: min(46rem, 52%);
+.stage {
+  pointer-events: none;
 }
-.hero-text .label {
-  color: var(--mute);
+.stage-art {
+  width: 100%;
+  height: 100%;
+  color: var(--ink);
+  transition: opacity 0.6s;
 }
-.hero-title {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: clamp(3.4rem, 8.2vw, 8.6rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-}
-.hero-title span {
-  display: block;
-  color: var(--blue);
-}
-.lede {
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-  max-width: 30rem;
-}
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.75rem;
-}
-@media (max-width: 760px) {
-  .hero-sticky {
-    align-items: flex-start;
-    padding-top: 5.5rem;
-  }
-  .hero-text {
-    max-width: none;
-  }
-  .hero-title {
-    font-size: clamp(3.2rem, 17vw, 5.6rem);
-  }
-  .hero-disc {
-    width: 118vw;
-    right: -34vw;
-    bottom: -42vw;
-  }
-}
-
-/* The disc grows into the Work section while the text steps aside (CSS scroll-driven, no JS) */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: scroll()) {
-    .hero {
-      height: 200svh;
-    }
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      height: 100svh;
-      min-height: 0;
-    }
-    .hero-disc {
-      animation: grow linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0px 100vh;
-    }
-    .hero-text {
-      animation: step-aside linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0px 30vh;
-    }
-  }
-}
-@keyframes grow {
-  to {
-    transform: scale(9);
-  }
-}
-@keyframes step-aside {
-  to {
-    opacity: 0;
-    transform: translateY(-3rem);
-  }
+html[data-scene="on"] .stage-art {
+  opacity: 0;
 }

@@ -7,9 +7,11 @@ const en: Dictionary = {
       "Full-Stack Software Engineer based in Cuba, working remotely. Booking platforms, e-commerce, SaaS and payment products — from the database to the interface to the deploy.",
     ogTagline: "Whole products, end to end.",
   },
+  hud: { intro: "Intro" },
   nav: {
     work: "Work",
-    stack: "Layers",
+    stack: "Stack",
+    path: "Path",
     lab: "Lab",
     contact: "Contact",
     hire: "Hire me",
@@ -17,13 +19,15 @@ const en: Dictionary = {
     langLabel: "Language",
   },
   hero: {
-    eyebrow: "Full-Stack Software Engineer",
+    eyebrow: "Full-Stack Software Engineer · Based in Cuba, working remotely",
     line1: "Whole products,",
     line2: "end to end.",
-    lede: "From the problem to the database, the interface, the payment and the deploy. Based in Cuba, working remotely.",
+    lede: "I take a product from the problem to the database, the interface, the payment and the deploy — and work wherever the problem needs me.",
     primary: "Start a conversation",
     secondary: "See the work",
-    location: "Based in Cuba, working remotely",
+    nowLabel: "Lately",
+    now: "Payment products: Supernova as a payment gateway, ACR Pay, ACR Card and the ACR Card app.",
+    layersLabel: "Where I work",
   },
   work: {
     title: "Selected work",
@@ -172,9 +176,6 @@ const en: Dictionary = {
   },
   stack: {
     title: "Anatomy of a product",
-    hint: "Pick a dot to see where, and how.",
-    empty: "Nothing yet. Pick a dot.",
-    recent: "Most recent",
     intro:
       "Breadth isn't a list of logos. It's the layers a product needs to work, and where I've had to get each one right.",
     layers: [
@@ -290,7 +291,7 @@ const en: Dictionary = {
       {
         name: "This site",
         period: "2026",
-        text: "Next.js, plain CSS and SVG. The scroll transitions are CSS scroll-driven animations, with no animation library.",
+        text: "Headline type that reacts to the pointer through variable-font axes, scroll-driven reveals in plain CSS, and no animation libraries.",
       },
     ],
   },
@@ -305,16 +306,18 @@ const en: Dictionary = {
   },
   vis: {
     note: "Conceptual illustration of the problem, not a screenshot.",
+    scrollHint: "Scroll to explore",
     pay: {
       title: "A payment, end to end",
-      amount: "Amount",
+      run: "Send a payment",
+      busy: "In flight…",
       nodes: [
-        { label: "App", text: "A person confirms a payment.", status: "Confirm payment" },
-        { label: "API", text: "The request is authenticated and validated.", status: "Validating" },
-        { label: "Gateway", text: "It is routed through the payment gateway.", status: "Routing" },
-        { label: "Bank", text: "A bank or financial service authorizes it.", status: "Authorizing" },
-        { label: "Ledger", text: "The outcome is recorded.", status: "Recording" },
-        { label: "Card & wallet", text: "The balance reflects the result.", status: "Done" },
+        { label: "App", text: "A person confirms a payment." },
+        { label: "API", text: "The request is authenticated and validated." },
+        { label: "Gateway", text: "It is routed through the payment gateway." },
+        { label: "Bank", text: "A bank or financial service authorizes it." },
+        { label: "Ledger", text: "The outcome is recorded." },
+        { label: "Card & wallet", text: "The balance reflects the result." },
       ],
     },
     avail: {
@@ -345,12 +348,13 @@ const en: Dictionary = {
       nodes: { location: "Locations", members: "Members", trainers: "Trainers", memberships: "Memberships", payments: "Payments" },
       edges: { assigned: "assigned to", holds: "holds", settles: "settled by", tenant: "belongs to" },
     },
+    axes: { title: "Type, as an instrument", width: "Width", weight: "Weight", sample: "Product" },
   },
   caseUi: {
     back: "All work",
     role: "Role",
     period: "Period",
-    stack: "Layers",
+    stack: "Stack",
     visit: "Visit the live site",
     next: "Next case study",
     breadcrumbHome: "Home",

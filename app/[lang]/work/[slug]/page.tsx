@@ -68,20 +68,20 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
         </nav>
 
         <header className="case-head">
-          <p className="label">{c.kind}</p>
+          <p className="mono">{c.kind}</p>
           <h1 className="case-title">{c.name}</h1>
           <p className="lede">{c.summary}</p>
           <dl className="facts">
             <div>
-              <dt className="label">{t.caseUi.role}</dt>
+              <dt className="mono">{t.caseUi.role}</dt>
               <dd>{c.role}</dd>
             </div>
             <div>
-              <dt className="label">{t.caseUi.period}</dt>
+              <dt className="mono">{t.caseUi.period}</dt>
               <dd>{c.period}</dd>
             </div>
             <div>
-              <dt className="label">{t.caseUi.stack}</dt>
+              <dt className="mono">{t.caseUi.stack}</dt>
               <dd>{c.stack.join(" · ")}</dd>
             </div>
           </dl>
@@ -93,8 +93,9 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
         </header>
 
         <div className="case-stage">
+          <p className="mono case-stage-label">{t.caseUi.visualLabel}</p>
                     <CaseVisual slug={c.slug} vis={t.vis} />
-          <p className="label scene-note">{t.vis.note}</p>
+          <p className="mono wp-note">{t.vis.note}</p>
         </div>
 
         <div className="case-body">
@@ -110,7 +111,7 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
                     ))}
                   </div>
                   <figure>
-                    <figcaption className="label">{t.caseUi.architecture}</figcaption>
+                    <figcaption className="mono">{t.caseUi.architecture}</figcaption>
                     <LayerDiagram arch={arch} label={`${c.name} — ${t.caseUi.architecture}`} />
                   </figure>
                 </section>
@@ -118,6 +119,9 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
             }
             return (
               <section key={s.title} className="case-sec">
+                <span className="case-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <h2>{s.title}</h2>
                 <div>
                   {s.body.map((p) => (
@@ -130,13 +134,13 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
         </div>
 
         <Link href={`/${lang}/work/${next.slug}`} className="case-next">
-          <span className="label">{t.caseUi.next}</span>
-          <span className="case-next-name">
+          <span className="mono">{t.caseUi.next}</span>
+          <span className="display">
             {next.name} <Arrow />
           </span>
         </Link>
       </main>
-      <Contact contact={t.contact} />
+      <Contact contact={t.contact} stage={false} />
       <Footer footer={t.footer} />
     </>
   );

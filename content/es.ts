@@ -7,9 +7,11 @@ const es: Dictionary = {
       "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Plataformas de reservas, e-commerce, SaaS y productos de pagos: de la base de datos a la interfaz y al despliegue.",
     ogTagline: "Productos completos, de punta a punta.",
   },
+  hud: { intro: "Intro" },
   nav: {
     work: "Trabajo",
-    stack: "Capas",
+    stack: "Stack",
+    path: "Trayectoria",
     lab: "Lab",
     contact: "Contacto",
     hire: "Contrátame",
@@ -17,13 +19,15 @@ const es: Dictionary = {
     langLabel: "Idioma",
   },
   hero: {
-    eyebrow: "Ingeniero de Software Full-Stack",
+    eyebrow: "Ingeniero de Software Full-Stack · Radicado en Cuba, trabajando en remoto",
     line1: "Productos completos,",
     line2: "de punta a punta.",
-    lede: "Del problema a la base de datos, la interfaz, el pago y el despliegue. Radicado en Cuba, trabajando en remoto.",
+    lede: "Llevo un producto desde el problema hasta la base de datos, la interfaz, el pago y el despliegue, y trabajo donde el problema lo necesite.",
     primary: "Escríbeme",
     secondary: "Ver el trabajo",
-    location: "Radicado en Cuba, trabajando en remoto",
+    nowLabel: "Últimamente",
+    now: "Productos de pagos: Supernova como pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card.",
+    layersLabel: "Dónde trabajo",
   },
   work: {
     title: "Trabajo seleccionado",
@@ -172,9 +176,6 @@ const es: Dictionary = {
   },
   stack: {
     title: "Anatomía de un producto",
-    hint: "Elige un punto para ver dónde y cómo.",
-    empty: "Aún nada. Elige un punto.",
-    recent: "Más reciente",
     intro:
       "La amplitud no es una lista de logos. Son las capas que un producto necesita para funcionar, y dónde he tenido que resolver bien cada una.",
     layers: [
@@ -290,7 +291,7 @@ const es: Dictionary = {
       {
         name: "Esta web",
         period: "2026",
-        text: "Next.js, CSS puro y SVG. Las transiciones de scroll son animaciones de CSS guiadas por scroll, sin librería de animación.",
+        text: "Tipografía del titular que reacciona al puntero mediante ejes de fuente variable, revelados guiados por scroll en CSS puro y ninguna librería de animación.",
       },
     ],
   },
@@ -305,16 +306,18 @@ const es: Dictionary = {
   },
   vis: {
     note: "Ilustración conceptual del problema, no una captura.",
+    scrollHint: "Desplázate para explorar",
     pay: {
       title: "Un pago, de punta a punta",
-      amount: "Importe",
+      run: "Enviar un pago",
+      busy: "En camino…",
       nodes: [
-        { label: "App", text: "Una persona confirma un pago.", status: "Confirmar pago" },
-        { label: "API", text: "La petición se autentica y se valida.", status: "Validando" },
-        { label: "Pasarela", text: "Se enruta por la pasarela de pago.", status: "Enrutando" },
-        { label: "Banco", text: "Un banco o servicio financiero lo autoriza.", status: "Autorizando" },
-        { label: "Libro", text: "El resultado queda registrado.", status: "Registrando" },
-        { label: "Tarjeta y wallet", text: "El saldo refleja el resultado.", status: "Hecho" },
+        { label: "App", text: "Una persona confirma un pago." },
+        { label: "API", text: "La petición se autentica y se valida." },
+        { label: "Pasarela", text: "Se enruta por la pasarela de pago." },
+        { label: "Banco", text: "Un banco o servicio financiero lo autoriza." },
+        { label: "Libro", text: "El resultado queda registrado." },
+        { label: "Tarjeta y wallet", text: "El saldo refleja el resultado." },
       ],
     },
     avail: {
@@ -345,12 +348,13 @@ const es: Dictionary = {
       nodes: { location: "Sedes", members: "Socios", trainers: "Entrenadores", memberships: "Membresías", payments: "Pagos" },
       edges: { assigned: "asignado a", holds: "tiene", settles: "se liquida con", tenant: "pertenece a" },
     },
+    axes: { title: "La tipografía como instrumento", width: "Ancho", weight: "Peso", sample: "Producto" },
   },
   caseUi: {
     back: "Todo el trabajo",
     role: "Rol",
     period: "Periodo",
-    stack: "Capas",
+    stack: "Stack",
     visit: "Visitar el sitio",
     next: "Siguiente caso",
     breadcrumbHome: "Inicio",
