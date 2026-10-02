@@ -21,9 +21,17 @@ export type Layer = {
   points: { text: string; ref: string }[];
 };
 
+export type Visuals = {
+  note: string;
+  pay: { title: string; amount: string; nodes: { label: string; text: string; status: string }[] };
+  avail: { title: string; run: string; reset: string; a: string; b: string; idle: string; land: string; lock: string; won: string; lost: string };
+  stock: { title: string; run: string; reset: string; skus: string; idle: string; lock: string; done: string };
+  schema: { title: string; hint: string; roles: string; nodes: Record<"location" | "members" | "trainers" | "memberships" | "payments", string>; edges: Record<"assigned" | "holds" | "settles" | "tenant", string> };
+};
+
 export type Dictionary = {
   meta: { title: string; description: string; ogTagline: string };
-  nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string; langLabel: string };
+  nav: { work: string; stack: string; lab: string; contact: string; hire: string; skip: string; langLabel: string };
   hero: {
     eyebrow: string;
     line1: string;
@@ -31,9 +39,7 @@ export type Dictionary = {
     lede: string;
     primary: string;
     secondary: string;
-    nowLabel: string;
-    now: string;
-    layersLabel: string;
+    location: string;
   };
   work: {
     title: string;
@@ -44,7 +50,7 @@ export type Dictionary = {
     alsoTitle: string;
     also: { name: string; text: string; url: string }[];
   };
-  stack: { title: string; intro: string; layers: Layer[] };
+  stack: { title: string; intro: string; hint: string; empty: string; recent: string; layers: Layer[] };
   path: {
     title: string;
     about: string[];
@@ -62,6 +68,7 @@ export type Dictionary = {
     availability: string;
     location: string;
   };
+  vis: Visuals;
   caseUi: {
     back: string;
     role: string;
@@ -71,6 +78,8 @@ export type Dictionary = {
     next: string;
     breadcrumbHome: string;
     contactCta: string;
+    architecture: string;
+    visualLabel: string;
   };
   footer: { rights: string; top: string };
   notFound: { title: string; text: string; back: string };

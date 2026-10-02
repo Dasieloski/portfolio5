@@ -12,31 +12,31 @@ export default function Contact({ contact }: { contact: Dictionary["contact"] })
   ];
 
   return (
-    <section id="contact" className="section section-dark contact" aria-labelledby="contact-title">
-      <p className="mono contact-status">
-        <span className="now-dot" aria-hidden="true" /> {contact.availability} · {contact.location}
+    <section id="contact" className="contact" aria-labelledby="contact-title">
+      <p className="label">
+        {contact.availability} · {contact.location}
       </p>
-      <h2 id="contact-title" className="display display-xl reveal">
+      <h2 id="contact-title" className="contact-title">
         {contact.title}
       </h2>
-      <div className="contact-grid">
-        <p className="section-intro">{contact.text}</p>
-        <div>
+      <div className="contact-row">
+        <p className="contact-text">{contact.text}</p>
+        <div className="contact-mail-wrap">
           <a className="contact-mail" href={`mailto:${CONTACT.email}`}>
             {CONTACT.email}
           </a>
           <CopyEmail email={CONTACT.email} copy={contact.copy} copied={contact.copied} />
-          <ul className="contact-links">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} target="_blank" rel="noopener noreferrer">
-                  {l.label} <Arrow />
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
+      <ul className="contact-links">
+        {links.map((l) => (
+          <li key={l.href}>
+            <a href={l.href} target="_blank" rel="noopener noreferrer">
+              {l.label} <Arrow />
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

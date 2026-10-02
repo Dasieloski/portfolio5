@@ -7,6 +7,9 @@ import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Arrow } from "@/components/Arrow";
+import CaseVisual from "@/components/visuals/CaseVisual";
+import LayerDiagram from "@/components/visuals/LayerDiagram";
+import { ARCH } from "@/content/visuals";
 
 export function generateStaticParams() {
   return LOCALES.flatMap((lang) => getDictionary(lang).work.cases.map((c) => ({ lang, slug: c.slug })));
@@ -60,25 +63,25 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
       <Header lang={lang} nav={t.nav} />
       <main id="main" className="case">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([crumbs, article]) }} />
-        <nav aria-label="Breadcrumb" className="crumbs mono">
+        <nav aria-label="Breadcrumb" className="crumbs label">
           <Link href={`/${lang}`}>{t.caseUi.breadcrumbHome}</Link> / <Link href={`/${lang}#work`}>{t.caseUi.back}</Link>
         </nav>
 
         <header className="case-head">
-          <p className="mono">{c.kind}</p>
+          <p className="label">{c.kind}</p>
           <h1 className="case-title">{c.name}</h1>
           <p className="lede">{c.summary}</p>
           <dl className="facts">
             <div>
-              <dt className="mono">{t.caseUi.role}</dt>
+              <dt className="label">{t.caseUi.role}</dt>
               <dd>{c.role}</dd>
             </div>
             <div>
-              <dt className="mono">{t.caseUi.period}</dt>
+              <dt className="label">{t.caseUi.period}</dt>
               <dd>{c.period}</dd>
             </div>
             <div>
-              <dt className="mono">{t.caseUi.stack}</dt>
+              <dt className="label">{t.caseUi.stack}</dt>
               <dd>{c.stack.join(" · ")}</dd>
             </div>
           </dl>
@@ -89,22 +92,46 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
           )}
         </header>
 
+        <div className="case-stage">
+                    <CaseVisual slug={c.slug} vis={t.vis} />
+          <p className="label scene-note">{t.vis.note}</p>
+        </div>
+
         <div className="case-body">
-          {c.sections.map((s) => (
-            <section key={s.title} className="case-sec">
-              <h2>{s.title}</h2>
-              <div>
-                {s.body.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-            </section>
-          ))}
+          {c.sections.map((s, i) => {
+            const arch = ARCH[c.slug];
+            if (arch && i === arch.archSection) {
+              return (
+                <section key={s.title} className="case-arch">
+                  <div>
+                    <h2>{s.title}</h2>
+                    {s.body.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
+                  <figure>
+                    <figcaption className="label">{t.caseUi.architecture}</figcaption>
+                    <LayerDiagram arch={arch} label={`${c.name} — ${t.caseUi.architecture}`} />
+                  </figure>
+                </section>
+              );
+            }
+            return (
+              <section key={s.title} className="case-sec">
+                <h2>{s.title}</h2>
+                <div>
+                  {s.body.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
 
         <Link href={`/${lang}/work/${next.slug}`} className="case-next">
-          <span className="mono">{t.caseUi.next}</span>
-          <span className="display">
+          <span className="label">{t.caseUi.next}</span>
+          <span className="case-next-name">
             {next.name} <Arrow />
           </span>
         </Link>

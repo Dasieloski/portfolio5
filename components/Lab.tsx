@@ -3,17 +3,17 @@ import { Arrow } from "./Arrow";
 
 export default function Lab({ lab }: { lab: Dictionary["lab"] }) {
   return (
-    <section id="lab" className="section" aria-labelledby="lab-title">
-      <header className="section-head">
-        <h2 id="lab-title" className="display reveal">
+    <section id="lab" className="sheet lab" aria-labelledby="lab-title">
+      <header>
+        <h2 id="lab-title" className="h2">
           {lab.title}
         </h2>
         <p className="section-intro">{lab.intro}</p>
       </header>
-      <ul className="lab">
+      <ul>
         {lab.items.map((i) => (
           <li key={i.name}>
-            <span className="mono">{i.period}</span>
+            <span className="label">{i.period}</span>
             <h3>
               {i.href ? (
                 <a href={i.href} target="_blank" rel="noopener noreferrer">

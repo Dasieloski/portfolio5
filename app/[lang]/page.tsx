@@ -4,8 +4,7 @@ import { isLocale } from "@/lib/site";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
-import Stack from "@/components/Stack";
-import Path from "@/components/Path";
+import Layers from "@/components/Layers";
 import Lab from "@/components/Lab";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,10 +18,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     <>
       <Header lang={lang} nav={t.nav} />
       <main id="main">
-        <Hero lang={lang} hero={t.hero} layers={t.stack.layers} />
-        <Work lang={lang} work={t.work} />
-        <Stack stack={t.stack} />
-        <Path path={t.path} />
+        <Hero lang={lang} hero={t.hero} />
+        <Work lang={lang} work={t.work} vis={t.vis} />
+        <Layers stack={t.stack} path={t.path} />
         <Lab lab={t.lab} />
         <Contact contact={t.contact} />
       </main>

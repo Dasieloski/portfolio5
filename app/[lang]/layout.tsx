@@ -1,27 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Bricolage_Grotesque, Geist_Mono, Newsreader } from "next/font/google";
+import { Funnel_Display, Funnel_Sans } from "next/font/google";
 import { getDictionary } from "@/content";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import "../globals.css";
 import "../sections.css";
+import "../visuals.css";
 
-const sans = Bricolage_Grotesque({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  axes: ["opsz", "wdth"],
-  display: "swap",
-});
-const serif = Newsreader({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  style: ["italic"],
-  display: "swap",
-});
-const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
+const display = Funnel_Display({ variable: "--font-display", subsets: ["latin"], display: "swap" });
+const sans = Funnel_Sans({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#ece8df",
+  themeColor: "#efebe2",
   colorScheme: "light",
 };
 
@@ -89,7 +79,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   };
 
   return (
-    <html lang={lang} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang={lang} className={`${display.variable} ${sans.variable}`}>
       <body>
         <a className="skip" href="#main">
           {nav.skip}

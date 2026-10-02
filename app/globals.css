@@ -1,20 +1,21 @@
-/* Tokens, base, chrome (header, dock, buttons), hero, page transition. Section styles live in sections.css. */
+/* System: cream paper + one ultramarine. Sections are "sheets" that slide over each other; a single blue disc is the thread (hero → work). */
 
 :root {
-  --paper: #ece8df;
-  --tint: #e3ded3;
-  --ink: #121210;
-  --sig: #e8431a;
-  --mute: #6a655a;
-  --line: rgba(18, 18, 16, 0.16);
-  --line-dark: rgba(236, 232, 223, 0.18);
+  --cream: #efebe2;
+  --ink: #14120f;
+  --blue: #2433f5;
+  --sky: #dfe0f6;
+  --mute: #6b675d;
+  --line: rgba(20, 18, 15, 0.14);
+  --line-light: rgba(239, 235, 226, 0.24);
 
+  --display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
-  --serif: var(--font-serif), Georgia, serif;
-  --mono: var(--font-mono), ui-monospace, monospace;
 
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --max: 88rem;
+  --edge: max(var(--gutter), calc((100vw - var(--max)) / 2));
+  --radius-sheet: clamp(1.5rem, 4vw, 3.5rem);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -23,25 +24,21 @@
 *::after {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4rem;
   -webkit-text-size-adjust: 100%;
 }
-
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1.0625rem;
-  line-height: 1.55;
-  font-optical-sizing: auto;
+  line-height: 1.5;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
-
 h1,
 h2,
 h3,
@@ -49,7 +46,8 @@ p,
 ul,
 ol,
 dl,
-dd {
+dd,
+figure {
   margin: 0;
   padding: 0;
 }
@@ -62,19 +60,36 @@ a {
   text-decoration: none;
 }
 ::selection {
-  background: var(--sig);
-  color: var(--paper);
+  background: var(--blue);
+  color: var(--cream);
 }
 :focus-visible {
-  outline: 2px solid var(--sig);
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
+.work :focus-visible,
+.contact :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--cream);
+}
 
-.mono {
-  font-family: var(--mono);
+.label {
+  font-family: var(--sans);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.section-intro {
+  color: var(--mute);
+  max-width: 32rem;
 }
 
 .skip {
@@ -83,7 +98,7 @@ a {
   top: -4rem;
   z-index: 100;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--cream);
   padding: 0.75rem 1rem;
 }
 .skip:focus {
@@ -100,74 +115,57 @@ a {
   justify-content: space-between;
   gap: 1.5rem;
   padding: 0.75rem var(--gutter);
-  color: var(--ink);
-  background: color-mix(in srgb, var(--paper) 78%, transparent);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--cream) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .bar-mark {
+  font-family: var(--display);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 1.05rem;
+  letter-spacing: -0.01em;
 }
 .bar-nav {
   display: flex;
   gap: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
-.bar-nav a,
-.bar-mark {
-  position: relative;
+.bar-nav a {
+  padding: 0.4rem 0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
-.bar-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s var(--ease);
-}
-.bar-nav a:hover::after {
-  transform: scaleX(1);
+.bar-nav a:hover {
+  opacity: 1;
 }
 .bar-end {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 .lang {
   display: flex;
-  gap: 0.15rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 .lang a {
-  padding: 0.6rem 0.5rem;
-  opacity: 0.55;
+  padding: 0.6rem 0.45rem;
+  opacity: 0.45;
 }
 .lang a[aria-current="true"] {
   opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 .bar-cta {
-  border: 1px solid currentColor;
+  background: var(--blue);
+  color: var(--cream);
   border-radius: 999px;
-  padding: 0.55rem 1.1rem;
-  font-size: 0.85rem;
-  transition: background 0.3s, color 0.3s;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 .bar-cta:hover {
   background: var(--ink);
-  color: var(--paper);
 }
 
-/* Phones: a thumb-zone dock replaces the top navigation */
 .dock {
   display: none;
 }
@@ -188,7 +186,7 @@ a {
     padding: 0.35rem;
     border-radius: 999px;
     background: var(--ink);
-    color: var(--paper);
+    color: var(--cream);
     font-size: 0.82rem;
   }
   .dock a {
@@ -198,8 +196,7 @@ a {
     border-radius: 999px;
   }
   .dock-cta {
-    background: var(--sig);
-    color: var(--paper);
+    background: var(--blue);
     font-weight: 600;
   }
   .footer {
@@ -207,222 +204,174 @@ a {
   }
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons & links ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   min-height: 3rem;
-  padding: 0.8rem 1.6rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.98rem;
-  border: 1px solid var(--ink);
-  background: transparent;
-  color: inherit;
+  border: 1px solid transparent;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--ease);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
-.btn-solid {
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.btn-blue {
+  background: var(--blue);
+  color: var(--cream);
+}
+.btn-blue:hover {
   background: var(--ink);
-  color: var(--paper);
 }
-.btn-solid:hover {
-  background: var(--sig);
-  border-color: var(--sig);
+.btn-sm {
+  min-height: 2.3rem;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.84rem;
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn-line {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
 }
 .btn-line:hover {
-  background: var(--ink);
-  color: var(--paper);
+  border-color: var(--ink);
+}
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid currentColor;
+  width: fit-content;
 }
 .arrow {
   transition: transform 0.3s var(--ease);
 }
 a:hover > .arrow,
-.btn:hover .arrow,
-.row-link:hover .arrow {
+.link-arrow:hover .arrow {
   transform: translate(2px, -2px);
 }
 
-/* ---------- Hero ---------- */
-.hero {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  padding: 7rem var(--gutter) 2rem;
-  max-width: var(--max);
-  margin-inline: auto;
-}
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mute);
-  max-width: 40rem;
-}
-.hero-title {
-  font-weight: 560;
-  font-size: clamp(3rem, 10.6vw, 10.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
-  text-wrap: balance;
-}
-.hl {
-  display: block;
-}
-.hl-alt {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--sig);
-  letter-spacing: -0.035em;
-  padding-bottom: 0.08em;
-}
-.hw {
-  display: inline-block;
-  white-space: nowrap;
-}
-.hc {
-  display: inline-block;
-  font-weight: 560;
-  transition: font-weight 0.18s linear;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hc {
-    animation: swell 1.2s var(--ease) backwards;
-  }
-}
-@keyframes swell {
-  from {
-    font-weight: 200;
-    opacity: 0;
-    transform: translateY(0.35em);
-  }
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 38rem) auto;
-  justify-content: space-between;
-  align-items: end;
-  gap: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-}
-.lede {
-  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
-  line-height: 1.4;
-  max-width: 38rem;
-}
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.hero-foot {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.92rem;
-}
-.now {
-  display: flex;
-  gap: 0.6rem;
-  align-items: baseline;
-  max-width: 36rem;
-}
-.now .mono {
-  color: var(--sig);
-  white-space: nowrap;
-}
-.now-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--sig);
-  flex: none;
-  align-self: flex-start;
-  margin-top: 0.4rem;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .now-dot {
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-}
-@keyframes pulse {
-  50% {
-    opacity: 0.25;
-  }
-}
-.layers-strip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-}
-.layers-strip .mono {
-  color: var(--mute);
-}
-.layers-strip ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1rem;
-}
-.layers-strip a {
-  display: inline-block;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid transparent;
-  font-weight: 500;
-  transition: color 0.2s, border-color 0.2s;
-}
-.layers-strip a:hover {
-  color: var(--sig);
-  border-color: var(--sig);
-}
-@media (max-width: 760px) {
-  .hero {
-    padding-top: 6rem;
-  }
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-  .hero-title {
-    font-size: clamp(2.7rem, 15vw, 5rem);
-  }
-}
-
-/* ---------- Page transition (template.tsx re-mounts per navigation) ---------- */
+/* ---------- Page transition (opacity only: a transform would trap the fixed header) ---------- */
 @media (prefers-reduced-motion: no-preference) {
   .page-in {
-    animation: pagein 0.6s var(--ease) backwards;
+    animation: pagein 0.5s var(--ease) backwards;
   }
 }
-/* Opacity only: a transform here would turn .page-in into the containing block of the fixed header. */
 @keyframes pagein {
   from {
     opacity: 0;
   }
 }
 
-/* ---------- Scroll-driven reveal (progressive: content stays visible if unsupported) ---------- */
+/* ---------- Hero: the disc ---------- */
+.hero-sticky {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding: 6rem var(--edge) 3.5rem;
+  overflow: hidden;
+}
+.hero-disc {
+  position: absolute;
+  right: -7vmin;
+  bottom: -12vmin;
+  width: 84vmin;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.hero-text {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  max-width: min(46rem, 52%);
+}
+.hero-text .label {
+  color: var(--mute);
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(3.4rem, 8.2vw, 8.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+.hero-title span {
+  display: block;
+  color: var(--blue);
+}
+.lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  max-width: 30rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.75rem;
+}
+@media (max-width: 760px) {
+  .hero-sticky {
+    align-items: flex-start;
+    padding-top: 5.5rem;
+  }
+  .hero-text {
+    max-width: none;
+  }
+  .hero-title {
+    font-size: clamp(3.2rem, 17vw, 5.6rem);
+  }
+  .hero-disc {
+    width: 118vw;
+    right: -34vw;
+    bottom: -42vw;
+  }
+}
+
+/* The disc grows into the Work section while the text steps aside (CSS scroll-driven, no JS) */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 70%;
+  @supports (animation-timeline: scroll()) {
+    .hero {
+      height: 200svh;
+    }
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      min-height: 0;
+    }
+    .hero-disc {
+      animation: grow linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 100vh;
+    }
+    .hero-text {
+      animation: step-aside linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 30vh;
     }
   }
 }
-@keyframes rise {
-  from {
+@keyframes grow {
+  to {
+    transform: scale(9);
+  }
+}
+@keyframes step-aside {
+  to {
     opacity: 0;
-    transform: translateY(48px);
+    transform: translateY(-3rem);
   }
 }

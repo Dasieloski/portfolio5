@@ -1,0 +1,266 @@
+/* Interactive illustrations: cream "product surfaces" that sit directly on the blue. */
+
+.vis {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.75rem);
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 1.25rem;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 50, 0.65);
+}
+.vis-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.vis-head > .label {
+  color: var(--blue);
+}
+.vis-head > .vis-hint {
+  color: var(--mute);
+}
+.vis-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+.vis-caption {
+  min-height: 3em;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.98rem;
+}
+.vis-caption .label {
+  color: var(--blue);
+  margin-right: 0.4rem;
+}
+
+/* ---------- Availability ---------- */
+.cal {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-day {
+  aspect-ratio: 1.2;
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  background: rgba(20, 18, 15, 0.05);
+}
+.cal-day i {
+  font-style: normal;
+  font-size: 0.62rem;
+  color: var(--mute);
+}
+.cal-day[data-range="true"] {
+  background: var(--sky);
+}
+.req {
+  position: absolute;
+  left: calc(100% / 7 + 2px);
+  width: calc(100% * 4 / 7 - 4px);
+  height: 10%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.7rem;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(-160%);
+  transition: opacity 0.5s, transform 0.8s var(--ease), background 0.4s, color 0.4s;
+}
+.req-a {
+  top: 28%;
+  background: var(--blue);
+  color: var(--cream);
+}
+.req-b {
+  top: 42%;
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(160%);
+}
+.req[data-on="true"] {
+  opacity: 1;
+  transform: none;
+}
+.req b {
+  font-weight: 600;
+}
+.stamp {
+  text-decoration: none;
+  font-weight: 800;
+}
+.avail[data-phase="done"] .req-b {
+  background: transparent;
+  color: var(--ink);
+  outline: 1px dashed var(--ink);
+  opacity: 0.7;
+}
+.cal-lock {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--cream) 78%, transparent);
+  color: var(--blue);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.cal-lock[data-on="true"] {
+  opacity: 1;
+}
+
+/* ---------- Stock grid ---------- */
+.sku {
+  position: relative;
+  display: grid;
+  gap: 3px;
+}
+.sku-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: opacity 0.5s, background 0.3s;
+}
+.sku-cell[data-v="3"] {
+  opacity: 0.85;
+}
+.sku-cell[data-v="2"] {
+  opacity: 0.5;
+}
+.sku-cell[data-v="1"] {
+  opacity: 0.25;
+}
+.sku-cell[data-v="0"] {
+  opacity: 0.07;
+}
+.sku-cell[data-blip="true"] {
+  background: var(--blue);
+}
+.sku-cell[data-target="true"] {
+  background: var(--blue);
+  opacity: 1;
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.sku-cell[data-target="true"][data-v="0"] {
+  background: var(--ink);
+  opacity: 0.07;
+  outline-color: transparent;
+}
+.sku-tag {
+  position: absolute;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--cream);
+  opacity: 0;
+  transition: opacity 0.4s;
+  /* the target SKU is cell 87 of an 18-column grid: column 16, row 5 */
+  left: calc(15 / 18 * 100%);
+  top: calc(4 / 12 * 100%);
+}
+.sku-a {
+  background: var(--blue);
+  transform: translate(-130%, -140%);
+}
+.sku-b {
+  transform: translate(30%, 150%);
+}
+.sku-tag[data-on="true"] {
+  opacity: 1;
+}
+.stockv[data-phase="done"] .sku-b {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+/* ---------- Schema ---------- */
+.schema-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.schema-node {
+  cursor: pointer;
+  outline: none;
+}
+.schema-node rect {
+  fill: var(--cream);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  transition: fill 0.3s, stroke 0.3s;
+}
+.schema-node line {
+  stroke: var(--ink);
+  opacity: 0.4;
+}
+.schema-node .schema-field {
+  stroke-width: 3;
+  opacity: 0.2;
+}
+.schema-node[data-on="true"] rect {
+  stroke: var(--blue);
+  fill: var(--sky);
+}
+.schema-name {
+  font: 700 15px var(--display);
+  fill: var(--ink);
+}
+.schema-edge line {
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 6;
+  opacity: 0.4;
+  transition: stroke 0.3s, opacity 0.3s;
+}
+.schema-edge text {
+  font: 600 9px var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--mute);
+}
+.schema-edge[data-on="true"] line {
+  stroke: var(--blue);
+  opacity: 1;
+}
+
+/* ---------- Architecture (case studies) ---------- */
+.arch-svg {
+  width: 100%;
+  height: auto;
+}
+.arch-node rect {
+  fill: var(--cream);
+  stroke: none;
+  rx: 8;
+}
+.arch-node text {
+  font: 600 13px var(--sans);
+  fill: var(--ink);
+}
+.arch-flow {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 7;
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .arch-flow {
+    animation: flow 1.4s linear infinite;
+  }
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
