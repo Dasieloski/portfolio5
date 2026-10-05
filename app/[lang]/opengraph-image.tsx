@@ -22,15 +22,15 @@ export default async function Image({ params }: { params: Promise<{ lang: string
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#ece8df",
-          color: "#121210",
+          background: "#f1efe8",
+          color: "#111111",
           padding: 72,
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: 4, textTransform: "uppercase", color: "#e8431a" }}>
+        <div style={{ fontSize: 28, letterSpacing: 4, textTransform: "uppercase", color: "#0f6b45" }}>
           Full-Stack Software Engineer
         </div>
-        <div style={{ fontSize: 116, fontWeight: 700, lineHeight: 1.02, letterSpacing: -4 }}>{tagline}</div>
+        <div style={{ fontSize: 116, fontWeight: 300, lineHeight: 1.02, letterSpacing: -4, fontFamily: "Georgia, serif" }}>{tagline}</div>
         <div style={{ fontSize: 36 }}>Dasiel Torres</div>
       </div>
     ),

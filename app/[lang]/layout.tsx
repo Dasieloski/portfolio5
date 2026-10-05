@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Archivo, Geist_Mono } from "next/font/google";
+import { Archivo, Fraunces } from "next/font/google";
 import { getDictionary } from "@/content";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import "../globals.css";
 import "../hero.css";
 import "../sections.css";
 import "../visuals.css";
+import "../products.css";
 
 const sans = Archivo({
   variable: "--font-sans",
@@ -14,10 +15,11 @@ const sans = Archivo({
   axes: ["wdth"],
   display: "swap",
 });
-const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
+// Reason: Fraunces carries the display voice (light, tight, italic for emphasis); Archivo does everything else.
+const serif = Fraunces({ variable: "--font-serif", subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#ece8df",
+  themeColor: "#f1efe8",
   colorScheme: "light",
 };
 
@@ -85,7 +87,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   };
 
   return (
-    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
+    <html lang={lang} className={`${sans.variable} ${serif.variable}`}>
       <body>
         <a className="skip" href="#main">
           {nav.skip}

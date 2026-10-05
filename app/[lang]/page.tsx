@@ -9,7 +9,6 @@ import Path from "@/components/Path";
 import Lab from "@/components/Lab";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Scene from "@/components/scene/Scene";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -19,10 +18,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <>
       <Header lang={lang} nav={t.nav} />
-      <Scene names={t.stack.layers.map((l) => l.name)} />
       <main id="main">
-        <Hero lang={lang} hero={t.hero} />
-        <Work lang={lang} work={t.work} vis={t.vis} />
+        <Hero lang={lang} hero={t.hero} status={`${t.contact.availability} · ${t.contact.location}`} />
+        <Work lang={lang} work={t.work} vis={t.vis} mustHold={t.caseUi.mustHold} />
         <Stack stack={t.stack} />
         <Path path={t.path} />
         <Lab lab={t.lab} vis={t.vis} />

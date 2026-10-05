@@ -4,7 +4,7 @@ const es: Dictionary = {
   meta: {
     title: "Dasiel Torres — Ingeniero de Software Full-Stack",
     description:
-      "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Plataformas de reservas, e-commerce, SaaS y productos de pagos: de la base de datos a la interfaz y al despliegue.",
+      "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Pasarela de pagos, plataformas de tarjetas y recargas, e-commerce y SaaS: de la base de datos a la interfaz y al despliegue.",
     ogTagline: "Productos completos, de punta a punta.",
   },
   nav: {
@@ -26,60 +26,134 @@ const es: Dictionary = {
     secondary: "Ver el trabajo",
   },
   work: {
-    title: "Trabajo seleccionado",
-    intro: "Productos reales con usuarios reales.",
-    featured: {
-      name: "Supernova & ACR",
-      kind: "Pagos · Fintech",
-      period: "Más reciente",
-      role: "Ingeniero de Software",
-      text: "Pasarela de pago, ACR Pay, ACR Card y su aplicación, con integraciones con bancos y servicios financieros.",
-      tags: ["Pasarela de pago", "Tarjetas", "Integraciones bancarias"],
-      cta: "Pregúntame por ello",
-    },
+    title: "Cuatro productos,",
+    titleEm: "cuatro cosas que no pueden romperse.",
+    intro: "Productos de pagos con usuarios reales, del más reciente al más antiguo.",
     cases: [
       {
-        slug: "habaluna",
-        name: "Habaluna",
-        kind: "Plataforma de reservas turísticas",
-        period: "Dic 2024 – Mar 2025",
-        role: "Ingeniero único",
-        url: "https://habaluna.com",
-        summary:
-          "Una plataforma de reservas en producción para el sector turístico de Cuba, construida y operada de principio a fin por un solo ingeniero.",
-        stack: ["Next.js", "React", "PostgreSQL", "Prisma", "Strapi", "Vercel"],
+        slug: "acr-card",
+        name: "ACR Card",
+        kind: "Plataforma de emisión de tarjetas",
+        tier: "main",
+        role: "Ingeniero de Software",
+        invariant: "Una solicitud, una tarjeta.",
+        summary: "Una plataforma para solicitar tarjetas Visa y Mastercard, parte del ecosistema Supernova & ACR.",
+        stack: [],
         seoDescription:
-          "Caso de estudio: Habaluna, plataforma de reservas turísticas para el mercado cubano: disponibilidad en tiempo real, reservas mobile-first y back office para operadores, construida en solitario.",
+          "Caso de estudio: ACR Card, plataforma para solicitar tarjetas Visa y Mastercard, parte del ecosistema de pagos Supernova & ACR.",
         sections: [
           {
             title: "Contexto",
             body: [
-              "Habaluna es una plataforma de reservas en producción para el sector turístico de Cuba: un catálogo público, un flujo de reserva y pago, y un back office para los operadores que publican y gestionan las ofertas.",
+              "ACR Card es una plataforma para solicitar tarjetas Visa y Mastercard. Forma parte del ecosistema Supernova & ACR, junto a la pasarela de pagos, ACR Pay y la aplicación de gestión de tarjetas.",
             ],
           },
           {
-            title: "Mi responsabilidad",
+            title: "Qué hace el producto",
             body: [
-              "Fui el único ingeniero. Las decisiones de producto, la arquitectura, el UX/UI, el backend y la infraestructura fueron mías, desde el primer esquema hasta el entorno de producción.",
+              "Una persona elige la red de la tarjeta, envía su solicitud y la sigue hasta que la tarjeta existe. Detrás de esa pantalla hay un flujo con consecuencias reales: una solicitud que pasa por estados claros, datos personales que hay que tratar con cuidado y un resultado que nunca puede ser ambiguo.",
             ],
           },
           {
-            title: "Arquitectura",
+            title: "Lo difícil: una solicitud que no se puede perder",
             body: [
-              "Next.js 14 App Router combinando React Server Components y Client Components, PostgreSQL con Prisma y Strapi como CMS headless. La separación es deliberada: la lógica de reservas es dinámica y transaccional, y el contenido gestionado por operadores vive en el CMS, así cada lado cambia sin tocar al otro.",
+              "Las solicitudes atraviesan varios sistemas y cualquier paso puede fallar a medias. El trabajo consiste en que cada solicitud termine en un único estado —aprobada, rechazada o pendiente— para que nadie reciba dos tarjetas y nadie espere una solicitud que desapareció en silencio.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "acr-card-app",
+        name: "ACR Card App",
+        kind: "Aplicación de gestión de tarjetas",
+        tier: "main",
+        role: "Ingeniero de Software",
+        invariant: "Una transferencia llega una vez, a la tarjeta correcta.",
+        summary: "Una plataforma para gestionar tarjetas ACR: ver transacciones y mover dinero entre tarjetas.",
+        stack: [],
+        seoDescription:
+          "Caso de estudio: la aplicación ACR Card, plataforma para gestionar tarjetas ACR, ver transacciones y transferir dinero entre tarjetas.",
+        sections: [
+          {
+            title: "Contexto",
+            body: [
+              "app.acr-card es donde los titulares gestionan sus tarjetas: consultan transacciones, transfieren entre tarjetas ACR y más.",
             ],
           },
           {
-            title: "Lo difícil: la disponibilidad",
+            title: "Qué hace el producto",
             body: [
-              "Dos personas pueden pedir las mismas fechas en el mismo instante. Construí un motor de disponibilidad en tiempo real con detección atómica de conflictos, de modo que las reservas concurrentes no puedan producir una doble reserva, sin volver lenta la respuesta.",
+              "En el día a día es una interfaz financiera: un historial de transacciones que debe ser preciso y rápido, y transferencias donde el dinero sale de una tarjeta y llega a otra.",
             ],
           },
           {
-            title: "Experiencia y operación",
+            title: "Lo difícil: dos saldos, una transferencia",
             body: [
-              "Mobile-first desde la navegación del catálogo hasta la reserva y el pago. Un back office completo permite a los operadores gestionar ofertas, disponibilidad y precios sin intervención de ingeniería.",
-              "También me encargué del pipeline de despliegue: Vercel para frontend y rutas API, aprovisionamiento de base de datos, gestión de entornos y monitorización en producción desde el primer día.",
+              "Una transferencia cambia dos saldos. Los dos cambios deben ocurrir juntos o no ocurrir, aunque la petición se repita o se corte la conexión. Esa regla condiciona el modelo de datos, la API y lo que muestra la interfaz mientras espera.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "supernova-gateway",
+        name: "Pasarela de pagos Supernova",
+        kind: "Pasarela de pagos",
+        tier: "main",
+        role: "Ingeniero de Software",
+        invariant: "Todo pago termina en un resultado claro.",
+        summary: "La pasarela de pagos de Supernova, con integraciones con bancos y servicios financieros.",
+        stack: [],
+        seoDescription:
+          "Caso de estudio: la pasarela de pagos Supernova, con integraciones con bancos y servicios financieros, en el ecosistema Supernova & ACR.",
+        sections: [
+          {
+            title: "Contexto",
+            body: [
+              "Una pasarela de pagos se sitúa entre el producto que quiere cobrar y los bancos y servicios financieros que mueven el dinero. Supernova es esa pasarela y forma parte del ecosistema Supernova & ACR.",
+            ],
+          },
+          {
+            title: "Lo difícil: pagos que fallan a medias",
+            body: [
+              "Los pagos cruzan redes que fallan a medias. Una pasarela tiene que convertir cada intento en un único resultado —pagado o no pagado— y mantener sus registros de acuerdo con los del banco. Reintentos, tiempos de espera y duplicados son el caso normal, no la excepción.",
+            ],
+          },
+          {
+            title: "Integraciones",
+            body: [
+              "Cada banco o servicio financiero tiene su propio protocolo y sus propios fallos. El trabajo es mantener esas diferencias detrás de una interfaz limpia para los productos que cobran a través de la pasarela.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "acr-pay",
+        name: "ACR Pay",
+        kind: "Plataforma de recargas",
+        tier: "main",
+        role: "Ingeniero de Software",
+        invariant: "Una recarga se acredita una vez, en el destino correcto.",
+        summary: "Una plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba.",
+        stack: [],
+        seoDescription:
+          "Caso de estudio: ACR Pay, plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba, parte del ecosistema Supernova & ACR.",
+        sections: [
+          {
+            title: "Contexto",
+            body: [
+              "ACR Pay es una plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba, dentro del ecosistema Supernova & ACR.",
+            ],
+          },
+          {
+            title: "Dos tipos de destino",
+            body: [
+              "Recargar una tarjeta clásica y recargar una línea móvil son operaciones distintas, con caminos de confirmación distintos. La plataforma las presenta como una única acción sencilla.",
+            ],
+          },
+          {
+            title: "Lo difícil: dinero en movimiento",
+            body: [
+              "Una recarga es dinero en movimiento: si una confirmación tarda o se repite, el crédito debe llegar exactamente una vez. Hacer los reintentos seguros es lo que mantiene la confianza.",
             ],
           },
         ],
@@ -88,8 +162,10 @@ const es: Dictionary = {
         slug: "gym-victoria",
         name: "Gym Victoria",
         kind: "SaaS multi-tenant",
+        tier: "earlier",
         period: "Ago – Dic 2024",
         role: "Ingeniero full-stack · freelance",
+        invariant: "Sin registros huérfanos.",
         summary:
           "Un SaaS de gestión de gimnasios con varias sedes, diseñado y construido desde cero: socios, entrenadores y planes por niveles.",
         stack: ["Next.js", "PostgreSQL", "Tailwind CSS", "Vercel"],
@@ -126,8 +202,10 @@ const es: Dictionary = {
         slug: "mk-tattoo-supply",
         name: "MK Tattoo Supply",
         kind: "E-commerce",
+        tier: "earlier",
         period: "Dic 2023 – Feb 2024",
         role: "Ingeniero full-stack · freelance",
+        invariant: "Una unidad, una venta.",
         summary:
           "Una plataforma de e-commerce con inventario en vivo, procesamiento de pedidos e integración de pagos: de cero a producción en ocho semanas.",
         stack: ["Next.js", "Strapi", "REST API"],
@@ -156,6 +234,7 @@ const es: Dictionary = {
       },
     ],
     caseCta: "Leer el caso de estudio",
+    earlierTitle: "Trabajo anterior",
     alsoTitle: "También construido",
     also: [
       {
@@ -172,25 +251,24 @@ const es: Dictionary = {
   },
   stack: {
     title: "Anatomía de un producto",
-    intro:
-      "Las capas que necesita un producto, y dónde he tenido que resolver bien cada una.",
+    intro: "Las capas que necesita un producto, y dónde he tenido que resolver bien cada una.",
     layers: [
       {
         id: "product",
         name: "Producto",
         claim: "Me hago cargo de las decisiones, no solo de los tickets.",
         points: [
-          { text: "Único ingeniero: producto, arquitectura y UX/UI.", ref: "Habaluna" },
+          { text: "Pasarela, recargas, emisión de tarjetas y una app de tarjetas, funcionando como un solo ecosistema.", ref: "Supernova & ACR" },
           { text: "Panel para que personal no técnico gestione 200+ SKUs.", ref: "MK Tattoo Supply" },
         ],
       },
       {
         id: "interface",
         name: "Interfaz",
-        claim: "Flujos mobile-first, del catálogo al pago.",
+        claim: "Flujos claros donde las personas manejan su dinero.",
         points: [
-          { text: "Catálogo, reserva y pago mobile-first.", ref: "Habaluna" },
-          { text: "Componentes de servidor y cliente, cada uno donde corresponde.", ref: "Habaluna" },
+          { text: "Gestión de tarjetas: transacciones y transferencias.", ref: "ACR Card App" },
+          { text: "El flujo para solicitar una Visa o una Mastercard.", ref: "ACR Card" },
           { text: "Páginas que cargan en menos de dos segundos.", ref: "Gym Victoria" },
         ],
       },
@@ -199,7 +277,7 @@ const es: Dictionary = {
         name: "API y lógica",
         claim: "Fronteras limpias a medida que el sistema crece.",
         points: [
-          { text: "Lógica de reservas separada del contenido con un CMS headless.", ref: "Habaluna" },
+          { text: "Integraciones con bancos y servicios financieros detrás de una sola pasarela.", ref: "Supernova" },
           { text: "Autenticación por roles con sesiones en el servidor.", ref: "Gym Victoria" },
           { text: "APIs REST con Node.js, NestJS y Strapi.", ref: "Varios proyectos" },
         ],
@@ -209,7 +287,6 @@ const es: Dictionary = {
         name: "Datos",
         claim: "Correctos bajo concurrencia.",
         points: [
-          { text: "Disponibilidad atómica: sin dobles reservas.", ref: "Habaluna" },
           { text: "Stock en tiempo real: sin sobreventa.", ref: "MK Tattoo Supply" },
           { text: "Esquema relacional con integridad referencial.", ref: "Gym Victoria" },
         ],
@@ -219,9 +296,10 @@ const es: Dictionary = {
         name: "Dinero",
         claim: "Donde un bug cuesta dinero de verdad.",
         points: [
+          { text: "Una pasarela de pagos con integraciones bancarias.", ref: "Supernova" },
+          { text: "Recargas de tarjetas clásicas y teléfonos móviles.", ref: "ACR Pay" },
+          { text: "Transferencias entre tarjetas.", ref: "ACR Card App" },
           { text: "Una API de pagos en una tienda en producción.", ref: "MK Tattoo Supply" },
-          { text: "Pagos dentro de un flujo de reservas.", ref: "Habaluna" },
-          { text: "Pasarela, ACR Pay, ACR Card e integraciones bancarias.", ref: "Supernova & ACR" },
         ],
       },
       {
@@ -229,8 +307,8 @@ const es: Dictionary = {
         name: "Entrega",
         claim: "Lanzado, y funcionando.",
         points: [
-          { text: "Despliegues, base de datos, entornos y monitorización desde el primer día.", ref: "Habaluna" },
           { text: "CI/CD sin downtime en cada push.", ref: "Gym Victoria" },
+          { text: "De cero a producción en ocho semanas.", ref: "MK Tattoo Supply" },
         ],
       },
     ],
@@ -246,12 +324,6 @@ const es: Dictionary = {
         title: "Ingeniero de Software",
         place: "Ecosistema Supernova & ACR",
         text: "Pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card. Dinero real, integraciones con bancos y servicios financieros.",
-      },
-      {
-        period: "Dic 2024 – Mar 2025",
-        title: "Ingeniero único",
-        place: "Habaluna",
-        text: "Plataforma de reservas turísticas: producto, arquitectura, UX/UI, backend e infraestructura.",
       },
       {
         period: "Ago – Dic 2024",
@@ -286,7 +358,7 @@ const es: Dictionary = {
       {
         name: "Esta web",
         period: "2026",
-        text: "Tipografía del titular que reacciona al puntero mediante ejes de fuente variable, revelados guiados por scroll en CSS puro y ninguna librería de animación.",
+        text: "Tipografía de fuente variable con la que se puede jugar, revelados guiados por scroll en CSS puro, una tarjeta de pago en 3D y ninguna librería de animación.",
       },
     ],
   },
@@ -301,30 +373,47 @@ const es: Dictionary = {
   },
   vis: {
     note: "Ilustración conceptual del problema, no una captura.",
-    pay: {
-      title: "Un pago, de punta a punta",
+    gateway: {
+      title: "Una pasarela, muchas rutas",
       run: "Enviar un pago",
-      busy: "En camino…",
-      nodes: [
-        { label: "App", text: "Una persona confirma un pago." },
-        { label: "API", text: "La petición se autentica y se valida." },
-        { label: "Pasarela", text: "Se enruta por la pasarela de pago." },
-        { label: "Banco", text: "Un banco o servicio financiero lo autoriza." },
-        { label: "Libro", text: "El resultado queda registrado." },
-        { label: "Tarjeta y wallet", text: "El saldo refleja el resultado." },
-      ],
+      busy: "Enrutando…",
+      idle: "Los pagos entran desde muchos sitios y salen hacia muchos bancos.",
+      done: "Autorizado una vez y registrado una vez.",
+      from: ["Producto A", "Producto B", "Producto C"],
+      gateway: "Pasarela",
+      to: ["Banco A", "Servicio financiero", "Banco B"],
     },
-    avail: {
-      title: "Dos huéspedes, mismas fechas",
-      run: "Enviar las dos a la vez",
+    topup: {
+      title: "Una recarga",
+      run: "Recargar",
+      busy: "Acreditando…",
       reset: "Reiniciar",
-      a: "Petición A",
-      b: "Petición B",
-      idle: "Dos huéspedes piden las mismas fechas en el mismo instante.",
-      land: "Las dos peticiones llegan juntas.",
-      lock: "El motor de disponibilidad comprueba de forma atómica.",
-      won: "La petición A queda confirmada.",
-      lost: "La petición B recibe un conflicto. Sin doble reserva.",
+      idle: "Elige un destino y recárgalo.",
+      done: "Acreditada una vez. El saldo lo refleja.",
+      card: "Tarjeta clásica",
+      phone: "Línea móvil",
+    },
+    issue: {
+      title: "Una solicitud de tarjeta",
+      run: "Solicitar tarjeta",
+      busy: "En revisión…",
+      reset: "Reiniciar",
+      idle: "Elige una red y solicita una tarjeta.",
+      done: "Emitida. Una solicitud, una tarjeta.",
+      steps: ["Solicitud", "Revisión", "Emitida"],
+      visa: "Visa",
+      mastercard: "Mastercard",
+    },
+    app: {
+      title: "Entre dos tarjetas",
+      run: "Transferir",
+      busy: "Moviendo…",
+      reset: "Reiniciar",
+      idle: "Dos tarjetas. Una transferencia.",
+      done: "Los dos saldos cambiaron juntos.",
+      a: "Tarjeta A",
+      b: "Tarjeta B",
+      list: "Transacciones",
     },
     stock: {
       title: "Queda una unidad",
@@ -355,6 +444,7 @@ const es: Dictionary = {
     contactCta: "Hablemos de un proyecto como este",
     architecture: "Arquitectura",
     visualLabel: "Ilustración interactiva",
+    mustHold: "Debe cumplirse",
   },
   footer: { rights: "© 2026 Dasiel Torres", top: "Volver arriba" },
   notFound: {

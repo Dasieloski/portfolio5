@@ -4,7 +4,7 @@ const en: Dictionary = {
   meta: {
     title: "Dasiel Torres — Full-Stack Software Engineer",
     description:
-      "Full-Stack Software Engineer based in Cuba, working remotely. Booking platforms, e-commerce, SaaS and payment products — from the database to the interface to the deploy.",
+      "Full-Stack Software Engineer based in Cuba, working remotely. Payment gateway, card and top-up platforms, e-commerce and SaaS — from the database to the interface to the deploy.",
     ogTagline: "Whole products, end to end.",
   },
   nav: {
@@ -26,60 +26,134 @@ const en: Dictionary = {
     secondary: "See the work",
   },
   work: {
-    title: "Selected work",
-    intro: "Real products with real users.",
-    featured: {
-      name: "Supernova & ACR",
-      kind: "Payments · Fintech",
-      period: "Most recent",
-      role: "Software Engineer",
-      text: "Payment gateway, ACR Pay, ACR Card and its app, with bank and financial-service integrations.",
-      tags: ["Payment gateway", "Cards", "Bank integrations"],
-      cta: "Ask me about it",
-    },
+    title: "Four products,",
+    titleEm: "four things that can’t break.",
+    intro: "Payments products with real users, newest first.",
     cases: [
       {
-        slug: "habaluna",
-        name: "Habaluna",
-        kind: "Tourism booking platform",
-        period: "Dec 2024 – Mar 2025",
-        role: "Solo engineer",
-        url: "https://habaluna.com",
-        summary:
-          "A live booking platform for Cuba's tourism sector, built and run end to end by one engineer.",
-        stack: ["Next.js", "React", "PostgreSQL", "Prisma", "Strapi", "Vercel"],
+        slug: "acr-card",
+        name: "ACR Card",
+        kind: "Card issuing platform",
+        tier: "main",
+        role: "Software Engineer",
+        invariant: "One request, one card.",
+        summary: "A platform where people request Visa and Mastercard cards, part of the Supernova & ACR ecosystem.",
+        stack: [],
         seoDescription:
-          "Case study: Habaluna, a tourism booking platform for the Cuban market — real-time availability, mobile-first booking and an operator back office, built solo.",
+          "Case study: ACR Card, a platform to request Visa and Mastercard cards, part of the Supernova & ACR payments ecosystem.",
         sections: [
           {
             title: "Context",
             body: [
-              "Habaluna is a live booking platform serving Cuba's tourism sector: a public catalog, a booking and payment flow, and a back office for the operators who list and run the offers.",
+              "ACR Card is a platform to request Visa and Mastercard cards. It sits in the Supernova & ACR ecosystem, next to the payment gateway, ACR Pay and the card management app.",
             ],
           },
           {
-            title: "My responsibility",
+            title: "What the product does",
             body: [
-              "I was the only engineer. Product decisions, architecture, UX/UI, backend and infrastructure were all mine, from the first schema to the production environment.",
+              "A person chooses a card network, submits a request and follows it until the card exists. Behind that single screen is a flow with real consequences: an application that moves through clear states, personal data that has to be handled with care, and an outcome that must never be ambiguous.",
             ],
           },
           {
-            title: "Architecture",
+            title: "The hard part: a request that can't get lost",
             body: [
-              "Next.js 14 App Router mixing React Server Components and Client Components, PostgreSQL through Prisma, and Strapi as a headless CMS. The split is deliberate: booking logic is dynamic and transactional, while operator-managed content lives in the CMS, so each side changes without touching the other.",
+              "Requests cross several systems and any step can fail halfway. The work is making every request end in exactly one state — approved, rejected or pending — so nobody is issued two cards and nobody waits on a request that silently disappeared.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "acr-card-app",
+        name: "ACR Card App",
+        kind: "Card management app",
+        tier: "main",
+        role: "Software Engineer",
+        invariant: "A transfer lands once, on the right card.",
+        summary: "A platform to manage ACR cards: review transactions and move money between cards.",
+        stack: [],
+        seoDescription:
+          "Case study: the ACR Card app, a platform to manage ACR cards, review transactions and transfer money between cards.",
+        sections: [
+          {
+            title: "Context",
+            body: [
+              "app.acr-card is where cardholders manage their cards: review transactions, transfer between ACR cards and more.",
             ],
           },
           {
-            title: "The hard part: availability",
+            title: "What the product does",
             body: [
-              "Two people can request the same dates at the same moment. I built a real-time availability engine with atomic conflict detection, so concurrent reservation requests can't produce a double booking — without making the response slow.",
+              "Day to day it is a financial interface: a transaction history that has to be accurate and fast, and transfers where money leaves one card and arrives on another.",
             ],
           },
           {
-            title: "Experience & operations",
+            title: "The hard part: two balances, one transfer",
             body: [
-              "Mobile-first from catalog browsing to booking to payment. A full back office lets operators manage listings, availability and pricing without engineering involvement.",
-              "I handled the deployment pipeline too: Vercel for frontend and API routes, database provisioning, environment management and production monitoring from day one.",
+              "A transfer changes two balances. Both changes must happen together or not at all, even if a request is retried or the connection drops. That rule shapes the data model, the API and what the interface shows while it waits.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "supernova-gateway",
+        name: "Supernova Payment Gateway",
+        kind: "Payment gateway",
+        tier: "main",
+        role: "Software Engineer",
+        invariant: "Every payment ends in one clear outcome.",
+        summary: "Supernova's payment gateway, with integrations to banks and financial services.",
+        stack: [],
+        seoDescription:
+          "Case study: the Supernova payment gateway, with integrations to banks and financial services, in the Supernova & ACR ecosystem.",
+        sections: [
+          {
+            title: "Context",
+            body: [
+              "A payment gateway sits between a product that wants to charge someone and the banks and financial services that move the money. Supernova is that gateway, and it is part of the Supernova & ACR ecosystem.",
+            ],
+          },
+          {
+            title: "The hard part: payments that fail halfway",
+            body: [
+              "Payments cross networks that fail halfway. A gateway has to turn every attempt into exactly one outcome — paid or not paid — and keep its records in agreement with the bank's. Retries, timeouts and duplicates are the normal case, not the exception.",
+            ],
+          },
+          {
+            title: "Integrations",
+            body: [
+              "Each bank or financial service has its own protocol and its own failure modes. The job is keeping those differences behind one clean interface for the products that charge through the gateway.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "acr-pay",
+        name: "ACR Pay",
+        kind: "Top-up platform",
+        tier: "main",
+        role: "Software Engineer",
+        invariant: "A top-up is credited once, to the right target.",
+        summary: "A platform to top up classic cards and mobile phones in Cuba.",
+        stack: [],
+        seoDescription:
+          "Case study: ACR Pay, a platform to top up classic cards and mobile phones in Cuba, part of the Supernova & ACR ecosystem.",
+        sections: [
+          {
+            title: "Context",
+            body: [
+              "ACR Pay is a platform to top up classic cards and mobile phones in Cuba, inside the Supernova & ACR ecosystem.",
+            ],
+          },
+          {
+            title: "Two kinds of target",
+            body: [
+              "Topping up a classic card and topping up a phone line are different operations with different confirmation paths. The platform presents them as one simple action.",
+            ],
+          },
+          {
+            title: "The hard part: money in motion",
+            body: [
+              "A top-up is money in motion: if a confirmation is slow or repeated, the credit must still land exactly once. Making retries safe is what keeps people's trust.",
             ],
           },
         ],
@@ -88,8 +162,10 @@ const en: Dictionary = {
         slug: "gym-victoria",
         name: "Gym Victoria",
         kind: "Multi-tenant SaaS",
+        tier: "earlier",
         period: "Aug – Dec 2024",
         role: "Full-stack engineer · freelance",
+        invariant: "No orphan records.",
         summary:
           "A multi-location gym management SaaS designed and built from zero: members, trainers and tiered plans.",
         stack: ["Next.js", "PostgreSQL", "Tailwind CSS", "Vercel"],
@@ -126,8 +202,10 @@ const en: Dictionary = {
         slug: "mk-tattoo-supply",
         name: "MK Tattoo Supply",
         kind: "E-commerce",
+        tier: "earlier",
         period: "Dec 2023 – Feb 2024",
         role: "Full-stack engineer · freelance",
+        invariant: "One unit, sold once.",
         summary:
           "An e-commerce platform with live inventory, order processing and payment integration — from zero to production in eight weeks.",
         stack: ["Next.js", "Strapi", "REST API"],
@@ -156,6 +234,7 @@ const en: Dictionary = {
       },
     ],
     caseCta: "Read case study",
+    earlierTitle: "Earlier work",
     alsoTitle: "Also shipped",
     also: [
       {
@@ -172,25 +251,24 @@ const en: Dictionary = {
   },
   stack: {
     title: "Anatomy of a product",
-    intro:
-      "The layers a product needs, and where I've had to get each one right.",
+    intro: "The layers a product needs, and where I've had to get each one right.",
     layers: [
       {
         id: "product",
         name: "Product",
         claim: "I own the decisions, not just the tickets.",
         points: [
-          { text: "Sole engineer: product, architecture and UX/UI.", ref: "Habaluna" },
+          { text: "Gateway, top-ups, card issuing and a card app, working as one ecosystem.", ref: "Supernova & ACR" },
           { text: "Admin tools so non-technical staff run 200+ SKUs.", ref: "MK Tattoo Supply" },
         ],
       },
       {
         id: "interface",
         name: "Interface",
-        claim: "Mobile-first flows, from catalog to checkout.",
+        claim: "Clear flows where people handle their money.",
         points: [
-          { text: "Mobile-first catalog, booking and payment.", ref: "Habaluna" },
-          { text: "Server and client components, each where it fits.", ref: "Habaluna" },
+          { text: "Card management: transactions and transfers.", ref: "ACR Card App" },
+          { text: "The flow to request a Visa or Mastercard.", ref: "ACR Card" },
           { text: "Pages that load in under two seconds.", ref: "Gym Victoria" },
         ],
       },
@@ -199,7 +277,7 @@ const en: Dictionary = {
         name: "API & logic",
         claim: "Boundaries that stay clean as things grow.",
         points: [
-          { text: "Booking logic split from content with a headless CMS.", ref: "Habaluna" },
+          { text: "Bank and financial-service integrations behind one gateway.", ref: "Supernova" },
           { text: "Role-based auth with server-side sessions.", ref: "Gym Victoria" },
           { text: "REST APIs with Node.js, NestJS and Strapi.", ref: "Across projects" },
         ],
@@ -209,7 +287,6 @@ const en: Dictionary = {
         name: "Data",
         claim: "Correct under concurrency.",
         points: [
-          { text: "Atomic availability checks: no double bookings.", ref: "Habaluna" },
           { text: "Real-time stock control: no overselling.", ref: "MK Tattoo Supply" },
           { text: "Relational schema with referential integrity.", ref: "Gym Victoria" },
         ],
@@ -219,9 +296,10 @@ const en: Dictionary = {
         name: "Money",
         claim: "Where a bug costs real money.",
         points: [
+          { text: "A payment gateway with bank integrations.", ref: "Supernova" },
+          { text: "Top-ups for classic cards and mobile phones.", ref: "ACR Pay" },
+          { text: "Transfers between cards.", ref: "ACR Card App" },
           { text: "A payment API inside a live store.", ref: "MK Tattoo Supply" },
-          { text: "Payments inside a booking flow.", ref: "Habaluna" },
-          { text: "Gateway, ACR Pay, ACR Card and bank integrations.", ref: "Supernova & ACR" },
         ],
       },
       {
@@ -229,8 +307,8 @@ const en: Dictionary = {
         name: "Delivery",
         claim: "Shipped, and kept running.",
         points: [
-          { text: "Deploys, database, environments and monitoring from day one.", ref: "Habaluna" },
           { text: "Zero-downtime CI/CD on every push.", ref: "Gym Victoria" },
+          { text: "From zero to production in eight weeks.", ref: "MK Tattoo Supply" },
         ],
       },
     ],
@@ -246,12 +324,6 @@ const en: Dictionary = {
         title: "Software Engineer",
         place: "Supernova & ACR ecosystem",
         text: "Payment gateway, ACR Pay, ACR Card and the ACR Card app. Real money, bank and financial-service integrations.",
-      },
-      {
-        period: "Dec 2024 – Mar 2025",
-        title: "Solo engineer",
-        place: "Habaluna",
-        text: "Tourism booking platform: product, architecture, UX/UI, backend and infrastructure.",
       },
       {
         period: "Aug – Dec 2024",
@@ -286,7 +358,7 @@ const en: Dictionary = {
       {
         name: "This site",
         period: "2026",
-        text: "Headline type that reacts to the pointer through variable-font axes, scroll-driven reveals in plain CSS, and no animation libraries.",
+        text: "Variable-font type you can play with, scroll-driven reveals in plain CSS, one 3D payment card, and no animation libraries.",
       },
     ],
   },
@@ -301,30 +373,47 @@ const en: Dictionary = {
   },
   vis: {
     note: "Conceptual illustration of the problem, not a screenshot.",
-    pay: {
-      title: "A payment, end to end",
+    gateway: {
+      title: "One gateway, many routes",
       run: "Send a payment",
-      busy: "In flight…",
-      nodes: [
-        { label: "App", text: "A person confirms a payment." },
-        { label: "API", text: "The request is authenticated and validated." },
-        { label: "Gateway", text: "It is routed through the payment gateway." },
-        { label: "Bank", text: "A bank or financial service authorizes it." },
-        { label: "Ledger", text: "The outcome is recorded." },
-        { label: "Card & wallet", text: "The balance reflects the result." },
-      ],
+      busy: "Routing…",
+      idle: "Payments come in from many places and leave to many banks.",
+      done: "Authorized once and recorded once.",
+      from: ["Product A", "Product B", "Product C"],
+      gateway: "Gateway",
+      to: ["Bank A", "Financial service", "Bank B"],
     },
-    avail: {
-      title: "Two guests, same dates",
-      run: "Send both at once",
+    topup: {
+      title: "A top-up",
+      run: "Top up",
+      busy: "Crediting…",
       reset: "Reset",
-      a: "Request A",
-      b: "Request B",
-      idle: "Two guests ask for the same dates at the same moment.",
-      land: "Both requests arrive together.",
-      lock: "The availability engine checks atomically.",
-      won: "Request A is confirmed.",
-      lost: "Request B gets a conflict. No double booking.",
+      idle: "Pick a target and top it up.",
+      done: "Credited once. The balance shows it.",
+      card: "Classic card",
+      phone: "Mobile line",
+    },
+    issue: {
+      title: "A card request",
+      run: "Request card",
+      busy: "In review…",
+      reset: "Reset",
+      idle: "Pick a network and request a card.",
+      done: "Issued. One request, one card.",
+      steps: ["Request", "Review", "Issued"],
+      visa: "Visa",
+      mastercard: "Mastercard",
+    },
+    app: {
+      title: "Between two cards",
+      run: "Transfer",
+      busy: "Moving…",
+      reset: "Reset",
+      idle: "Two cards. One transfer.",
+      done: "Both balances changed together.",
+      a: "Card A",
+      b: "Card B",
+      list: "Transactions",
     },
     stock: {
       title: "One unit left",
@@ -355,6 +444,7 @@ const en: Dictionary = {
     contactCta: "Talk about a project like this",
     architecture: "Architecture",
     visualLabel: "Interactive illustration",
+    mustHold: "Must hold",
   },
   footer: { rights: "© 2026 Dasiel Torres", top: "Back to top" },
   notFound: {

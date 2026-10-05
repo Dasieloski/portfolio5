@@ -37,131 +37,6 @@
   margin-right: 0.4rem;
 }
 
-/* ---------- Payment flow ---------- */
-.pay-tall {
-  display: none;
-}
-.pay-svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.pay-node rect:first-child {
-  transition: fill 0.4s, stroke 0.4s;
-}
-.pay-node[data-on="true"] rect:first-child {
-  stroke: var(--sig);
-}
-.pay-node[data-now="true"] rect:first-child {
-  fill: color-mix(in srgb, var(--sig) 14%, var(--paper));
-}
-.pay-label {
-  font: 800 17px var(--sans);
-  font-stretch: 75%;
-  text-transform: uppercase;
-  fill: currentColor;
-}
-.pay-n {
-  font: 10px var(--mono);
-  fill: var(--mute);
-}
-.pay-packet {
-  transform: translate(80px, 250px);
-}
-@media (max-width: 760px) {
-  .pay-wide {
-    display: none;
-  }
-  .pay-tall {
-    display: block;
-  }
-  .pay-packet {
-    transform: translate(90px, 60px);
-  }
-}
-
-/* ---------- Availability ---------- */
-.cal {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.cal-day {
-  position: relative;
-  aspect-ratio: 1.15;
-  border: 1px solid var(--line);
-  padding: 0.3rem;
-  background: rgba(18, 18, 16, 0.03);
-}
-.cal-day i {
-  font-style: normal;
-  font-size: 0.62rem;
-  color: var(--mute);
-}
-.cal-day[data-range="true"] {
-  border-color: var(--ink);
-  background: var(--paper);
-}
-.req {
-  position: absolute;
-  left: calc(100% / 7 + 2px);
-  width: calc(100% * 4 / 7 - 4px);
-  height: 10%;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.6rem;
-  opacity: 0;
-  transform: translateY(-160%);
-  transition: opacity 0.5s, transform 0.8s var(--ease), background 0.4s, color 0.4s;
-}
-.req-a {
-  top: 28%;
-  background: var(--ink);
-  color: var(--paper);
-}
-.req-b {
-  top: 42%;
-  background: var(--sig);
-  color: var(--paper);
-  transform: translateY(160%);
-}
-.req[data-on="true"] {
-  opacity: 1;
-  transform: none;
-}
-.req b {
-  font-weight: 400;
-}
-.stamp {
-  text-decoration: none;
-  font-weight: 800;
-}
-.avail[data-phase="done"] .req-b {
-  background: transparent;
-  color: var(--sig);
-  outline: 1px dashed var(--sig);
-  opacity: 0.8;
-}
-.cal-lock {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  background: color-mix(in srgb, var(--paper) 70%, transparent);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  color: var(--sig);
-  font-size: 1.1rem;
-}
-.cal-lock[data-on="true"] {
-  opacity: 1;
-}
-
 /* ---------- Stock grid ---------- */
 .sku {
   position: relative;
@@ -304,7 +179,7 @@
 }
 .arch-flow {
   fill: none;
-  stroke: var(--sig);
+  stroke: var(--mint);
   stroke-width: 1.6;
   stroke-dasharray: 5 7;
 }
@@ -320,16 +195,17 @@
   aspect-ratio: 1;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  border: 1px solid var(--paper);
+  margin-inline: auto;
+  border: 1px solid var(--ink);
 }
 .sudoku span {
   display: grid;
   place-items: center;
   font: 500 clamp(0.7rem, 1.4vw, 0.95rem) var(--mono);
-  border: 1px solid rgba(236, 232, 223, 0.18);
+  border: 1px solid rgba(17, 17, 17, 0.16);
 }
 .sudoku span[data-box="1"] {
-  background: rgba(236, 232, 223, 0.07);
+  background: rgba(17, 17, 17, 0.06);
 }
 @media (prefers-reduced-motion: no-preference) {
   .sudoku span {
@@ -341,11 +217,11 @@
   0%,
   8%,
   100% {
-    color: var(--paper);
+    color: var(--ink);
   }
   4% {
     color: var(--sig);
-    background: rgba(232, 67, 26, 0.18);
+    background: rgba(15, 107, 69, 0.18);
   }
 }
 .axis {

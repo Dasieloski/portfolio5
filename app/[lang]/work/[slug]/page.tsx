@@ -70,20 +70,28 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
         <header className="case-head">
           <p className="mono">{c.kind}</p>
           <h1 className="case-title">{c.name}</h1>
+          <p className="case-must">
+            <span className="mono">{t.caseUi.mustHold}</span>
+            {c.invariant}
+          </p>
           <p className="lede">{c.summary}</p>
           <dl className="facts">
             <div>
               <dt className="mono">{t.caseUi.role}</dt>
               <dd>{c.role}</dd>
             </div>
-            <div>
-              <dt className="mono">{t.caseUi.period}</dt>
-              <dd>{c.period}</dd>
-            </div>
-            <div>
-              <dt className="mono">{t.caseUi.stack}</dt>
-              <dd>{c.stack.join(" · ")}</dd>
-            </div>
+            {c.period && (
+              <div>
+                <dt className="mono">{t.caseUi.period}</dt>
+                <dd>{c.period}</dd>
+              </div>
+            )}
+            {c.stack.length > 0 && (
+              <div>
+                <dt className="mono">{t.caseUi.stack}</dt>
+                <dd>{c.stack.join(" · ")}</dd>
+              </div>
+            )}
           </dl>
           {c.url && (
             <a className="btn btn-solid" href={c.url} target="_blank" rel="noopener noreferrer">
