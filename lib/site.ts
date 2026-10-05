@@ -14,7 +14,8 @@ export const CONTACT = {
   // Add a LinkedIn URL here once available; the UI renders it automatically.
   linkedin: "" as string,
   whatsapp: "https://wa.me/5354710329",
-  cv: "/Dasiel_Torres_CV_English.pdf",
+  cvEn: "/Dasiel_Torres_CV_English.pdf",
+  cvEs: "/Dasiel_Torres_CV_Espanol.pdf",
 };
 
 export const isLocale = (value: string): value is Locale =>

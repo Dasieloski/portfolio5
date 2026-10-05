@@ -8,7 +8,8 @@ export default function Contact({ contact }: { contact: Dictionary["contact"] })
     { label: "GitHub", href: CONTACT.github },
     ...(CONTACT.linkedin ? [{ label: "LinkedIn", href: CONTACT.linkedin }] : []),
     { label: "WhatsApp", href: CONTACT.whatsapp },
-    { label: contact.cv, href: CONTACT.cv },
+    { label: contact.cvEn, href: CONTACT.cvEn },
+    { label: contact.cvEs, href: CONTACT.cvEs },
   ];
 
   return (

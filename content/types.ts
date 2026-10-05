@@ -74,7 +74,8 @@ export type Dictionary = {
     text: string;
     copy: string;
     copied: string;
-    cv: string;
+    cvEn: string;
+    cvEs: string;
     availability: string;
     location: string;
   };
