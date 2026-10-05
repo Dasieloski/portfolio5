@@ -331,7 +331,7 @@ const en: Dictionary = {
     ],
     rows: [
       {
-        period: "Most recent",
+        period: "2026 – Present",
         title: "Software Engineer",
         place: "Supernova & ACR ecosystem",
         text: "Payment gateway, ACR Pay, ACR Card and the ACR Card app. Real money, bank and financial-service integrations.",

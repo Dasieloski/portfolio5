@@ -331,7 +331,7 @@ const es: Dictionary = {
     ],
     rows: [
       {
-        period: "Más reciente",
+        period: "2026 – actualidad",
         title: "Ingeniero de Software",
         place: "Ecosistema Supernova & ACR",
         text: "Pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card. Dinero real, integraciones con bancos y servicios financieros.",
