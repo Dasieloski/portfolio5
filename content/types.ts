@@ -41,6 +41,7 @@ export type Dictionary = {
   meta: { title: string; description: string; ogTagline: string };
   nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string; langLabel: string };
   hero: {
+    role: string;
     eyebrow: string;
     line1: string;
     line2: string;
@@ -61,6 +62,7 @@ export type Dictionary = {
   stack: { title: string; intro: string; layers: Layer[] };
   path: {
     title: string;
+    profile: { title: string; rows: { k: string; v: string }[] };
     about: string[];
     rows: { period: string; title: string; place: string; text: string }[];
     educationLabel: string;

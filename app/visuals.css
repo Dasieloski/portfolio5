@@ -207,23 +207,7 @@
 .sudoku span[data-box="1"] {
   background: rgba(17, 17, 17, 0.06);
 }
-@media (prefers-reduced-motion: no-preference) {
-  .sudoku span {
-    animation: scan 5s linear infinite;
-    animation-delay: var(--d);
-  }
-}
-@keyframes scan {
-  0%,
-  8%,
-  100% {
-    color: var(--ink);
-  }
-  4% {
-    color: var(--sig);
-    background: rgba(15, 107, 69, 0.18);
-  }
-}
+/* Reason: no infinite animation here. 81 cells restyling every frame kept the main thread busy even when off-screen. */
 .axis {
   width: 100%;
   display: grid;

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Archivo, Fraunces } from "next/font/google";
 import { getDictionary } from "@/content";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
+import { personNode, websiteNode } from "@/lib/seo";
 import "../globals.css";
 import "../hero.css";
 import "../sections.css";
@@ -16,7 +17,7 @@ const sans = Archivo({
   display: "swap",
 });
 // Reason: Fraunces carries the display voice (light, tight, italic for emphasis); Archivo does everything else.
-const serif = Fraunces({ variable: "--font-serif", subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], display: "swap" });
+const serif = Fraunces({ variable: "--font-serif", subsets: ["latin"], style: ["normal", "italic"], display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#f1efe8",
@@ -58,33 +59,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!isLocale(lang)) notFound();
   const { meta, nav } = getDictionary(lang);
 
-  const sameAs = [CONTACT.github, CONTACT.linkedin].filter(Boolean);
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": `${BASE_URL}/#person`,
-        name: CONTACT.name,
-        url: BASE_URL,
-        jobTitle: "Full-Stack Software Engineer",
-        description: meta.description,
-        email: `mailto:${CONTACT.email}`,
-        address: { "@type": "PostalAddress", addressCountry: "CU" },
-        alumniOf: { "@type": "CollegeOrUniversity", name: "Universidad de Ciencias Informáticas" },
-        knowsAbout: ["Full-stack development", "Next.js", "TypeScript", "PostgreSQL", "Node.js", "Payments", "System design"],
-        sameAs,
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${BASE_URL}/#website`,
-        url: BASE_URL,
-        name: CONTACT.name,
-        inLanguage: lang,
-        publisher: { "@id": `${BASE_URL}/#person` },
-      },
-    ],
-  };
+  const jsonLd = { "@context": "https://schema.org", "@graph": [personNode(meta.description), websiteNode(lang)] };
 
   return (
     <html lang={lang} className={`${sans.variable} ${serif.variable}`}>

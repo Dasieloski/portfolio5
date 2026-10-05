@@ -1,0 +1,24 @@
+# Dasiel Torres — Full-Stack Software Engineer
+
+> Portfolio of Dasiel Torres, a Full-Stack Software Engineer based in Cuba and working remotely. Professional work since 2023 across frontend, backend, APIs, databases, integrations, payments and fintech. Most recent work: the Supernova payment gateway, ACR Pay, ACR Card and the ACR Card app.
+
+The site is available in English and Spanish with equivalent content. Every statement here is taken from the site itself.
+
+## Pages
+- [Home (English)](https://dasiel.vercel.app/en): profile, selected work, anatomy of a product, path, lab, contact.
+- [Inicio (Español)](https://dasiel.vercel.app/es): the same content in Spanish.
+
+## Selected work
+- [ACR Card](https://dasiel.vercel.app/en/work/acr-card): platform to request Visa and Mastercard cards.
+- [ACR Card App](https://dasiel.vercel.app/en/work/acr-card-app): platform to manage ACR cards, review transactions and transfer between cards.
+- [Supernova Payment Gateway](https://dasiel.vercel.app/en/work/supernova-gateway): payment gateway with bank and financial-service integrations.
+- [ACR Pay](https://dasiel.vercel.app/en/work/acr-pay): platform to top up classic cards and mobile phones in Cuba.
+
+## Earlier work
+- [Gym Victoria](https://dasiel.vercel.app/en/work/gym-victoria): multi-tenant gym management SaaS (freelance, 2024).
+- [MK Tattoo Supply](https://dasiel.vercel.app/en/work/mk-tattoo-supply): e-commerce platform with live inventory and payments (freelance, 2023–2024).
+
+## Other
+- Education: B.Eng. in Computer Science, Universidad de Ciencias Informáticas (UCI), Havana (2018–2023).
+- Code: https://github.com/Dasieloski
+- CV (PDF): https://dasiel.vercel.app/Dasiel_Torres_CV_English.pdf

@@ -18,6 +18,7 @@ const es: Dictionary = {
     langLabel: "Idioma",
   },
   hero: {
+    role: "Ingeniero de Software Full-Stack",
     eyebrow: "Ingeniero de Software Full-Stack · Radicado en Cuba, trabajando en remoto",
     line1: "Productos completos,",
     line2: "de punta a punta.",
@@ -315,6 +316,16 @@ const es: Dictionary = {
   },
   path: {
     title: "Trayectoria",
+    profile: {
+      title: "De un vistazo",
+      rows: [
+        { k: "Rol", v: "Ingeniero de Software Full-Stack" },
+        { k: "Ubicación", v: "Cuba, trabajando en remoto" },
+        { k: "Experiencia", v: "Trabajo profesional desde 2023" },
+        { k: "Enfoque", v: "Frontend, backend, APIs, bases de datos, integraciones, pagos y fintech" },
+        { k: "Trabajo reciente", v: "Pasarela de pagos Supernova, ACR Pay, ACR Card y la aplicación ACR Card" },
+      ],
+    },
     about: [
       "Trabajando en todo el stack desde 2023: frontend, backend, datos, integraciones y producto. Ingeniero en Ciencias Informáticas (UCI).",
     ],

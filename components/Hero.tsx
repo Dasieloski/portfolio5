@@ -27,6 +27,7 @@ export default function Hero({ lang, hero, status }: Props) {
         </div>
 
         <h1 id="top" className="hero-title">
+          <span className="sr">{`Dasiel Torres — ${hero.role}. `}</span>
           {rows.map((r) => (
             <Fragment key={r.t}>
               <span className={`hero-line${r.em ? " is-em" : ""}${r.indent ? " is-indent" : ""}`} style={{ "--n": r.n } as CSSProperties}>

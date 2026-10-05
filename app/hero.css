@@ -72,10 +72,15 @@
   gap: 1rem;
   padding-block: 1rem;
   border-top: 1px solid var(--ink);
-  /* Reason: the disc passes behind the rule, never behind the text. */
+  position: relative;
+}
+/* Reason: a full-bleed paper strip, so the disc passes behind the rule and never behind the text. */
+.hero-bar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 -100vw;
   background: var(--paper);
-  box-shadow: 0 0 0 100vmax var(--paper);
-  clip-path: inset(0 -100vmax);
 }
 .hero-more {
   justify-self: end;
@@ -86,16 +91,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-line {
-    animation: rise 1s var(--ease) backwards;
-  }
-  .hero-line:nth-child(2) {
-    animation-delay: 0.08s;
-  }
-  .hero-line:nth-child(3) {
-    animation-delay: 0.16s;
-  }
-  .hero-line:nth-child(4) {
-    animation-delay: 0.24s;
+    /* Reason: transform only. Text stays painted from the first frame, so the entrance never delays LCP. */
+    animation: rise 0.7s var(--ease) backwards;
   }
   .hero-disc {
     animation: grow 1.2s var(--ease) backwards;
@@ -103,7 +100,6 @@
 }
 @keyframes rise {
   from {
-    opacity: 0;
     transform: translateY(0.18em);
   }
 }

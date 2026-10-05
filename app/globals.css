@@ -89,6 +89,15 @@ em {
   outline-color: var(--paper);
 }
 
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .wrap {
   width: min(100% - 2 * var(--gutter), var(--max));
   margin-inline: auto;
@@ -227,10 +236,10 @@ em {
 }
 .lang a {
   padding: 0.7rem 0.45rem;
-  opacity: 0.45;
+  color: var(--mute);
 }
 .lang a[aria-current="true"] {
-  opacity: 1;
+  color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 5px;
 }

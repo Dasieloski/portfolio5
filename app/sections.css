@@ -361,6 +361,45 @@
 .ledger-role {
   color: var(--mute);
 }
+.ledger-text {
+  grid-column: 2;
+  max-width: 34rem;
+  margin-top: 0.4rem;
+}
+.ledger h3 a {
+  border-bottom: 1px solid var(--line);
+}
+.ledger h3 a:hover {
+  color: var(--sig);
+}
+/* At-a-glance facts: plain definition list, readable by people and machines alike */
+.profile-title {
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  color: var(--mute);
+}
+.profile {
+  border-top: 1px solid var(--ink);
+}
+.profile > div {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+.profile dt.label {
+  color: var(--mute);
+  padding-top: 0.2rem;
+}
+.profile dd {
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .profile > div {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 860px) {
   .path-lead,
   .ledger {

@@ -56,7 +56,8 @@ export default function Work({ lang, work, vis, mustHold }: Props) {
               </p>
               <p className="proj-sum">{c.summary}</p>
               <Link href={`/${lang}/work/${c.slug}`} className="link-arrow label">
-                {work.caseCta} <Arrow />
+                {work.caseCta}
+                <span className="sr"> — {c.name}</span> <Arrow />
               </Link>
             </div>
             <div className="proj-plate">

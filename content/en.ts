@@ -18,6 +18,7 @@ const en: Dictionary = {
     langLabel: "Language",
   },
   hero: {
+    role: "Full-Stack Software Engineer",
     eyebrow: "Full-Stack Software Engineer · Based in Cuba, working remotely",
     line1: "Whole products,",
     line2: "end to end.",
@@ -315,6 +316,16 @@ const en: Dictionary = {
   },
   path: {
     title: "Path",
+    profile: {
+      title: "At a glance",
+      rows: [
+        { k: "Role", v: "Full-Stack Software Engineer" },
+        { k: "Based in", v: "Cuba, working remotely" },
+        { k: "Experience", v: "Professional work since 2023" },
+        { k: "Focus", v: "Frontend, backend, APIs, databases, integrations, payments and fintech" },
+        { k: "Recent work", v: "Supernova payment gateway, ACR Pay, ACR Card and the ACR Card app" },
+      ],
+    },
     about: [
       "Working across the whole stack since 2023: frontend, backend, data, integrations and product. Computer science engineer (UCI).",
     ],

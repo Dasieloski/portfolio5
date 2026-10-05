@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
-import { BASE_URL, LOCALES, isLocale, languageAlternates, localeUrl } from "@/lib/site";
+import { LOCALES, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -10,6 +10,7 @@ import { Arrow } from "@/components/Arrow";
 import CaseVisual from "@/components/visuals/CaseVisual";
 import LayerDiagram from "@/components/visuals/LayerDiagram";
 import { ARCH } from "@/content/visuals";
+import { APP_CATEGORY, PERSON_ID, WEBSITE_ID } from "@/lib/seo";
 
 export function generateStaticParams() {
   return LOCALES.flatMap((lang) => getDictionary(lang).work.cases.map((c) => ({ lang, slug: c.slug })));
@@ -25,7 +26,14 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/work/[slug
     title: `${c.name} — ${c.kind}`,
     description: c.seoDescription,
     alternates: { canonical: localeUrl(lang, path), languages: languageAlternates(path) },
-    openGraph: { title: `${c.name} — ${c.kind}`, description: c.seoDescription, url: localeUrl(lang, path), type: "article" },
+    openGraph: {
+      title: `${c.name} — ${c.kind}`,
+      description: c.seoDescription,
+      url: localeUrl(lang, path),
+      type: "article",
+      images: [{ url: `${localeUrl(lang)}/opengraph-image`, width: 1200, height: 630, alt: "Dasiel Torres — Full-Stack Software Engineer" }],
+    },
+    twitter: { card: "summary_large_image", title: `${c.name} — ${c.kind}`, description: c.seoDescription },
   };
 }
 
@@ -44,25 +52,41 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: t.caseUi.breadcrumbHome, item: localeUrl(lang) },
-      { "@type": "ListItem", position: 2, name: t.work.title, item: `${localeUrl(lang)}#work` },
+      { "@type": "ListItem", position: 2, name: t.nav.work, item: `${localeUrl(lang)}#work` },
       { "@type": "ListItem", position: 3, name: c.name, item: localeUrl(lang, `/work/${slug}`) },
     ],
   };
-  const article = {
+  const pageUrl = localeUrl(lang, `/work/${slug}`);
+  // Reason: the page is a WebPage about one software product; the person is a contributor, not its owner.
+  const page = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: `${c.name} — ${c.kind}`,
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: `${c.name} — ${c.kind}`,
     description: c.seoDescription,
-    author: { "@id": `${BASE_URL}/#person` },
     inLanguage: lang,
-    mainEntityOfPage: localeUrl(lang, `/work/${slug}`),
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": `${pageUrl}#software` },
+    mainEntity: { "@id": `${pageUrl}#software` },
+  };
+  const software = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${pageUrl}#software`,
+    name: c.name,
+    description: c.summary,
+    applicationCategory: APP_CATEGORY[c.slug] ?? "BusinessApplication",
+    inLanguage: lang,
+    contributor: { "@id": PERSON_ID },
+    ...(c.url ? { url: c.url } : {}),
   };
 
   return (
     <>
       <Header lang={lang} nav={t.nav} />
       <main id="main" className="case">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([crumbs, article]) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([crumbs, page, software]) }} />
         <nav aria-label="Breadcrumb" className="crumbs label">
           <Link href={`/${lang}`}>{t.caseUi.breadcrumbHome}</Link> / <Link href={`/${lang}#work`}>{t.caseUi.back}</Link>
         </nav>
