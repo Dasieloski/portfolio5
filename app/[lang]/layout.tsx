@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Archivo, Geist_Mono } from "next/font/google";
 import { getDictionary } from "@/content";
-import Smooth from "@/components/Smooth";
-import Cursor from "@/components/Cursor";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import "../globals.css";
 import "../hero.css";
@@ -93,8 +91,6 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           {nav.skip}
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <Smooth />
-        <Cursor />
         {children}
       </body>
     </html>

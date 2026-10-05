@@ -119,9 +119,6 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
             }
             return (
               <section key={s.title} className="case-sec">
-                <span className="case-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <h2>{s.title}</h2>
                 <div>
                   {s.body.map((p) => (
@@ -140,7 +137,7 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
           </span>
         </Link>
       </main>
-      <Contact contact={t.contact} stage={false} />
+      <Contact contact={t.contact} />
       <Footer footer={t.footer} />
     </>
   );

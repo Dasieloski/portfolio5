@@ -23,7 +23,6 @@ export type Layer = {
 
 export type Visuals = {
   note: string;
-  scrollHint: string;
   pay: { title: string; run: string; busy: string; nodes: { label: string; text: string }[] };
   avail: { title: string; run: string; reset: string; a: string; b: string; idle: string; land: string; lock: string; won: string; lost: string };
   stock: { title: string; run: string; reset: string; skus: string; idle: string; lock: string; done: string };
@@ -33,7 +32,6 @@ export type Visuals = {
 
 export type Dictionary = {
   meta: { title: string; description: string; ogTagline: string };
-  hud: { intro: string };
   nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string; langLabel: string };
   hero: {
     eyebrow: string;
@@ -42,9 +40,6 @@ export type Dictionary = {
     lede: string;
     primary: string;
     secondary: string;
-    nowLabel: string;
-    now: string;
-    layersLabel: string;
   };
   work: {
     title: string;

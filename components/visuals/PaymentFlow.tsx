@@ -31,16 +31,10 @@ function Diagram({ layout, t, active, packetRef, pathRef }: {
 }) {
   return (
     <svg viewBox={`0 0 ${layout.w} ${layout.h}`} className="pay-svg" role="img" aria-label={t.title}>
-      <defs>
-        <pattern id={`hatch-${layout.w}`} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" strokeWidth="1" opacity="0.28" />
-        </pattern>
-      </defs>
       <path ref={pathRef} d={route(layout.pts)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 7" opacity="0.55" />
       {layout.pts.map(([x, y], i) => (
         <g key={i} transform={`translate(${x} ${y})`} className="pay-node" data-on={i <= active} data-now={i === active}>
           <rect x="-58" y="-30" width="116" height="60" rx="3" fill="var(--paper)" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="-58" y="-30" width="116" height="60" rx="3" fill={`url(#hatch-${layout.w})`} className="pay-hatch" />
           <text x="0" y="5" textAnchor="middle" className="pay-label">{t.nodes[i].label}</text>
           <text x="-50" y="-36" className="pay-n">0{i + 1}</text>
         </g>

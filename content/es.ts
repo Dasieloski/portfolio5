@@ -7,7 +7,6 @@ const es: Dictionary = {
       "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Plataformas de reservas, e-commerce, SaaS y productos de pagos: de la base de datos a la interfaz y al despliegue.",
     ogTagline: "Productos completos, de punta a punta.",
   },
-  hud: { intro: "Intro" },
   nav: {
     work: "Trabajo",
     stack: "Stack",
@@ -22,22 +21,19 @@ const es: Dictionary = {
     eyebrow: "Ingeniero de Software Full-Stack · Radicado en Cuba, trabajando en remoto",
     line1: "Productos completos,",
     line2: "de punta a punta.",
-    lede: "Llevo un producto desde el problema hasta la base de datos, la interfaz, el pago y el despliegue, y trabajo donde el problema lo necesite.",
+    lede: "Del problema a la base de datos, la interfaz, el pago y el despliegue.",
     primary: "Escríbeme",
     secondary: "Ver el trabajo",
-    nowLabel: "Últimamente",
-    now: "Productos de pagos: Supernova como pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card.",
-    layersLabel: "Dónde trabajo",
   },
   work: {
     title: "Trabajo seleccionado",
-    intro: "Productos reales, usuarios reales y dinero real circulando por ellos.",
+    intro: "Productos reales con usuarios reales.",
     featured: {
       name: "Supernova & ACR",
       kind: "Pagos · Fintech",
       period: "Más reciente",
       role: "Ingeniero de Software",
-      text: "Trabajo de producto en Supernova como pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card, incluyendo integraciones con bancos y servicios financieros. Los detalles se comparten en conversación.",
+      text: "Pasarela de pago, ACR Pay, ACR Card y su aplicación, con integraciones con bancos y servicios financieros.",
       tags: ["Pasarela de pago", "Tarjetas", "Integraciones bancarias"],
       cta: "Pregúntame por ello",
     },
@@ -121,7 +117,7 @@ const es: Dictionary = {
           {
             title: "Entrega",
             body: [
-              "Una interfaz optimizada con Tailwind y cargas de página por debajo de los 2 segundos, desplegada en Vercel con CI/CD automático y sin downtime en cada push.",
+              "Una interfaz optimizada con Tailwind y cargas de página por debajo de los 2 segundos, desplegada en Vercel con CI/CD sin downtime en cada push.",
             ],
           },
         ],
@@ -177,15 +173,15 @@ const es: Dictionary = {
   stack: {
     title: "Anatomía de un producto",
     intro:
-      "La amplitud no es una lista de logos. Son las capas que un producto necesita para funcionar, y dónde he tenido que resolver bien cada una.",
+      "Las capas que necesita un producto, y dónde he tenido que resolver bien cada una.",
     layers: [
       {
         id: "product",
         name: "Producto",
         claim: "Me hago cargo de las decisiones, no solo de los tickets.",
         points: [
-          { text: "Decisiones de producto, arquitectura y UX/UI como único ingeniero de una plataforma de reservas en producción.", ref: "Habaluna" },
-          { text: "Herramientas de back office que permiten al personal no técnico operar sin ingeniería, incluyendo más de 200 SKUs.", ref: "MK Tattoo Supply" },
+          { text: "Único ingeniero: producto, arquitectura y UX/UI.", ref: "Habaluna" },
+          { text: "Panel para que personal no técnico gestione 200+ SKUs.", ref: "MK Tattoo Supply" },
         ],
       },
       {
@@ -193,9 +189,9 @@ const es: Dictionary = {
         name: "Interfaz",
         claim: "Flujos mobile-first, del catálogo al pago.",
         points: [
-          { text: "Flujos de catálogo, reserva y pago diseñados mobile-first de punta a punta.", ref: "Habaluna" },
-          { text: "React Server Components y Client Components usados donde corresponde a cada uno.", ref: "Habaluna" },
-          { text: "Cargas de página por debajo de 2 segundos en una interfaz optimizada con Tailwind.", ref: "Gym Victoria" },
+          { text: "Catálogo, reserva y pago mobile-first.", ref: "Habaluna" },
+          { text: "Componentes de servidor y cliente, cada uno donde corresponde.", ref: "Habaluna" },
+          { text: "Páginas que cargan en menos de dos segundos.", ref: "Gym Victoria" },
         ],
       },
       {
@@ -203,8 +199,8 @@ const es: Dictionary = {
         name: "API y lógica",
         claim: "Fronteras limpias a medida que el sistema crece.",
         points: [
-          { text: "Lógica de reservas separada del contenido gestionado por operadores mediante un CMS headless.", ref: "Habaluna" },
-          { text: "Autenticación por roles (admin, entrenador, socio) con sesiones en el servidor, sin librería de auth.", ref: "Gym Victoria" },
+          { text: "Lógica de reservas separada del contenido con un CMS headless.", ref: "Habaluna" },
+          { text: "Autenticación por roles con sesiones en el servidor.", ref: "Gym Victoria" },
           { text: "APIs REST con Node.js, NestJS y Strapi.", ref: "Varios proyectos" },
         ],
       },
@@ -213,9 +209,9 @@ const es: Dictionary = {
         name: "Datos",
         claim: "Correctos bajo concurrencia.",
         points: [
-          { text: "Motor de disponibilidad con detección atómica de conflictos: sin dobles reservas con peticiones concurrentes.", ref: "Habaluna" },
-          { text: "Control de stock en tiempo real que evita la sobreventa.", ref: "MK Tattoo Supply" },
-          { text: "Esquema relacional con integridad referencial para socios, entrenadores, membresías y pagos (PostgreSQL, Prisma).", ref: "Gym Victoria" },
+          { text: "Disponibilidad atómica: sin dobles reservas.", ref: "Habaluna" },
+          { text: "Stock en tiempo real: sin sobreventa.", ref: "MK Tattoo Supply" },
+          { text: "Esquema relacional con integridad referencial.", ref: "Gym Victoria" },
         ],
       },
       {
@@ -223,9 +219,9 @@ const es: Dictionary = {
         name: "Dinero",
         claim: "Donde un bug cuesta dinero de verdad.",
         points: [
-          { text: "Integración de una API de pagos en un e-commerce en producción.", ref: "MK Tattoo Supply" },
-          { text: "Procesamiento de pagos dentro de un flujo de reservas.", ref: "Habaluna" },
-          { text: "Productos de pagos: Supernova como pasarela, ACR Pay, ACR Card y su aplicación, con integraciones con bancos y servicios financieros.", ref: "Supernova & ACR" },
+          { text: "Una API de pagos en una tienda en producción.", ref: "MK Tattoo Supply" },
+          { text: "Pagos dentro de un flujo de reservas.", ref: "Habaluna" },
+          { text: "Pasarela, ACR Pay, ACR Card e integraciones bancarias.", ref: "Supernova & ACR" },
         ],
       },
       {
@@ -233,8 +229,8 @@ const es: Dictionary = {
         name: "Entrega",
         claim: "Lanzado, y funcionando.",
         points: [
-          { text: "Despliegues, aprovisionamiento de base de datos, gestión de entornos y monitorización en producción desde el primer día.", ref: "Habaluna" },
-          { text: "CI/CD automático y sin downtime en cada push.", ref: "Gym Victoria" },
+          { text: "Despliegues, base de datos, entornos y monitorización desde el primer día.", ref: "Habaluna" },
+          { text: "CI/CD sin downtime en cada push.", ref: "Gym Victoria" },
         ],
       },
     ],
@@ -242,8 +238,7 @@ const es: Dictionary = {
   path: {
     title: "Trayectoria",
     about: [
-      "Empecé profesionalmente en 2023 y desde entonces he trabajado a lo largo de todo el stack: frontend, backend, arquitectura, APIs, bases de datos, integraciones y producto.",
-      "Soy ingeniero en Ciencias Informáticas (UCI). Me gustan los problemas donde se cruzan varias disciplinas, y ser quien puede seguirlos hasta donde lleven.",
+      "Trabajando en todo el stack desde 2023: frontend, backend, datos, integraciones y producto. Ingeniero en Ciencias Informáticas (UCI).",
     ],
     rows: [
       {
@@ -306,7 +301,6 @@ const es: Dictionary = {
   },
   vis: {
     note: "Ilustración conceptual del problema, no una captura.",
-    scrollHint: "Desplázate para explorar",
     pay: {
       title: "Un pago, de punta a punta",
       run: "Enviar un pago",

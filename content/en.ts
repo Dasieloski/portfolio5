@@ -7,7 +7,6 @@ const en: Dictionary = {
       "Full-Stack Software Engineer based in Cuba, working remotely. Booking platforms, e-commerce, SaaS and payment products — from the database to the interface to the deploy.",
     ogTagline: "Whole products, end to end.",
   },
-  hud: { intro: "Intro" },
   nav: {
     work: "Work",
     stack: "Stack",
@@ -22,22 +21,19 @@ const en: Dictionary = {
     eyebrow: "Full-Stack Software Engineer · Based in Cuba, working remotely",
     line1: "Whole products,",
     line2: "end to end.",
-    lede: "I take a product from the problem to the database, the interface, the payment and the deploy — and work wherever the problem needs me.",
+    lede: "From the problem to the database, the interface, the payment and the deploy.",
     primary: "Start a conversation",
     secondary: "See the work",
-    nowLabel: "Lately",
-    now: "Payment products: Supernova as a payment gateway, ACR Pay, ACR Card and the ACR Card app.",
-    layersLabel: "Where I work",
   },
   work: {
     title: "Selected work",
-    intro: "Real products, real users, real money moving through them.",
+    intro: "Real products with real users.",
     featured: {
       name: "Supernova & ACR",
       kind: "Payments · Fintech",
       period: "Most recent",
       role: "Software Engineer",
-      text: "Product work across Supernova as a payment gateway, ACR Pay, ACR Card and the ACR Card app — including integrations with banks and financial services. Details are shared in conversation.",
+      text: "Payment gateway, ACR Pay, ACR Card and its app, with bank and financial-service integrations.",
       tags: ["Payment gateway", "Cards", "Bank integrations"],
       cta: "Ask me about it",
     },
@@ -177,15 +173,15 @@ const en: Dictionary = {
   stack: {
     title: "Anatomy of a product",
     intro:
-      "Breadth isn't a list of logos. It's the layers a product needs to work, and where I've had to get each one right.",
+      "The layers a product needs, and where I've had to get each one right.",
     layers: [
       {
         id: "product",
         name: "Product",
         claim: "I own the decisions, not just the tickets.",
         points: [
-          { text: "Product decisions, architecture and UX/UI as the sole engineer on a live booking platform.", ref: "Habaluna" },
-          { text: "Back-office tools that let non-technical staff run operations without engineering — including 200+ SKUs.", ref: "MK Tattoo Supply" },
+          { text: "Sole engineer: product, architecture and UX/UI.", ref: "Habaluna" },
+          { text: "Admin tools so non-technical staff run 200+ SKUs.", ref: "MK Tattoo Supply" },
         ],
       },
       {
@@ -193,9 +189,9 @@ const en: Dictionary = {
         name: "Interface",
         claim: "Mobile-first flows, from catalog to checkout.",
         points: [
-          { text: "Catalog, booking and payment flows designed mobile-first, end to end.", ref: "Habaluna" },
-          { text: "React Server Components and Client Components used where each one fits.", ref: "Habaluna" },
-          { text: "Sub-2-second page loads on a Tailwind-optimized interface.", ref: "Gym Victoria" },
+          { text: "Mobile-first catalog, booking and payment.", ref: "Habaluna" },
+          { text: "Server and client components, each where it fits.", ref: "Habaluna" },
+          { text: "Pages that load in under two seconds.", ref: "Gym Victoria" },
         ],
       },
       {
@@ -203,8 +199,8 @@ const en: Dictionary = {
         name: "API & logic",
         claim: "Boundaries that stay clean as things grow.",
         points: [
-          { text: "Booking logic separated from operator-managed content with a headless CMS.", ref: "Habaluna" },
-          { text: "Role-based auth (admin, trainer, member) with server-side sessions, built without an auth library.", ref: "Gym Victoria" },
+          { text: "Booking logic split from content with a headless CMS.", ref: "Habaluna" },
+          { text: "Role-based auth with server-side sessions.", ref: "Gym Victoria" },
           { text: "REST APIs with Node.js, NestJS and Strapi.", ref: "Across projects" },
         ],
       },
@@ -213,9 +209,9 @@ const en: Dictionary = {
         name: "Data",
         claim: "Correct under concurrency.",
         points: [
-          { text: "Availability engine with atomic conflict detection: no double bookings under concurrent requests.", ref: "Habaluna" },
-          { text: "Real-time stock control that prevents overselling.", ref: "MK Tattoo Supply" },
-          { text: "Relational schema with referential integrity for members, trainers, memberships and payments (PostgreSQL, Prisma).", ref: "Gym Victoria" },
+          { text: "Atomic availability checks: no double bookings.", ref: "Habaluna" },
+          { text: "Real-time stock control: no overselling.", ref: "MK Tattoo Supply" },
+          { text: "Relational schema with referential integrity.", ref: "Gym Victoria" },
         ],
       },
       {
@@ -223,9 +219,9 @@ const en: Dictionary = {
         name: "Money",
         claim: "Where a bug costs real money.",
         points: [
-          { text: "Payment API integration in a live e-commerce platform.", ref: "MK Tattoo Supply" },
-          { text: "Payment processing inside a booking flow.", ref: "Habaluna" },
-          { text: "Payment products: Supernova as a gateway, ACR Pay, ACR Card and its app, with bank and financial-service integrations.", ref: "Supernova & ACR" },
+          { text: "A payment API inside a live store.", ref: "MK Tattoo Supply" },
+          { text: "Payments inside a booking flow.", ref: "Habaluna" },
+          { text: "Gateway, ACR Pay, ACR Card and bank integrations.", ref: "Supernova & ACR" },
         ],
       },
       {
@@ -233,8 +229,8 @@ const en: Dictionary = {
         name: "Delivery",
         claim: "Shipped, and kept running.",
         points: [
-          { text: "Deployments, database provisioning, environment management and production monitoring from day one.", ref: "Habaluna" },
-          { text: "Automated zero-downtime CI/CD on every push.", ref: "Gym Victoria" },
+          { text: "Deploys, database, environments and monitoring from day one.", ref: "Habaluna" },
+          { text: "Zero-downtime CI/CD on every push.", ref: "Gym Victoria" },
         ],
       },
     ],
@@ -242,8 +238,7 @@ const en: Dictionary = {
   path: {
     title: "Path",
     about: [
-      "I started professionally in 2023 and have worked across the whole stack ever since: frontend, backend, architecture, APIs, databases, integrations and product.",
-      "I'm a computer science engineer (UCI). I like the problems where several disciplines meet — and being the person who can follow them wherever they lead.",
+      "Working across the whole stack since 2023: frontend, backend, data, integrations and product. Computer science engineer (UCI).",
     ],
     rows: [
       {
@@ -306,7 +301,6 @@ const en: Dictionary = {
   },
   vis: {
     note: "Conceptual illustration of the problem, not a screenshot.",
-    scrollHint: "Scroll to explore",
     pay: {
       title: "A payment, end to end",
       run: "Send a payment",

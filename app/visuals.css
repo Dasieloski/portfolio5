@@ -92,7 +92,7 @@
   aspect-ratio: 1.15;
   border: 1px solid var(--line);
   padding: 0.3rem;
-  background: repeating-linear-gradient(45deg, transparent 0 5px, rgba(18, 18, 16, 0.05) 5px 6px);
+  background: rgba(18, 18, 16, 0.03);
 }
 .cal-day i {
   font-style: normal;

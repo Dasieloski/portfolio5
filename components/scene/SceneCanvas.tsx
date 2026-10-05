@@ -15,7 +15,7 @@ const W = 360;
 const D = 250;
 const H = 12;
 const N = 6;
-const BASE = 650; // px of stage size at which scale === 1
+const BASE = 780; // px of stage size at which scale === 1
 // Reason: the packet visits one waypoint per layer; offsets make its path zig-zag through the stack.
 const PORTS: [number, number][] = [[-70, -30], [60, 40], [-40, 50], [80, -40], [-20, 0], [50, 30]];
 
