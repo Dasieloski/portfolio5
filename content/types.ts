@@ -48,7 +48,10 @@ export type Dictionary = {
     lede: string;
     primary: string;
     secondary: string;
+    scroll: string;
+    since: string;
   };
+  intro: { kicker: string; statement: string; emphasis: string[] };
   work: {
     title: string;
     titleEm: string;
@@ -59,12 +62,12 @@ export type Dictionary = {
     alsoTitle: string;
     also: { name: string; text: string; url: string }[];
   };
-  stack: { title: string; intro: string; layers: Layer[] };
+  stack: { title: string; intro: string; hint: string; layersLabel: string; layers: Layer[] };
   path: {
     title: string;
     profile: { title: string; rows: { k: string; v: string }[] };
     about: string[];
-    rows: { period: string; title: string; place: string; text: string }[];
+    rows: { period: string; title: string; place: string; text: string; caseSlugs?: string[] }[];
     educationLabel: string;
     education: { period: string; title: string; place: string };
   };

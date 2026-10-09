@@ -2,43 +2,48 @@ import Link from "next/link";
 import type { Dictionary } from "@/content/types";
 import type { Locale } from "@/lib/site";
 import { Arrow } from "./Arrow";
+import Roll from "./Roll";
 import CaseVisual from "./visuals/CaseVisual";
 
 type Props = { lang: Locale; work: Dictionary["work"]; vis: Dictionary["vis"]; mustHold: string };
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
-/** An index grid first (the whole picture), then one editorial spread per product with its own animation. */
+/** A black opening band with the index, then one spread per product: sticky text on one side, its own interactive illustration on the other. */
 export default function Work({ lang, work, vis, mustHold }: Props) {
   const main = work.cases.filter((c) => c.tier === "main");
   const earlier = work.cases.filter((c) => c.tier === "earlier");
 
   return (
-    <section id="work" className="work" aria-labelledby="work-title">
-      <div className="wrap">
-        <header className="work-head">
-          <h2 id="work-title" className="h2">
+    <section id="work" className="work solid" aria-labelledby="work-title">
+      <div className="work-band">
+        <div className="wrap">
+          <p className="mono work-no">02</p>
+          <h2 id="work-title" className="work-title">
             {work.title} <em>{work.titleEm}</em>
           </h2>
-          <p className="label work-intro">{work.intro}</p>
-        </header>
+          <p className="work-intro">{work.intro}</p>
 
-        <ol className="idx">
-          {main.map((c, i) => (
-            <li key={c.slug}>
-              <a href={`#p-${c.slug}`} className="idx-cell">
-                <span className="idx-n">{num(i)}</span>
-                <span className="idx-body">
+          <ol className="idx">
+            {main.map((c, i) => (
+              <li key={c.slug}>
+                <a href={`#p-${c.slug}`} className="idx-row">
+                  <span className="mono idx-n">{num(i)}</span>
                   <span className="idx-name">{c.name}</span>
                   <span className="idx-must">{c.invariant}</span>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ol>
+                  <span className="idx-go" aria-hidden="true">
+                    ↓
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
 
+      <div className="wrap">
         {main.map((c, i) => (
-          <article key={c.slug} id={`p-${c.slug}`} className="proj" aria-labelledby={`h-${c.slug}`}>
+          <article key={c.slug} id={`p-${c.slug}`} className={`proj${i % 2 ? " is-flip" : ""}`} aria-labelledby={`h-${c.slug}`}>
             <div className="proj-text">
               <p className="proj-n" aria-hidden="true">
                 {num(i)}
@@ -55,8 +60,8 @@ export default function Work({ lang, work, vis, mustHold }: Props) {
                 {c.invariant}
               </p>
               <p className="proj-sum">{c.summary}</p>
-              <Link href={`/${lang}/work/${c.slug}`} className="link-arrow label">
-                {work.caseCta}
+              <Link href={`/${lang}/work/${c.slug}`} className="btn btn-line">
+                <Roll>{work.caseCta}</Roll>
                 <span className="sr"> — {c.name}</span> <Arrow />
               </Link>
             </div>

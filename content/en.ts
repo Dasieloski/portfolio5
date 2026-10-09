@@ -25,6 +25,14 @@ const en: Dictionary = {
     lede: "From the problem to the database, the interface, the payment and the deploy.",
     primary: "Start a conversation",
     secondary: "See the work",
+    scroll: "Scroll",
+    since: "Since 2023",
+  },
+  intro: {
+    kicker: "Profile",
+    statement:
+      "I build the whole product: the interface people touch, the API behind it, the database that has to stay correct, and the integrations where money moves.",
+    emphasis: ["whole product", "money moves"],
   },
   work: {
     title: "Four products,",
@@ -253,6 +261,8 @@ const en: Dictionary = {
   stack: {
     title: "Anatomy of a product",
     intro: "The layers a product needs, and where I've had to get each one right.",
+    hint: "Scroll to take it apart",
+    layersLabel: "Layers of a product",
     layers: [
       {
         id: "product",
@@ -335,6 +345,7 @@ const en: Dictionary = {
         title: "Software Engineer",
         place: "Supernova & ACR ecosystem",
         text: "Payment gateway, ACR Pay, ACR Card and the ACR Card app. Real money, bank and financial-service integrations.",
+        caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
       },
       {
         period: "Aug – Dec 2024",
@@ -369,7 +380,7 @@ const en: Dictionary = {
       {
         name: "This site",
         period: "2026",
-        text: "Variable-font type you can play with, scroll-driven reveals in plain CSS, one 3D payment card, and no animation libraries.",
+        text: "Variable-font type you can play with, one WebGL payment card with a custom foil shader, and scroll sequences timed with GSAP. Loaded lazily; the page works without any of it.",
       },
     ],
   },

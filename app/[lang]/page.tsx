@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
-import { isLocale, localeUrl } from "@/lib/site";
+import { CONTACT, isLocale, localeUrl } from "@/lib/site";
 import { PERSON_ID, WEBSITE_ID } from "@/lib/seo";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
-import Stack from "@/components/Stack";
+import Intro from "@/components/Intro";
+import Anatomy from "@/components/Anatomy";
+import CardStage from "@/components/card/CardStage";
 import Path from "@/components/Path";
 import Lab from "@/components/Lab";
 import Contact from "@/components/Contact";
@@ -31,14 +33,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profile) }} />
+      <CardStage role={t.hero.role} name={CONTACT.name} tagline={`${t.hero.line1} ${t.hero.line2}`} since={t.hero.since} />
       <Header lang={lang} nav={t.nav} />
       <main id="main">
-        <Hero lang={lang} hero={t.hero} status={`${t.contact.availability} · ${t.contact.location}`} />
+        <Hero lang={lang} hero={t.hero} status={t.contact.availability} cardName={CONTACT.name} since={t.hero.since} />
+        <Intro intro={t.intro} profile={t.path.profile} role={t.hero.role} cardName={CONTACT.name} since={t.hero.since} />
         <Work lang={lang} work={t.work} vis={t.vis} mustHold={t.caseUi.mustHold} />
-        <Stack stack={t.stack} />
-        <Path path={t.path} links={Object.fromEntries(t.work.cases.map((c) => [c.name, `/${lang}/work/${c.slug}`]))} />
+        <Anatomy stack={t.stack} />
+        <Path
+          path={t.path}
+          links={Object.fromEntries(t.work.cases.map((c) => [c.name, `/${lang}/work/${c.slug}`]))}
+          cases={Object.fromEntries(t.work.cases.map((c) => [c.slug, { name: c.name, href: `/${lang}/work/${c.slug}` }]))}
+        />
         <Lab lab={t.lab} vis={t.vis} />
-        <Contact contact={t.contact} />
+        <Contact contact={t.contact} card={{ role: t.hero.role, name: CONTACT.name, since: t.hero.since }} />
       </main>
       <Footer footer={t.footer} />
     </>

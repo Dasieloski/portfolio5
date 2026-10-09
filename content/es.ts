@@ -25,6 +25,14 @@ const es: Dictionary = {
     lede: "Del problema a la base de datos, la interfaz, el pago y el despliegue.",
     primary: "Escríbeme",
     secondary: "Ver el trabajo",
+    scroll: "Desliza",
+    since: "Desde 2023",
+  },
+  intro: {
+    kicker: "Perfil",
+    statement:
+      "Construyo el producto completo: la interfaz que la gente toca, la API detrás, la base de datos que debe mantenerse correcta y las integraciones donde se mueve el dinero.",
+    emphasis: ["producto completo", "se mueve el dinero"],
   },
   work: {
     title: "Cuatro productos,",
@@ -253,6 +261,8 @@ const es: Dictionary = {
   stack: {
     title: "Anatomía de un producto",
     intro: "Las capas que necesita un producto, y dónde he tenido que resolver bien cada una.",
+    hint: "Desliza para desmontarlo",
+    layersLabel: "Capas de un producto",
     layers: [
       {
         id: "product",
@@ -335,6 +345,7 @@ const es: Dictionary = {
         title: "Ingeniero de Software",
         place: "Ecosistema Supernova & ACR",
         text: "Pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card. Dinero real, integraciones con bancos y servicios financieros.",
+        caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
       },
       {
         period: "Ago – Dic 2024",
@@ -369,7 +380,7 @@ const es: Dictionary = {
       {
         name: "Esta web",
         period: "2026",
-        text: "Tipografía de fuente variable con la que se puede jugar, revelados guiados por scroll en CSS puro, una tarjeta de pago en 3D y ninguna librería de animación.",
+        text: "Tipografía de fuente variable con la que se puede jugar, revelados guiados por scroll en CSS puro, una tarjeta de pago en WebGL con un shader de holograma propio y secuencias de scroll con GSAP. Carga diferida; la página funciona sin nada de eso.",
       },
     ],
   },

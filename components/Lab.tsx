@@ -19,7 +19,7 @@ function SudokuPlate() {
 
 export default function Lab({ lab, vis }: { lab: Dictionary["lab"]; vis: Dictionary["vis"] }) {
   return (
-    <section id="lab" className="section" aria-labelledby="lab-title">
+    <section id="lab" className="section lab-sec solid" aria-labelledby="lab-title">
       <header className="section-head">
         <h2 id="lab-title" className="display">
           {lab.title}
