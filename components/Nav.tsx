@@ -1,0 +1,72 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import type { Locale } from "@/lib/site";
+import LangSwitch from "./LangSwitch";
+
+type Props = { lang: Locale; links: { href: string; label: string }[]; cta: { href: string; label: string }; langLabel: string; menuLabel: string };
+
+/** Floating pill. The ring beside the name fills as you scroll (native scroll-driven animation, static where unsupported). */
+export default function Nav({ lang, links, cta, langLabel, menuLabel }: Props) {
+  const [open, setOpen] = useState(false);
+  const first = useRef<HTMLAnchorElement>(null);
+  const burger = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    first.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        burger.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const home = `/${lang}`;
+  return (
+    <>
+      <header className="nav" data-open={open}>
+        <Link href={home} className="nav-mark" aria-label="Dasiel Torres" onClick={() => setOpen(false)}>
+          <svg className="gauge" viewBox="0 0 24 24" aria-hidden="true">
+            <circle className="track" cx="12" cy="12" r="9" />
+            <circle className="fill" cx="12" cy="12" r="9" />
+          </svg>
+          Dasiel Torres
+        </Link>
+        <nav className="nav-links" aria-label="Primary">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="nav-end">
+          <LangSwitch current={lang} label={langLabel} />
+          <Link href={cta.href} className="nav-cta">
+            {cta.label}
+          </Link>
+          <button ref={burger} type="button" className="nav-burger" aria-expanded={open} aria-controls="menu" aria-label={menuLabel} onClick={() => setOpen((o) => !o)}>
+            <i />
+            <i />
+          </button>
+        </div>
+      </header>
+      <div id="menu" className="menu" data-open={open} inert={!open}>
+        {[...links, cta].map((l, i) => (
+          <Link key={l.href} href={l.href} ref={i === 0 ? first : undefined} style={{ "--i": i } as React.CSSProperties} onClick={() => setOpen(false)}>
+            {l.label}
+          </Link>
+        ))}
+      </div>
+    </>
+  );
+}

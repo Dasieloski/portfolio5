@@ -1,4 +1,4 @@
-/** Label that rolls up on hover/focus. The duplicate is hidden from assistive tech. */
+/** Label that rolls up on hover and focus. The duplicate is hidden from assistive tech. */
 export default function Roll({ children }: { children: string }) {
   return (
     <span className="roll">

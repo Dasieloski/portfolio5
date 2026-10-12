@@ -7,7 +7,9 @@ import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Arrow } from "@/components/Arrow";
-import CaseVisual from "@/components/visuals/CaseVisual";
+import Chapter from "@/components/Chapter";
+import Roll from "@/components/Roll";
+import { DIAGRAM_NOTE, diagramText } from "@/content/diagrams";
 import LayerDiagram from "@/components/visuals/LayerDiagram";
 import { ARCH } from "@/content/visuals";
 import { APP_CATEGORY, PERSON_ID, WEBSITE_ID } from "@/lib/seo";
@@ -23,17 +25,17 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/work/[slug
   if (!c) return {};
   const path = `/work/${slug}`;
   return {
-    title: `${c.name} — ${c.kind}`,
+    title: `${c.name} - ${c.kind}`,
     description: c.seoDescription,
     alternates: { canonical: localeUrl(lang, path), languages: languageAlternates(path) },
     openGraph: {
-      title: `${c.name} — ${c.kind}`,
+      title: `${c.name} - ${c.kind}`,
       description: c.seoDescription,
       url: localeUrl(lang, path),
       type: "article",
-      images: [{ url: `${localeUrl(lang)}/opengraph-image`, width: 1200, height: 630, alt: "Dasiel Torres — Full-Stack Software Engineer" }],
+      images: [{ url: `${localeUrl(lang)}/opengraph-image`, width: 1200, height: 630, alt: "Dasiel Torres - Full-Stack Software Engineer" }],
     },
-    twitter: { card: "summary_large_image", title: `${c.name} — ${c.kind}`, description: c.seoDescription },
+    twitter: { card: "summary_large_image", title: `${c.name} - ${c.kind}`, description: c.seoDescription },
   };
 }
 
@@ -63,7 +65,7 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
     "@type": "WebPage",
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
-    name: `${c.name} — ${c.kind}`,
+    name: `${c.name} - ${c.kind}`,
     description: c.seoDescription,
     inLanguage: lang,
     isPartOf: { "@id": WEBSITE_ID },
@@ -82,94 +84,114 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
     ...(c.url ? { url: c.url } : {}),
   };
 
+  const text = diagramText(lang, c.slug);
+
   return (
     <>
       <Header lang={lang} nav={t.nav} />
-      <main id="main" className="case">
+      <main id="main">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([crumbs, page, software]) }} />
-        <nav aria-label="Breadcrumb" className="crumbs label">
-          <Link href={`/${lang}`}>{t.caseUi.breadcrumbHome}</Link> / <Link href={`/${lang}#work`}>{t.caseUi.back}</Link>
-        </nav>
 
-        <header className="case-head">
-          <p className="mono">{c.kind}</p>
-          <h1 className="case-title">{c.name}</h1>
-          <p className="case-must">
-            <span className="mono">{t.caseUi.mustHold}</span>
-            {c.invariant}
-          </p>
-          <p className="lede">{c.summary}</p>
-          <dl className="facts">
-            <div>
-              <dt className="mono">{t.caseUi.role}</dt>
-              <dd>{c.role}</dd>
-            </div>
-            {c.period && (
-              <div>
-                <dt className="mono">{t.caseUi.period}</dt>
-                <dd>{c.period}</dd>
-              </div>
-            )}
-            {c.stack.length > 0 && (
-              <div>
-                <dt className="mono">{t.caseUi.stack}</dt>
-                <dd>{c.stack.join(" · ")}</dd>
-              </div>
-            )}
-          </dl>
-          {c.url && (
-            <a className="btn btn-solid" href={c.url} target="_blank" rel="noopener noreferrer">
-              {t.caseUi.visit} <Arrow />
-            </a>
-          )}
-        </header>
+        <section className="case-top dark" aria-labelledby="case-title">
+          <div className="wrap">
+            <nav aria-label="Breadcrumb" className="crumbs mono">
+              <Link href={`/${lang}`} className="ulink">
+                {t.caseUi.breadcrumbHome}
+              </Link>
+              <span aria-hidden="true">/</span>
+              <Link href={`/${lang}#work`} className="ulink">
+                {t.caseUi.back}
+              </Link>
+            </nav>
 
-        <div className="case-stage">
-          <p className="mono case-stage-label">{t.caseUi.visualLabel}</p>
-                    <CaseVisual slug={c.slug} vis={t.vis} />
-          <p className="mono wp-note">{t.vis.note}</p>
-        </div>
-
-        <div className="case-body">
-          {c.sections.map((s, i) => {
-            const arch = ARCH[c.slug];
-            if (arch && i === arch.archSection) {
-              return (
-                <section key={s.title} className="case-arch">
+            <header className="case-head">
+              <h1 id="case-title" className="case-title">
+                {c.name}
+              </h1>
+              <p className="case-kind">{c.kind}</p>
+              <p className="case-must">
+                <span className="mono">{t.caseUi.mustHold}</span>
+                {c.invariant}
+              </p>
+              <p className="lede">{c.summary}</p>
+              <dl className="case-facts">
+                <div>
+                  <dt className="mono">{t.caseUi.role}</dt>
+                  <dd>{c.role}</dd>
+                </div>
+                {c.period && (
                   <div>
-                    <h2>{s.title}</h2>
+                    <dt className="mono">{t.caseUi.period}</dt>
+                    <dd>{c.period}</dd>
+                  </div>
+                )}
+                {c.stack.length > 0 && (
+                  <div>
+                    <dt className="mono">{t.caseUi.stack}</dt>
+                    <dd>{c.stack.join(", ")}</dd>
+                  </div>
+                )}
+              </dl>
+              {c.url && (
+                <a className="btn btn-solid" href={c.url} target="_blank" rel="noopener noreferrer">
+                  <Roll>{t.caseUi.visit}</Roll>
+                  <span className="btn-ico" aria-hidden="true">
+                    <Arrow />
+                  </span>
+                </a>
+              )}
+            </header>
+
+            {text && <Chapter slug={c.slug} text={text} note={DIAGRAM_NOTE[lang]} label={c.name} stepsLabel={t.caseUi.stepsLabel} />}
+          </div>
+        </section>
+
+        <div className="case-body light sheet">
+          <div className="wrap">
+            {c.sections.map((s, i) => {
+              const arch = ARCH[c.slug];
+              if (arch && i === arch.archSection) {
+                return (
+                  <section key={s.title} className="case-sec case-arch rv">
+                    <div className="case-sec-text">
+                      <h2>{s.title}</h2>
+                      {s.body.map((p) => (
+                        <p key={p}>{p}</p>
+                      ))}
+                    </div>
+                    <figure>
+                      <figcaption className="mono">{t.caseUi.architecture}</figcaption>
+                      <LayerDiagram arch={arch} label={`${c.name}. ${t.caseUi.architecture}`} />
+                    </figure>
+                  </section>
+                );
+              }
+              return (
+                <section key={s.title} className="case-sec rv">
+                  <h2>{s.title}</h2>
+                  <div className="case-sec-text">
                     {s.body.map((p) => (
                       <p key={p}>{p}</p>
                     ))}
                   </div>
-                  <figure>
-                    <figcaption className="mono">{t.caseUi.architecture}</figcaption>
-                    <LayerDiagram arch={arch} label={`${c.name} — ${t.caseUi.architecture}`} />
-                  </figure>
                 </section>
               );
-            }
-            return (
-              <section key={s.title} className="case-sec">
-                <h2>{s.title}</h2>
-                <div>
-                  {s.body.map((p) => (
-                    <p key={p}>{p}</p>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+            })}
+
+            <Link href={`/${lang}/work/${next.slug}`} className="case-next">
+              <span className="mono">{t.caseUi.next}</span>
+              <span className="case-next-name">
+                {next.name}
+                <span className="btn-ico" aria-hidden="true">
+                  <Arrow />
+                </span>
+              </span>
+            </Link>
+          </div>
         </div>
 
-        <Link href={`/${lang}/work/${next.slug}`} className="case-next">
-          <span className="mono">{t.caseUi.next}</span>
-          <span className="display">
-            {next.name} <Arrow />
-          </span>
-        </Link>
+        <Contact contact={t.contact} />
       </main>
-      <Contact contact={t.contact} />
       <Footer footer={t.footer} />
     </>
   );

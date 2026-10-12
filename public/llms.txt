@@ -1,4 +1,4 @@
-# Dasiel Torres — Full-Stack Software Engineer
+# Dasiel Torres - Full-Stack Software Engineer
 
 > Portfolio of Dasiel Torres, a Full-Stack Software Engineer based in Cuba and working remotely. Professional work since 2023 across frontend, backend, APIs, databases, integrations, payments and fintech. Most recent work: the Supernova payment gateway, ACR Pay, ACR Card and the ACR Card app.
 

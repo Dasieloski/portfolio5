@@ -2,7 +2,7 @@ import type { Dictionary } from "./types";
 
 const es: Dictionary = {
   meta: {
-    title: "Dasiel Torres — Ingeniero de Software Full-Stack",
+    title: "Dasiel Torres - Ingeniero de Software Full-Stack",
     description:
       "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Pasarela de pagos, plataformas de tarjetas y recargas, e-commerce y SaaS: de la base de datos a la interfaz y al despliegue.",
     ogTagline: "Productos completos, de punta a punta.",
@@ -15,6 +15,7 @@ const es: Dictionary = {
     contact: "Contacto",
     hire: "Contrátame",
     skip: "Saltar al contenido",
+    menu: "Menú",
     langLabel: "Idioma",
   },
   hero: {
@@ -25,8 +26,6 @@ const es: Dictionary = {
     lede: "Del problema a la base de datos, la interfaz, el pago y el despliegue.",
     primary: "Escríbeme",
     secondary: "Ver el trabajo",
-    scroll: "Desliza",
-    since: "Desde 2023",
   },
   intro: {
     kicker: "Perfil",
@@ -66,7 +65,7 @@ const es: Dictionary = {
           {
             title: "Lo difícil: una solicitud que no se puede perder",
             body: [
-              "Las solicitudes atraviesan varios sistemas y cualquier paso puede fallar a medias. El trabajo consiste en que cada solicitud termine en un único estado —aprobada, rechazada o pendiente— para que nadie reciba dos tarjetas y nadie espere una solicitud que desapareció en silencio.",
+              "Las solicitudes atraviesan varios sistemas y cualquier paso puede fallar a medias. El trabajo consiste en que cada solicitud termine en un único estado -aprobada, rechazada o pendiente- para que nadie reciba dos tarjetas y nadie espere una solicitud que desapareció en silencio.",
             ],
           },
         ],
@@ -124,7 +123,7 @@ const es: Dictionary = {
           {
             title: "Lo difícil: pagos que fallan a medias",
             body: [
-              "Los pagos cruzan redes que fallan a medias. Una pasarela tiene que convertir cada intento en un único resultado —pagado o no pagado— y mantener sus registros de acuerdo con los del banco. Reintentos, tiempos de espera y duplicados son el caso normal, no la excepción.",
+              "Los pagos cruzan redes que fallan a medias. Una pasarela tiene que convertir cada intento en un único resultado -pagado o no pagado- y mantener sus registros de acuerdo con los del banco. Reintentos, tiempos de espera y duplicados son el caso normal, no la excepción.",
             ],
           },
           {
@@ -172,7 +171,7 @@ const es: Dictionary = {
         name: "Gym Victoria",
         kind: "SaaS multi-tenant",
         tier: "earlier",
-        period: "Ago – Dic 2024",
+        period: "Ago - Dic 2024",
         role: "Ingeniero full-stack · freelance",
         invariant: "Sin registros huérfanos.",
         summary:
@@ -212,7 +211,7 @@ const es: Dictionary = {
         name: "MK Tattoo Supply",
         kind: "E-commerce",
         tier: "earlier",
-        period: "Dic 2023 – Feb 2024",
+        period: "Dic 2023 - Feb 2024",
         role: "Ingeniero full-stack · freelance",
         invariant: "Una unidad, una venta.",
         summary:
@@ -341,20 +340,20 @@ const es: Dictionary = {
     ],
     rows: [
       {
-        period: "2026 – actualidad",
+        period: "2026 - actualidad",
         title: "Ingeniero de Software",
         place: "Ecosistema Supernova & ACR",
         text: "Pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card. Dinero real, integraciones con bancos y servicios financieros.",
         caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
       },
       {
-        period: "Ago – Dic 2024",
+        period: "Ago - Dic 2024",
         title: "Ingeniero full-stack (freelance)",
         place: "Gym Victoria",
         text: "SaaS multi-tenant para gimnasios: esquema, autenticación por roles, CI/CD.",
       },
       {
-        period: "Dic 2023 – Feb 2024",
+        period: "Dic 2023 - Feb 2024",
         title: "Ingeniero full-stack (freelance)",
         place: "MK Tattoo Supply",
         text: "E-commerce con inventario en vivo, pedidos y pagos, en ocho semanas.",
@@ -362,7 +361,7 @@ const es: Dictionary = {
     ],
     educationLabel: "Formación",
     education: {
-      period: "Sep 2018 – Dic 2023",
+      period: "Sep 2018 - Dic 2023",
       title: "Ingeniero en Ciencias Informáticas",
       place: "Universidad de Ciencias Informáticas (UCI), La Habana",
     },
@@ -373,14 +372,14 @@ const es: Dictionary = {
     items: [
       {
         name: "Sudoku Web App",
-        period: "Jul – Ago 2024",
+        period: "Jul - Ago 2024",
         text: "Sudoku interactivo con generador procedural de tableros y motor de validación en tiempo real. Responsive, con React y Tailwind.",
         href: "https://github.com/Dasieloski",
       },
       {
         name: "Esta web",
         period: "2026",
-        text: "Tipografía de fuente variable con la que se puede jugar, revelados guiados por scroll en CSS puro, una tarjeta de pago en WebGL con un shader de holograma propio y secuencias de scroll con GSAP. Carga diferida; la página funciona sin nada de eso.",
+        text: "Una esfera guilloché dibujada con un shader WebGL propio, secuencias de scroll con GSAP y una página que funciona sin nada de eso.",
       },
     ],
   },
@@ -394,68 +393,6 @@ const es: Dictionary = {
     availability: "Abierto a remoto y reubicación",
     location: "Radicado en Cuba, trabajando en remoto",
   },
-  vis: {
-    note: "Ilustración conceptual del problema, no una captura.",
-    gateway: {
-      title: "Una pasarela, muchas rutas",
-      run: "Enviar un pago",
-      busy: "Enrutando…",
-      idle: "Los pagos entran desde muchos sitios y salen hacia muchos bancos.",
-      done: "Autorizado una vez y registrado una vez.",
-      from: ["Producto A", "Producto B", "Producto C"],
-      gateway: "Pasarela",
-      to: ["Banco A", "Servicio financiero", "Banco B"],
-    },
-    topup: {
-      title: "Una recarga",
-      run: "Recargar",
-      busy: "Acreditando…",
-      reset: "Reiniciar",
-      idle: "Elige un destino y recárgalo.",
-      done: "Acreditada una vez. El saldo lo refleja.",
-      card: "Tarjeta clásica",
-      phone: "Línea móvil",
-    },
-    issue: {
-      title: "Una solicitud de tarjeta",
-      run: "Solicitar tarjeta",
-      busy: "En revisión…",
-      reset: "Reiniciar",
-      idle: "Elige una red y solicita una tarjeta.",
-      done: "Emitida. Una solicitud, una tarjeta.",
-      steps: ["Solicitud", "Revisión", "Emitida"],
-      visa: "Visa",
-      mastercard: "Mastercard",
-    },
-    app: {
-      title: "Entre dos tarjetas",
-      run: "Transferir",
-      busy: "Moviendo…",
-      reset: "Reiniciar",
-      idle: "Dos tarjetas. Una transferencia.",
-      done: "Los dos saldos cambiaron juntos.",
-      a: "Tarjeta A",
-      b: "Tarjeta B",
-      list: "Transacciones",
-    },
-    stock: {
-      title: "Queda una unidad",
-      run: "Pedir dos veces la última unidad",
-      reset: "Reiniciar",
-      skus: "SKUs",
-      idle: "Queda una unidad. Llegan dos pedidos a la vez.",
-      lock: "El stock se comprueba de forma atómica.",
-      done: "El pedido A se registra. El B la ve agotada. Sin sobreventa.",
-    },
-    schema: {
-      title: "El esquema",
-      hint: "Pasa el cursor por una tabla para seguir sus relaciones.",
-      roles: "Acceso por roles",
-      nodes: { location: "Sedes", members: "Socios", trainers: "Entrenadores", memberships: "Membresías", payments: "Pagos" },
-      edges: { assigned: "asignado a", holds: "tiene", settles: "se liquida con", tenant: "pertenece a" },
-    },
-    axes: { title: "La tipografía como instrumento", width: "Ancho", weight: "Peso", sample: "Producto" },
-  },
   caseUi: {
     back: "Todo el trabajo",
     role: "Rol",
@@ -466,8 +403,9 @@ const es: Dictionary = {
     breadcrumbHome: "Inicio",
     contactCta: "Hablemos de un proyecto como este",
     architecture: "Arquitectura",
-    visualLabel: "Ilustración interactiva",
+    visualLabel: "La regla que cumple este sistema",
     mustHold: "Debe cumplirse",
+    stepsLabel: "Pasos",
   },
   footer: { rights: "© 2026 Dasiel Torres", top: "Volver arriba" },
   notFound: {

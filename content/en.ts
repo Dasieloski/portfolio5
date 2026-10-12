@@ -2,9 +2,9 @@ import type { Dictionary } from "./types";
 
 const en: Dictionary = {
   meta: {
-    title: "Dasiel Torres — Full-Stack Software Engineer",
+    title: "Dasiel Torres - Full-Stack Software Engineer",
     description:
-      "Full-Stack Software Engineer based in Cuba, working remotely. Payment gateway, card and top-up platforms, e-commerce and SaaS — from the database to the interface to the deploy.",
+      "Full-Stack Software Engineer based in Cuba, working remotely. Payment gateway, card and top-up platforms, e-commerce and SaaS - from the database to the interface to the deploy.",
     ogTagline: "Whole products, end to end.",
   },
   nav: {
@@ -15,6 +15,7 @@ const en: Dictionary = {
     contact: "Contact",
     hire: "Hire me",
     skip: "Skip to content",
+    menu: "Menu",
     langLabel: "Language",
   },
   hero: {
@@ -25,8 +26,6 @@ const en: Dictionary = {
     lede: "From the problem to the database, the interface, the payment and the deploy.",
     primary: "Start a conversation",
     secondary: "See the work",
-    scroll: "Scroll",
-    since: "Since 2023",
   },
   intro: {
     kicker: "Profile",
@@ -66,7 +65,7 @@ const en: Dictionary = {
           {
             title: "The hard part: a request that can't get lost",
             body: [
-              "Requests cross several systems and any step can fail halfway. The work is making every request end in exactly one state — approved, rejected or pending — so nobody is issued two cards and nobody waits on a request that silently disappeared.",
+              "Requests cross several systems and any step can fail halfway. The work is making every request end in exactly one state - approved, rejected or pending - so nobody is issued two cards and nobody waits on a request that silently disappeared.",
             ],
           },
         ],
@@ -124,7 +123,7 @@ const en: Dictionary = {
           {
             title: "The hard part: payments that fail halfway",
             body: [
-              "Payments cross networks that fail halfway. A gateway has to turn every attempt into exactly one outcome — paid or not paid — and keep its records in agreement with the bank's. Retries, timeouts and duplicates are the normal case, not the exception.",
+              "Payments cross networks that fail halfway. A gateway has to turn every attempt into exactly one outcome - paid or not paid - and keep its records in agreement with the bank's. Retries, timeouts and duplicates are the normal case, not the exception.",
             ],
           },
           {
@@ -172,7 +171,7 @@ const en: Dictionary = {
         name: "Gym Victoria",
         kind: "Multi-tenant SaaS",
         tier: "earlier",
-        period: "Aug – Dec 2024",
+        period: "Aug - Dec 2024",
         role: "Full-stack engineer · freelance",
         invariant: "No orphan records.",
         summary:
@@ -190,7 +189,7 @@ const en: Dictionary = {
           {
             title: "Data model",
             body: [
-              "I designed the full relational schema — members, trainers, memberships, payments — with referential integrity, so query bottlenecks and inconsistent states were designed out before reaching production.",
+              "I designed the full relational schema - members, trainers, memberships, payments - with referential integrity, so query bottlenecks and inconsistent states were designed out before reaching production.",
             ],
           },
           {
@@ -212,11 +211,11 @@ const en: Dictionary = {
         name: "MK Tattoo Supply",
         kind: "E-commerce",
         tier: "earlier",
-        period: "Dec 2023 – Feb 2024",
+        period: "Dec 2023 - Feb 2024",
         role: "Full-stack engineer · freelance",
         invariant: "One unit, sold once.",
         summary:
-          "An e-commerce platform with live inventory, order processing and payment integration — from zero to production in eight weeks.",
+          "An e-commerce platform with live inventory, order processing and payment integration - from zero to production in eight weeks.",
         stack: ["Next.js", "Strapi", "REST API"],
         seoDescription:
           "Case study: MK Tattoo Supply, a Next.js and Strapi e-commerce platform with real-time stock control that prevents overselling and a no-code admin for 200+ SKUs.",
@@ -341,20 +340,20 @@ const en: Dictionary = {
     ],
     rows: [
       {
-        period: "2026 – Present",
+        period: "2026 - Present",
         title: "Software Engineer",
         place: "Supernova & ACR ecosystem",
         text: "Payment gateway, ACR Pay, ACR Card and the ACR Card app. Real money, bank and financial-service integrations.",
         caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
       },
       {
-        period: "Aug – Dec 2024",
+        period: "Aug - Dec 2024",
         title: "Full-stack engineer (freelance)",
         place: "Gym Victoria",
         text: "Multi-tenant gym SaaS: schema, role-based auth, CI/CD.",
       },
       {
-        period: "Dec 2023 – Feb 2024",
+        period: "Dec 2023 - Feb 2024",
         title: "Full-stack engineer (freelance)",
         place: "MK Tattoo Supply",
         text: "E-commerce with live inventory, orders and payments, in eight weeks.",
@@ -362,7 +361,7 @@ const en: Dictionary = {
     ],
     educationLabel: "Education",
     education: {
-      period: "Sep 2018 – Dec 2023",
+      period: "Sep 2018 - Dec 2023",
       title: "B.Eng. in Computer Science",
       place: "Universidad de Ciencias Informáticas (UCI), Havana",
     },
@@ -373,14 +372,14 @@ const en: Dictionary = {
     items: [
       {
         name: "Sudoku Web App",
-        period: "Jul – Aug 2024",
+        period: "Jul - Aug 2024",
         text: "Interactive Sudoku with a procedural board generator and a real-time validation engine. Responsive, built with React and Tailwind.",
         href: "https://github.com/Dasieloski",
       },
       {
         name: "This site",
         period: "2026",
-        text: "Variable-font type you can play with, one WebGL payment card with a custom foil shader, and scroll sequences timed with GSAP. Loaded lazily; the page works without any of it.",
+        text: "An engine-turned dial drawn in a custom WebGL shader, scroll sequences timed with GSAP, and a page that works without any of it.",
       },
     ],
   },
@@ -394,68 +393,6 @@ const en: Dictionary = {
     availability: "Open to remote & relocation",
     location: "Based in Cuba, working remotely",
   },
-  vis: {
-    note: "Conceptual illustration of the problem, not a screenshot.",
-    gateway: {
-      title: "One gateway, many routes",
-      run: "Send a payment",
-      busy: "Routing…",
-      idle: "Payments come in from many places and leave to many banks.",
-      done: "Authorized once and recorded once.",
-      from: ["Product A", "Product B", "Product C"],
-      gateway: "Gateway",
-      to: ["Bank A", "Financial service", "Bank B"],
-    },
-    topup: {
-      title: "A top-up",
-      run: "Top up",
-      busy: "Crediting…",
-      reset: "Reset",
-      idle: "Pick a target and top it up.",
-      done: "Credited once. The balance shows it.",
-      card: "Classic card",
-      phone: "Mobile line",
-    },
-    issue: {
-      title: "A card request",
-      run: "Request card",
-      busy: "In review…",
-      reset: "Reset",
-      idle: "Pick a network and request a card.",
-      done: "Issued. One request, one card.",
-      steps: ["Request", "Review", "Issued"],
-      visa: "Visa",
-      mastercard: "Mastercard",
-    },
-    app: {
-      title: "Between two cards",
-      run: "Transfer",
-      busy: "Moving…",
-      reset: "Reset",
-      idle: "Two cards. One transfer.",
-      done: "Both balances changed together.",
-      a: "Card A",
-      b: "Card B",
-      list: "Transactions",
-    },
-    stock: {
-      title: "One unit left",
-      run: "Order the last unit twice",
-      reset: "Reset",
-      skus: "SKUs",
-      idle: "One unit left. Two orders arrive together.",
-      lock: "Stock is checked atomically.",
-      done: "Order A is placed. Order B sees it sold out. No overselling.",
-    },
-    schema: {
-      title: "The schema",
-      hint: "Hover a table to follow its relations.",
-      roles: "Role-based access",
-      nodes: { location: "Locations", members: "Members", trainers: "Trainers", memberships: "Memberships", payments: "Payments" },
-      edges: { assigned: "assigned to", holds: "holds", settles: "settled by", tenant: "belongs to" },
-    },
-    axes: { title: "Type, as an instrument", width: "Width", weight: "Weight", sample: "Product" },
-  },
   caseUi: {
     back: "All work",
     role: "Role",
@@ -466,13 +403,14 @@ const en: Dictionary = {
     breadcrumbHome: "Home",
     contactCta: "Talk about a project like this",
     architecture: "Architecture",
-    visualLabel: "Interactive illustration",
+    visualLabel: "The rule this system holds",
     mustHold: "Must hold",
+    stepsLabel: "Steps",
   },
   footer: { rights: "© 2026 Dasiel Torres", top: "Back to top" },
   notFound: {
     title: "Page not found",
-    text: "That page doesn't exist — but the work does.",
+    text: "That page doesn't exist - but the work does.",
     back: "Back to home",
   },
 };

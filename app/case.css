@@ -1,0 +1,160 @@
+/* Case study pages: a dark opening with the schematic, then a light sheet with the written case. */
+
+.case-top {
+  padding-top: calc(var(--nav-h) + 4.5rem);
+  padding-bottom: calc(var(--sec) * 0.6 + var(--sheet));
+}
+.crumbs {
+  display: flex;
+  gap: 0.7rem;
+  color: var(--muted);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.case-head {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: start;
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+.case-title {
+  max-width: 14ch;
+  font-size: clamp(2.6rem, 6.2vw, 5.8rem);
+  font-weight: 500;
+  font-stretch: 92%;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.case-kind {
+  margin-top: -0.6rem;
+  color: var(--muted);
+}
+.case-must {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--signal);
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.case-must .mono {
+  color: var(--muted);
+}
+.case-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  max-width: 40rem;
+}
+.case-facts dt {
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+.case-facts dd {
+  margin: 0;
+}
+
+.case-body {
+  padding-bottom: var(--sec);
+}
+.case-sec {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 1.25rem;
+  padding-block: clamp(2rem, 4.5vw, 3.5rem);
+  border-top: 1px solid var(--line);
+}
+.case-sec > h2 {
+  grid-column: 1 / 5;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.case-sec-text {
+  grid-column: 6 / 12;
+  display: grid;
+  gap: 1rem;
+  max-width: 40rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.case-arch .case-sec-text {
+  grid-column: 1 / 6;
+}
+.case-arch .case-sec-text h2 {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.case-arch figure {
+  grid-column: 7 / 13;
+  padding: 1.5rem;
+  border-radius: var(--sheet);
+  background: var(--ink);
+  color: var(--silver);
+}
+.case-arch figcaption {
+  color: var(--muted-d);
+  margin-bottom: 1rem;
+}
+.case-next {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: clamp(3rem, 7vw, 6rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.case-next .mono {
+  color: var(--muted);
+}
+.case-next-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  font-size: clamp(1.9rem, 4.4vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+.case-next .btn-ico {
+  background: var(--ink);
+  color: var(--paper);
+  width: 2.8rem;
+  height: 2.8rem;
+  flex: none;
+}
+.case-next:hover .btn-ico {
+  transform: translate(3px, -3px) scale(1.06);
+}
+.case-next:hover .case-next-name {
+  color: var(--accent);
+}
+
+.nf {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: 8rem;
+}
+.nf .wrap {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+@media (max-width: 900px) {
+  .case-sec > h2,
+  .case-sec-text,
+  .case-arch .case-sec-text,
+  .case-arch figure {
+    grid-column: 1 / -1;
+  }
+}

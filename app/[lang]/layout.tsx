@@ -1,30 +1,26 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Archivo, Fraunces, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Geist_Mono } from "next/font/google";
 import { getDictionary } from "@/content";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import { personNode, websiteNode } from "@/lib/seo";
-import "../globals.css";
+import "../base.css";
 import "../hero.css";
 import "../sections.css";
-import "../home.css";
-import "../visuals.css";
-import "../products.css";
+import "../diagrams.css";
+import "../case.css";
 
-const sans = Archivo({
+const sans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   axes: ["wdth"],
   display: "swap",
 });
-// Reason: Fraunces carries the display voice (light, tight, italic for emphasis); Archivo does everything else.
-const serif = Fraunces({ variable: "--font-serif", subsets: ["latin"], style: ["normal", "italic"], display: "swap" });
-
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf9",
-  colorScheme: "light",
+  themeColor: "#0b0e0d",
+  colorScheme: "dark",
 };
 
 export function generateStaticParams() {
@@ -65,7 +61,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const jsonLd = { "@context": "https://schema.org", "@graph": [personNode(meta.description), websiteNode(lang)] };
 
   return (
-    <html lang={lang} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
       <body>
         <a className="skip" href="#main">
           {nav.skip}

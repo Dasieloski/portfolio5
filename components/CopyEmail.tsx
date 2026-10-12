@@ -11,12 +11,12 @@ export default function CopyEmail({ email, copy, copied }: { email: string; copy
       setDone(true);
       setTimeout(() => setDone(false), 2000);
     } catch {
-      // Reason: clipboard can be blocked; the mailto link above remains the primary path.
+      // Reason: clipboard can be blocked; the mailto link beside it remains the primary path.
     }
   };
 
   return (
-    <button type="button" className="btn btn-line btn-copy" onClick={onCopy}>
+    <button type="button" className="btn btn-ghost btn-plain" onClick={onCopy}>
       <span aria-live="polite">{done ? copied : copy}</span>
     </button>
   );

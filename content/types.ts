@@ -26,20 +26,10 @@ export type Layer = {
   points: { text: string; ref: string }[];
 };
 
-export type Visuals = {
-  note: string;
-  gateway: { title: string; run: string; busy: string; idle: string; done: string; from: string[]; gateway: string; to: string[] };
-  topup: { title: string; run: string; busy: string; reset: string; idle: string; done: string; card: string; phone: string };
-  issue: { title: string; run: string; busy: string; reset: string; idle: string; done: string; steps: string[]; visa: string; mastercard: string };
-  app: { title: string; run: string; busy: string; reset: string; idle: string; done: string; a: string; b: string; list: string };
-  stock: { title: string; run: string; reset: string; skus: string; idle: string; lock: string; done: string };
-  schema: { title: string; hint: string; roles: string; nodes: Record<"location" | "members" | "trainers" | "memberships" | "payments", string>; edges: Record<"assigned" | "holds" | "settles" | "tenant", string> };
-  axes: { title: string; width: string; weight: string; sample: string };
-};
-
 export type Dictionary = {
   meta: { title: string; description: string; ogTagline: string };
-  nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string; langLabel: string };
+  nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string;
+    menu: string; langLabel: string };
   hero: {
     role: string;
     eyebrow: string;
@@ -48,8 +38,6 @@ export type Dictionary = {
     lede: string;
     primary: string;
     secondary: string;
-    scroll: string;
-    since: string;
   };
   intro: { kicker: string; statement: string; emphasis: string[] };
   work: {
@@ -82,7 +70,6 @@ export type Dictionary = {
     availability: string;
     location: string;
   };
-  vis: Visuals;
   caseUi: {
     back: string;
     role: string;
@@ -95,6 +82,7 @@ export type Dictionary = {
     architecture: string;
     visualLabel: string;
     mustHold: string;
+    stepsLabel: string;
   };
   footer: { rights: string; top: string };
   notFound: { title: string; text: string; back: string };
