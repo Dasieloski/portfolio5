@@ -48,6 +48,13 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       alternateLocale: LOCALES.filter((l) => l !== lang).map((l) => OG_LOCALE[l]),
     },
     twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
     robots: { index: true, follow: true, googleBot: { "max-image-preview": "large", "max-snippet": -1 } },
     verification: { google: "J9KJ0PyeOc0pT2c98S3kSwVQP6dXC4SLSqdA1EOfIwo" },
   };

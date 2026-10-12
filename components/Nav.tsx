@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/site";
@@ -36,10 +37,7 @@ export default function Nav({ lang, links, cta, langLabel, menuLabel }: Props) {
     <>
       <header className="nav" data-open={open}>
         <Link href={home} className="nav-mark" aria-label="Dasiel Torres" onClick={() => setOpen(false)}>
-          <svg className="gauge" viewBox="0 0 24 24" aria-hidden="true">
-            <circle className="track" cx="12" cy="12" r="9" />
-            <circle className="fill" cx="12" cy="12" r="9" />
-          </svg>
+          <Image src="/logo-dt-oscuro.svg" alt="" width={24} height={24} className="nav-logo" unoptimized />
           Dasiel Torres
         </Link>
         <nav className="nav-links" aria-label="Primary">

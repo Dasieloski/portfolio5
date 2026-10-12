@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { getDictionary } from "@/content";
 import { LOCALES, isLocale } from "@/lib/site";
@@ -13,6 +15,8 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const tagline = isLocale(lang) ? getDictionary(lang).meta.ogTagline : "";
+  // Reason: the logo is inlined as a data URI so the image renders without any network fetch.
+  const logo = `data:image/svg+xml;base64,${readFileSync(join(process.cwd(), "public/logo-dt-oscuro.svg")).toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -27,8 +31,10 @@ export default async function Image({ params }: { params: Promise<{ lang: string
           padding: 72,
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: 4, textTransform: "uppercase", color: "#ef5a38" }}>
-          Full-Stack Software Engineer
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ fontSize: 28, letterSpacing: 4, textTransform: "uppercase", color: "#ef5a38" }}>Full-Stack Software Engineer</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} width={72} height={72} alt="" />
         </div>
         <div style={{ fontSize: 116, fontWeight: 500, lineHeight: 1.02, letterSpacing: -4, fontFamily: "Helvetica, Arial, sans-serif" }}>{tagline}</div>
         <div style={{ fontSize: 36 }}>Dasiel Torres</div>

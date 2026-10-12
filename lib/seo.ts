@@ -31,6 +31,7 @@ export const personNode = (description: string) => ({
   name: CONTACT.name,
   url: BASE_URL,
   jobTitle: "Full-Stack Software Engineer",
+  image: `${BASE_URL}/avatar-1024.png`,
   description,
   email: `mailto:${CONTACT.email}`,
   address: { "@type": "PostalAddress", addressCountry: "CU" },

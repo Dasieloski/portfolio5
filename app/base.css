@@ -507,3 +507,18 @@ button:focus-visible > .roll > span + span {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Brand mark: small and quiet, beside the name and in the footer. */
+.nav-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.footer-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.footer-id img {
+  opacity: 0.7;
+}
