@@ -1,7 +1,7 @@
 import { BASE_URL, CONTACT, type Locale } from "./site";
 
 /** Bump when page content really changes; used by the sitemap instead of a build timestamp. */
-export const CONTENT_UPDATED = "2026-10-05";
+export const CONTENT_UPDATED = "2026-10-20";
 
 /** Only skills the site actually evidences (case studies, stack and path sections). */
 const KNOWS_ABOUT = [
@@ -29,11 +29,12 @@ export const personNode = (description: string) => ({
   "@type": "Person",
   "@id": PERSON_ID,
   name: CONTACT.name,
+  alternateName: CONTACT.alias,
   url: BASE_URL,
   jobTitle: "Full-Stack Software Engineer",
   image: `${BASE_URL}/avatar-1024.png`,
   description,
-  email: `mailto:${CONTACT.email}`,
+  email: CONTACT.email,
   address: { "@type": "PostalAddress", addressCountry: "CU" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Universidad de Ciencias Informáticas" },
   hasOccupation: {

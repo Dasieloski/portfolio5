@@ -9,6 +9,7 @@ import "../hero.css";
 import "../sections.css";
 import "../diagrams.css";
 import "../case.css";
+import Analytics from "@/components/Analytics";
 
 const sans = Instrument_Sans({
   variable: "--font-sans",
@@ -75,6 +76,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
+        <Analytics />
       </body>
     </html>
   );

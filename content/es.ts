@@ -2,9 +2,9 @@ import type { Dictionary } from "./types";
 
 const es: Dictionary = {
   meta: {
-    title: "Dasiel Torres - Ingeniero de Software Full-Stack",
+    title: "Dasiel Torres | Desarrollador Full-Stack: TypeScript, Next.js, Node.js",
     description:
-      "Ingeniero de Software Full-Stack radicado en Cuba, trabajando en remoto. Pasarela de pagos, plataformas de tarjetas y recargas, e-commerce y SaaS: de la base de datos a la interfaz y al despliegue.",
+      "Dasiel Torres, desarrollador full-stack (TypeScript, React, Next.js, Node.js, NestJS) en remoto desde Cuba. Fintech, pasarela de pagos, tarjetas, e-commerce y SaaS.",
     ogTagline: "Productos completos, de punta a punta.",
   },
   nav: {

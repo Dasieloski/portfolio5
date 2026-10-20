@@ -28,4 +28,5 @@ npm run dev
 
 - Add a case study: push a `CaseStudy` into `work.cases` in **both** dictionaries. Routes, sitemap and hreflang update on their own. Extra sections (challenges, results, learnings) are just more `{ title, body }` entries. Its schematic lives in `content/diagrams.ts` (structure in `DIAGRAMS`, words in the `en` / `es` tables).
 - Add a language: add the code to `LOCALES` in `lib/site.ts` (and `OG_LOCALE`), create `content/<code>.ts`, register it in `content/index.ts`.
-- LinkedIn: set `CONTACT.linkedin` in `lib/site.ts`; it appears in Contact and in the Person schema.
+- LinkedIn: `CONTACT.linkedin` in `lib/site.ts`; it appears in Contact and in the Person schema (`sameAs`).
+- Analytics: GA4 (`G-C008X2SEHL`, override with `NEXT_PUBLIC_GA_ID`); only loads in production. `components/Analytics.tsx` sends `contact_click` (method), `cv_download` (language) and `case_study_click` (slug). Do not also add these in GTM.

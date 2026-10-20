@@ -9,10 +9,10 @@ export const OG_LOCALE: Record<Locale, string> = { en: "en_US", es: "es_ES" };
 
 export const CONTACT = {
   name: "Dasiel Torres",
+  alias: "Dasieloski",
   email: "dasieldev@gmail.com",
   github: "https://github.com/Dasieloski",
-  // Add a LinkedIn URL here once available; the UI renders it automatically.
-  linkedin: "" as string,
+  linkedin: "https://www.linkedin.com/in/dasieloski",
   whatsapp: "https://wa.me/5354710329",
   cvEn: "/Dasiel_Torres_CV_English.pdf",
   cvEs: "/Dasiel_Torres_CV_Espanol.pdf",

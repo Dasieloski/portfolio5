@@ -21,5 +21,6 @@ The site is available in English and Spanish with equivalent content. Every stat
 ## Other
 - Education: B.Eng. in Computer Science, Universidad de Ciencias Informáticas (UCI), Havana (2018–2023).
 - Code: https://github.com/Dasieloski
+- LinkedIn: https://www.linkedin.com/in/dasieloski
 - CV (PDF, English): https://dasiel.vercel.app/Dasiel_Torres_CV_English.pdf
 - CV (PDF, Español): https://dasiel.vercel.app/Dasiel_Torres_CV_Espanol.pdf

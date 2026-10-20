@@ -2,9 +2,9 @@ import type { Dictionary } from "./types";
 
 const en: Dictionary = {
   meta: {
-    title: "Dasiel Torres - Full-Stack Software Engineer",
+    title: "Dasiel Torres | Full-Stack Developer: TypeScript, Next.js, Node.js",
     description:
-      "Full-Stack Software Engineer based in Cuba, working remotely. Payment gateway, card and top-up platforms, e-commerce and SaaS - from the database to the interface to the deploy.",
+      "Dasiel Torres, full-stack developer (TypeScript, React, Next.js, Node.js, NestJS) working remotely from Cuba. Fintech, payment gateway, cards, e-commerce and SaaS.",
     ogTagline: "Whole products, end to end.",
   },
   nav: {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
-import { LOCALES, isLocale, languageAlternates, localeUrl } from "@/lib/site";
+import { CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/work/[slug
       description: c.seoDescription,
       url: localeUrl(lang, path),
       type: "article",
+      siteName: CONTACT.name,
+      locale: OG_LOCALE[lang],
       images: [{ url: `${localeUrl(lang)}/opengraph-image`, width: 1200, height: 630, alt: "Dasiel Torres - Full-Stack Software Engineer" }],
     },
     twitter: { card: "summary_large_image", title: `${c.name} - ${c.kind}`, description: c.seoDescription },
