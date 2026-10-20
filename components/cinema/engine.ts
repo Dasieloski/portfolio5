@@ -69,11 +69,12 @@ function tokenGeometry() {
 export function createCinema(canvas: HTMLCanvasElement, opts: CinemaOptions): Cinema | null {
   let renderer: WebGLRenderer;
   try {
-    renderer = new WebGLRenderer({ canvas, antialias: !opts.mobile, powerPreference: "high-performance" });
+    renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
   } catch {
     return null;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, opts.mobile ? 1.5 : 1.75));
+  // Reason: phones get the full 2x so the tokens stay as crisp as on desktop; it is the page's centrepiece.
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, opts.mobile ? 2 : 1.75));
   renderer.setClearColor(BG, 1);
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.86;
@@ -100,7 +101,7 @@ export function createCinema(canvas: HTMLCanvasElement, opts: CinemaOptions): Ci
   const torch = new PointLight(0xffffff, 0, 10, 1.6);
   scene.add(key, rim, bounce, torch);
 
-  const n = opts.mobile ? 44 : 64;
+  const n = opts.mobile ? 52 : 64;
   const geo = tokenGeometry();
   const mat = new MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.24, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06 });
   const mesh = new InstancedMesh(geo, mat, n);
@@ -130,11 +131,11 @@ export function createCinema(canvas: HTMLCanvasElement, opts: CinemaOptions): Ci
 
   let composer: EffectComposer | null = null;
   let bloom: UnrealBloomPass | null = null;
-  if (!opts.mobile) {
+  {
     composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
     // Reason: a high threshold so only the specular glints bloom; the tokens themselves stay crisp.
-    bloom = new UnrealBloomPass(new Vector2(1, 1), 0.22, 0.3, 0.9);
+    bloom = new UnrealBloomPass(new Vector2(1, 1), opts.mobile ? 0.18 : 0.22, 0.3, 0.9);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
   }
@@ -146,7 +147,8 @@ export function createCinema(canvas: HTMLCanvasElement, opts: CinemaOptions): Ci
     const h = canvas.clientHeight || window.innerHeight;
     renderer.setSize(w, h, false);
     composer?.setSize(w, h);
-    bloom?.resolution.set(w, h);
+    // Reason: on phones the glow is computed at half size; it is soft anyway and costs a quarter of the pixels.
+    bloom?.resolution.set(opts.mobile ? w / 2 : w, opts.mobile ? h / 2 : h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     halfH = Math.tan((FOV * Math.PI) / 360) * CAM_Z;
@@ -274,7 +276,8 @@ export function createCinema(canvas: HTMLCanvasElement, opts: CinemaOptions): Ci
     canvas.style.opacity = place.presence.toFixed(3);
     if (place.presence < 0.004) return;
 
-    const fit = Math.min(halfH / 3.4, halfW / 4.6);
+    // Portrait screens are fitted less strictly by width so the formation stays large and central.
+    const fit = Math.min(halfH / 3.4, halfW / (opts.mobile ? 3.4 : 4.6));
     group.position.set(place.x * halfW, place.y * halfH, 0);
     group.scale.setScalar(fit * place.scale);
     group.rotation.set(place.rotX, place.rotY, 0);

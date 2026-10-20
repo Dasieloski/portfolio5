@@ -279,6 +279,7 @@
   border-top: 1px solid var(--rule-2);
 }
 .stats dd {
+  min-width: 2ch;
   font-size: clamp(4rem, 9vw, 8.4rem);
   font-weight: 600;
   letter-spacing: -0.06em;
@@ -368,6 +369,26 @@
 }
 .entry.is-edu::before {
   border-color: var(--fg-3);
+}
+/* Each point fills with gold as the reading line reaches it: the entry is settled. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .entry::before {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: cover 30% cover 45%;
+    }
+  }
+}
+@keyframes settle {
+  from {
+    background: var(--bg);
+    box-shadow: 0 0 0 0 rgba(201, 165, 106, 0);
+  }
+  to {
+    background: var(--accent);
+    box-shadow: 0 0 0 5px rgba(201, 165, 106, 0.16);
+  }
 }
 
 /* ---------- Contact ---------- */
@@ -468,83 +489,215 @@
   color: var(--fg-2);
 }
 
-/* ---------- Narrow screens: tokens above, story below ---------- */
+/*
+ * ---------- Phones ----------
+ * The tokens are the protagonist: every scene is one screen, the formation sits large in the upper half and only
+ * the essentials sit beneath it. Supporting paragraphs, fact sheets and lists stay on desktop and on the case pages.
+ */
 @media (max-width: 860px) {
   body {
     font-size: 16px;
   }
-  .hero-statement {
-    font-size: clamp(1.9rem, 8.4vw, 2.6rem);
-  }
-  .hero-bar {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .hero-bar .magnetic {
-    justify-self: start;
-  }
-  .manifest-frame {
-    align-content: end;
-    padding-bottom: 8vh;
-    gap: 22px;
-  }
-  .manifest-lines {
-    font-size: clamp(2rem, 9vw, 2.8rem);
-  }
-  .manifest-body {
+  .lead {
     font-size: 1rem;
   }
-  .shot {
-    display: block;
-    min-height: auto;
-    padding: 58svh 0 10vh;
+
+  /* Hero: statement on top, the pile in the middle, one action at the bottom. */
+  .hero-in {
+    padding-bottom: 22px;
+  }
+  .hero-statement {
+    max-width: 17ch;
+    font-size: clamp(1.75rem, 7.6vw, 2.4rem);
+    line-height: 1.08;
+  }
+  .hero-bar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding-top: 16px;
+  }
+  .hero-id {
+    display: none;
+  }
+  .hero-status {
+    font-size: 0.88rem;
+  }
+  .hero-bar .magnetic,
+  .hero-bar .btn {
+    width: 100%;
+  }
+  .hero-bar .btn {
+    justify-content: space-between;
+  }
+
+  /* Manifest: the three lines only, under the ledger. */
+  .manifest-frame {
+    align-content: end;
+    padding-bottom: 9vh;
+  }
+  .manifest-lines {
+    font-size: clamp(2rem, 9.4vw, 2.8rem);
+  }
+  .manifest-body {
+    display: none;
+  }
+
+  /* Work: one screen per product; name, guarantee and the way in. */
+  .work-head,
+  .caps-head,
+  .record-head {
+    padding: 16vh var(--gut) 6vh;
+  }
+  .shot,
+  .shot[data-side] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    min-height: 100svh;
+    padding: 0;
   }
   .shot-card,
   .shot[data-side="right"] .shot-card {
-    padding: 40px var(--gut) 0;
-    background: linear-gradient(rgba(10, 10, 11, 0), var(--bg) 48px);
+    max-width: none;
+    justify-self: stretch;
+    grid-column: auto;
+    padding: 72px var(--gut) 9vh;
+    background: linear-gradient(rgba(10, 10, 11, 0), rgba(10, 10, 11, 0.86) 56px, var(--bg));
   }
-  .shot-facts > div {
-    grid-template-columns: 1fr;
-    gap: 6px;
+  .shot-name {
+    margin: 10px 0 14px;
+    font-size: clamp(2.3rem, 10.5vw, 3rem);
+  }
+  .shot-card .rule {
+    font-size: 1.12rem;
+    margin-bottom: 26px;
+  }
+  .shot-sum,
+  .shot-facts {
+    display: none;
+  }
+
+  .more {
+    padding: 12vh var(--gut) 8vh;
   }
   .more-row {
-    grid-template-columns: 1fr 24px;
-    gap: 6px 12px;
+    grid-template-columns: 1fr auto 20px;
+    gap: 12px;
+    padding: 20px 0;
   }
-  .more-name,
-  .more-kind,
-  .more-meta {
-    grid-column: 1;
+  .more-name {
+    font-size: 1.5rem;
   }
-  .more-ico {
-    grid-column: 2;
-    grid-row: 1;
+  .more-kind {
+    display: none;
+  }
+
+  /* Expertise: number, layer and the one-line claim. */
+  .caps-head .lead {
+    display: none;
+  }
+  .caps-list {
+    padding-bottom: 8vh;
   }
   .cap {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: 34px 1fr;
+    gap: 4px 12px;
+    padding: 20px 0;
   }
   .cap-n {
-    padding-top: 0;
+    grid-row: span 2;
+    padding-top: 6px;
+  }
+  .cap-name {
+    font-size: 1.6rem;
+  }
+  .cap-claim {
+    margin: 0;
+    font-size: 0.97rem;
+    color: var(--fg-2);
+  }
+  .cap-points,
+  .cap-tools {
+    display: none;
+  }
+
+  /* Experience: three figures in a row, then period, place and role. */
+  .record-head .lead {
+    display: none;
   }
   .stats {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .stats > div {
+    gap: 8px;
+    padding-top: 14px;
+  }
+  .stats dd {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+  .stats dt {
+    font-size: 0.74rem;
+    line-height: 1.35;
   }
   .ledger {
-    margin: 10vh var(--gut) 14vh;
-    padding-left: 26px;
+    margin: 8vh var(--gut) 12vh;
+    padding-left: 24px;
   }
   .entry {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 2px;
+    padding: 16px 0 20px;
   }
   .entry::before {
-    left: -31px;
-    top: 30px;
+    left: -29px;
+    top: 22px;
   }
+  .entry-period {
+    padding-top: 0;
+  }
+  .entry-place {
+    font-size: 1.4rem;
+  }
+  .entry-text,
+  .entry-links {
+    display: none;
+  }
+
+  /* Contact: the invitation, the address, the links. */
   .contact-in {
-    padding-top: 16vh;
+    padding-top: 15vh;
+  }
+  .contact-title {
+    margin-bottom: 18vh;
+  }
+  .contact-text {
+    display: none;
+  }
+  .contact-status {
+    max-width: 30ch;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .stats > div {
+    flex-direction: column;
+  }
+  .stats dd {
+    order: -1;
+  }
+  .contact-mail {
+    margin-top: 0;
+  }
+  .mail {
+    font-size: clamp(1.35rem, 6.6vw, 1.8rem);
+  }
+  .contact-links {
+    gap: 10px 20px;
+    font-size: 0.95rem;
+  }
+  .footer {
+    justify-content: center;
+    text-align: center;
   }
 }

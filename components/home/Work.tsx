@@ -4,6 +4,7 @@ import { caseSide, litVector } from "@/content/stage";
 import type { Locale } from "@/lib/site";
 import { Arrow } from "../Arrow";
 import Roll from "../Roll";
+import Scramble from "../motion/Scramble";
 
 type Props = { lang: Locale; t: Dictionary["work"]; layerNames: string[] };
 
@@ -60,8 +61,8 @@ export default function Work({ lang, t, layerNames }: Props) {
   return (
     <section id="work" className="work" aria-labelledby="work-title">
       <header className="work-head" data-scene="calm" data-chapter="work">
-        <h2 id="work-title" className="display" data-rv>
-          {t.title}
+        <h2 id="work-title" className="display">
+          <Scramble text={t.title} />
         </h2>
         <p className="lead" data-rv>
           {t.intro}

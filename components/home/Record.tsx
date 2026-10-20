@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Dictionary } from "@/content/types";
 import type { Locale } from "@/lib/site";
+import Counter from "../motion/Counter";
 
 type Props = { lang: Locale; t: Dictionary["record"]; cases: Dictionary["work"]["cases"] };
 
@@ -21,7 +22,9 @@ export default function Record({ lang, t, cases }: Props) {
         {t.stats.map((s) => (
           <div key={s.k} data-rv>
             <dt>{s.k}</dt>
-            <dd>{s.v}</dd>
+            <dd>
+              <Counter value={s.v} />
+            </dd>
           </div>
         ))}
       </dl>

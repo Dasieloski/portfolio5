@@ -550,17 +550,30 @@ button:focus-visible .roll-ch {
   font-variant-numeric: tabular-nums;
 }
 
-/* Reveal on scroll (only with JS; everything is visible without it). */
+/*
+ * Reveal on scroll: a curtain. Content rises behind a mask that sweeps from the bottom up (only with JS; everything
+ * is visible without it). The final inset is negative so descenders and focus rings are never clipped.
+ */
 .js [data-rv] {
-  opacity: 0;
-  transform: translateY(30px);
+  clip-path: inset(100% -12px -12px -12px);
+  transform: translateY(36px);
   transition:
-    opacity 1s var(--ease),
-    transform 1.1s var(--ease);
+    clip-path 1.15s var(--ease),
+    transform 1.15s var(--ease);
 }
 .js [data-rv].in {
-  opacity: 1;
+  clip-path: inset(-12px -12px -12px -12px);
   transform: none;
+}
+/* Ledger points sit outside their entry: widen the curtain on that side so they are never clipped. */
+.js .ledger [data-rv] {
+  clip-path: inset(100% -12px -12px -64px);
+}
+.js .ledger [data-rv].in {
+  clip-path: inset(-12px -12px -12px -64px);
+}
+.scramble {
+  font-variant-numeric: tabular-nums;
 }
 .page-in {
   /* Reason: "backwards" only, so the wrapper never keeps a stacking context after the fade. */
@@ -600,5 +613,6 @@ button:focus-visible .roll-ch {
   }
   .js [data-rv] {
     transform: none;
+    clip-path: none;
   }
 }
