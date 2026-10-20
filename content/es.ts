@@ -1,417 +1,205 @@
 import type { Dictionary } from "./types";
+import cases from "./cases.es";
 
 const es: Dictionary = {
   meta: {
     title: "Dasiel Torres | Desarrollador Full-Stack: TypeScript, Next.js, Node.js",
     description:
       "Dasiel Torres, desarrollador full-stack (TypeScript, React, Next.js, Node.js, NestJS) en remoto desde Cuba. Fintech, pasarela de pagos, tarjetas, e-commerce y SaaS.",
-    ogTagline: "Productos completos, de punta a punta.",
+    ogTagline: "Software fiable para el momento en que se mueve el dinero.",
   },
   nav: {
-    work: "Trabajo",
-    stack: "Stack",
-    path: "Trayectoria",
-    lab: "Lab",
+    layers: "Especialidad",
+    work: "Proyectos",
+    record: "Experiencia",
     contact: "Contacto",
-    hire: "Contrátame",
+    cv: "CV",
     skip: "Saltar al contenido",
     menu: "Menú",
+    close: "Cerrar",
     langLabel: "Idioma",
+    home: "Dasiel Torres, inicio",
   },
   hero: {
-    role: "Ingeniero de Software Full-Stack",
-    eyebrow: "Ingeniero de Software Full-Stack · Radicado en Cuba, trabajando en remoto",
-    line1: "Productos completos,",
-    line2: "de punta a punta.",
-    lede: "Del problema a la base de datos, la interfaz, el pago y el despliegue.",
-    primary: "Escríbeme",
-    secondary: "Ver el trabajo",
+    name: "Dasiel Torres",
+    role: "Ingeniero de Software Full-Stack, Pagos y Fintech",
+    statement: "Ingeniero full-stack especializado en sistemas de pago: interfaces, APIs, modelos de datos e integraciones bancarias.",
+    status: "Disponible para posiciones en remoto",
+    primary: "Ver proyectos seleccionados",
+    canvasLabel: "Fichas brillantes que flotan, responden al cursor y se ordenan en cada producto durante el desplazamiento.",
+    loading: "Cargando",
   },
-  intro: {
-    kicker: "Perfil",
-    statement:
-      "Construyo el producto completo: la interfaz que la gente toca, la API detrás, la base de datos que debe mantenerse correcta y las integraciones donde se mueve el dinero.",
-    emphasis: ["producto completo", "se mueve el dinero"],
+  manifest: {
+    lines: ["Cada pago es un compromiso.", "Debe completarse.", "Exactamente una vez."],
+    body: "Mi trabajo se centra en productos donde se mueve dinero, desarrollados de principio a fin: desde la interfaz que utiliza el cliente hasta los sistemas bancarios del otro lado.",
   },
-  work: {
-    title: "Cuatro productos,",
-    titleEm: "cuatro cosas que no pueden romperse.",
-    intro: "Productos de pagos con usuarios reales, del más reciente al más antiguo.",
-    cases: [
-      {
-        slug: "acr-card",
-        name: "ACR Card",
-        kind: "Plataforma de emisión de tarjetas",
-        tier: "main",
-        role: "Ingeniero de Software",
-        invariant: "Una solicitud, una tarjeta.",
-        summary: "Una plataforma para solicitar tarjetas Visa y Mastercard, parte del ecosistema Supernova & ACR.",
-        stack: [],
-        seoDescription:
-          "Caso de estudio: ACR Card, plataforma para solicitar tarjetas Visa y Mastercard, parte del ecosistema de pagos Supernova & ACR.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "ACR Card es una plataforma para solicitar tarjetas Visa y Mastercard. Forma parte del ecosistema Supernova & ACR, junto a la pasarela de pagos, ACR Pay y la aplicación de gestión de tarjetas.",
-            ],
-          },
-          {
-            title: "Qué hace el producto",
-            body: [
-              "Una persona elige la red de la tarjeta, envía su solicitud y la sigue hasta que la tarjeta existe. Detrás de esa pantalla hay un flujo con consecuencias reales: una solicitud que pasa por estados claros, datos personales que hay que tratar con cuidado y un resultado que nunca puede ser ambiguo.",
-            ],
-          },
-          {
-            title: "Lo difícil: una solicitud que no se puede perder",
-            body: [
-              "Las solicitudes atraviesan varios sistemas y cualquier paso puede fallar a medias. El trabajo consiste en que cada solicitud termine en un único estado -aprobada, rechazada o pendiente- para que nadie reciba dos tarjetas y nadie espere una solicitud que desapareció en silencio.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "acr-card-app",
-        name: "ACR Card App",
-        kind: "Aplicación de gestión de tarjetas",
-        tier: "main",
-        role: "Ingeniero de Software",
-        invariant: "Una transferencia llega una vez, a la tarjeta correcta.",
-        summary: "Una plataforma para gestionar tarjetas ACR: ver transacciones y mover dinero entre tarjetas.",
-        stack: [],
-        seoDescription:
-          "Caso de estudio: la aplicación ACR Card, plataforma para gestionar tarjetas ACR, ver transacciones y transferir dinero entre tarjetas.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "app.acr-card es donde los titulares gestionan sus tarjetas: consultan transacciones, transfieren entre tarjetas ACR y más.",
-            ],
-          },
-          {
-            title: "Qué hace el producto",
-            body: [
-              "En el día a día es una interfaz financiera: un historial de transacciones que debe ser preciso y rápido, y transferencias donde el dinero sale de una tarjeta y llega a otra.",
-            ],
-          },
-          {
-            title: "Lo difícil: dos saldos, una transferencia",
-            body: [
-              "Una transferencia cambia dos saldos. Los dos cambios deben ocurrir juntos o no ocurrir, aunque la petición se repita o se corte la conexión. Esa regla condiciona el modelo de datos, la API y lo que muestra la interfaz mientras espera.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "supernova-gateway",
-        name: "Pasarela de pagos Supernova",
-        kind: "Pasarela de pagos",
-        tier: "main",
-        role: "Ingeniero de Software",
-        invariant: "Todo pago termina en un resultado claro.",
-        summary: "La pasarela de pagos de Supernova, con integraciones con bancos y servicios financieros.",
-        stack: [],
-        seoDescription:
-          "Caso de estudio: la pasarela de pagos Supernova, con integraciones con bancos y servicios financieros, en el ecosistema Supernova & ACR.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "Una pasarela de pagos se sitúa entre el producto que quiere cobrar y los bancos y servicios financieros que mueven el dinero. Supernova es esa pasarela y forma parte del ecosistema Supernova & ACR.",
-            ],
-          },
-          {
-            title: "Lo difícil: pagos que fallan a medias",
-            body: [
-              "Los pagos cruzan redes que fallan a medias. Una pasarela tiene que convertir cada intento en un único resultado -pagado o no pagado- y mantener sus registros de acuerdo con los del banco. Reintentos, tiempos de espera y duplicados son el caso normal, no la excepción.",
-            ],
-          },
-          {
-            title: "Integraciones",
-            body: [
-              "Cada banco o servicio financiero tiene su propio protocolo y sus propios fallos. El trabajo es mantener esas diferencias detrás de una interfaz limpia para los productos que cobran a través de la pasarela.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "acr-pay",
-        name: "ACR Pay",
-        kind: "Plataforma de recargas",
-        tier: "main",
-        role: "Ingeniero de Software",
-        invariant: "Una recarga se acredita una vez, en el destino correcto.",
-        summary: "Una plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba.",
-        stack: [],
-        seoDescription:
-          "Caso de estudio: ACR Pay, plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba, parte del ecosistema Supernova & ACR.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "ACR Pay es una plataforma para recargar tarjetas clásicas y teléfonos móviles en Cuba, dentro del ecosistema Supernova & ACR.",
-            ],
-          },
-          {
-            title: "Dos tipos de destino",
-            body: [
-              "Recargar una tarjeta clásica y recargar una línea móvil son operaciones distintas, con caminos de confirmación distintos. La plataforma las presenta como una única acción sencilla.",
-            ],
-          },
-          {
-            title: "Lo difícil: dinero en movimiento",
-            body: [
-              "Una recarga es dinero en movimiento: si una confirmación tarda o se repite, el crédito debe llegar exactamente una vez. Hacer los reintentos seguros es lo que mantiene la confianza.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "gym-victoria",
-        name: "Gym Victoria",
-        kind: "SaaS multi-tenant",
-        tier: "earlier",
-        period: "Ago - Dic 2024",
-        role: "Ingeniero full-stack · freelance",
-        invariant: "Sin registros huérfanos.",
-        summary:
-          "Un SaaS de gestión de gimnasios con varias sedes, diseñado y construido desde cero: socios, entrenadores y planes por niveles.",
-        stack: ["Next.js", "PostgreSQL", "Tailwind CSS", "Vercel"],
-        seoDescription:
-          "Caso de estudio: Gym Victoria, SaaS multi-tenant para gimnasios con autenticación por roles, esquema relacional de socios, entrenadores, membresías y pagos, y CI/CD sin downtime.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "Un SaaS para gimnasios que soporta el registro de socios, la asignación de entrenadores y planes de membresía por niveles en múltiples sedes.",
-            ],
-          },
-          {
-            title: "Modelo de datos",
-            body: [
-              "Diseñé el esquema relacional completo (socios, entrenadores, membresías, pagos) con integridad referencial, de modo que los cuellos de botella y los estados inconsistentes se evitaron antes de llegar a producción.",
-            ],
-          },
-          {
-            title: "Autenticación sin atajos",
-            body: [
-              "Acceso por roles (admin, entrenador, socio) con gestión segura de sesiones en el servidor. Lo implementé directamente en lugar de recurrir a una librería de autenticación.",
-            ],
-          },
-          {
-            title: "Entrega",
-            body: [
-              "Una interfaz optimizada con Tailwind y cargas de página por debajo de los 2 segundos, desplegada en Vercel con CI/CD sin downtime en cada push.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "mk-tattoo-supply",
-        name: "MK Tattoo Supply",
-        kind: "E-commerce",
-        tier: "earlier",
-        period: "Dic 2023 - Feb 2024",
-        role: "Ingeniero full-stack · freelance",
-        invariant: "Una unidad, una venta.",
-        summary:
-          "Una plataforma de e-commerce con inventario en vivo, procesamiento de pedidos e integración de pagos: de cero a producción en ocho semanas.",
-        stack: ["Next.js", "Strapi", "REST API"],
-        seoDescription:
-          "Caso de estudio: MK Tattoo Supply, e-commerce con Next.js y Strapi con control de stock en tiempo real que evita la sobreventa y un panel de administración sin código para más de 200 SKUs.",
-        sections: [
-          {
-            title: "Contexto",
-            body: [
-              "Una plataforma de e-commerce full-stack con Next.js y Strapi (CMS headless) que gestiona inventario en vivo, procesamiento de pedidos y la integración de una API de pagos. De cero a producción en ocho semanas.",
-            ],
-          },
-          {
-            title: "Lo difícil: la sobreventa",
-            body: [
-              "Con pedidos concurrentes, una comprobación de stock ingenua vende dos veces la misma unidad. Diseñé un control de stock en tiempo real que evita la sobreventa, protegiendo los ingresos y la confianza de los clientes.",
-            ],
-          },
-          {
-            title: "Operarlo sin ingenieros",
-            body: [
-              "Entregué un panel de administración sin código para que el personal no técnico gestione por su cuenta más de 200 SKUs, pedidos y cumplimiento.",
-            ],
-          },
-        ],
-      },
-    ],
-    caseCta: "Leer el caso de estudio",
-    earlierTitle: "Trabajo anterior",
-    alsoTitle: "También construido",
-    also: [
-      {
-        name: "El Friñon",
-        text: "E-commerce de piezas y accesorios, con múltiples roles, punto de venta y gestión de almacén.",
-        url: "https://variedadeselfrinon.vercel.app",
-      },
-      {
-        name: "MotoMarket",
-        text: "Marketplace para la compra y venta de motos en Cuba. En desarrollo.",
-        url: "https://motomarket-three.vercel.app",
-      },
-    ],
-  },
-  stack: {
-    title: "Anatomía de un producto",
-    intro: "Las capas que necesita un producto, y dónde he tenido que resolver bien cada una.",
-    hint: "Desliza para desmontarlo",
-    layersLabel: "Capas de un producto",
-    layers: [
+  layers: {
+    title: "Especialización en todo el stack.",
+    intro: "Las capas de un producto de software y el trabajo que he entregado en cada una de ellas.",
+    toolsLabel: "Herramientas",
+    items: [
       {
         id: "product",
         name: "Producto",
-        claim: "Me hago cargo de las decisiones, no solo de los tickets.",
+        claim: "Responsabilidad sobre las decisiones de producto y técnicas.",
+        tools: ["Decisiones de producto", "UX/UI"],
         points: [
-          { text: "Pasarela, recargas, emisión de tarjetas y una app de tarjetas, funcionando como un solo ecosistema.", ref: "Supernova & ACR" },
-          { text: "Panel para que personal no técnico gestione 200+ SKUs.", ref: "MK Tattoo Supply" },
+          { text: "Una pasarela de pagos, recargas, emisión de tarjetas y una aplicación de tarjetas que operan como un único ecosistema.", ref: "Supernova & ACR" },
+          { text: "Producto, arquitectura y UX/UI de una tienda online, como único ingeniero.", ref: "Habaluna" },
         ],
       },
       {
         id: "interface",
         name: "Interfaz",
-        claim: "Flujos claros donde las personas manejan su dinero.",
+        claim: "Flujos claros y fiables para operaciones financieras.",
+        tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
         points: [
-          { text: "Gestión de tarjetas: transacciones y transferencias.", ref: "ACR Card App" },
-          { text: "El flujo para solicitar una Visa o una Mastercard.", ref: "ACR Card" },
-          { text: "Páginas que cargan en menos de dos segundos.", ref: "Gym Victoria" },
+          { text: "Gestión de tarjetas: historial de transacciones y transferencias.", ref: "ACR Card App" },
+          { text: "El flujo de solicitud de tarjetas Visa y Mastercard.", ref: "ACR Card" },
+          { text: "Tiempos de carga inferiores a dos segundos.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "api",
         name: "API y lógica",
-        claim: "Fronteras limpias a medida que el sistema crece.",
+        claim: "Fronteras bien definidas que se mantienen a medida que el producto crece.",
+        tools: ["Node.js", "NestJS", "REST", "Strapi"],
         points: [
-          { text: "Integraciones con bancos y servicios financieros detrás de una sola pasarela.", ref: "Supernova" },
-          { text: "Autenticación por roles con sesiones en el servidor.", ref: "Gym Victoria" },
-          { text: "APIs REST con Node.js, NestJS y Strapi.", ref: "Varios proyectos" },
+          { text: "Integraciones con bancos y servicios financieros tras una única pasarela.", ref: "Supernova" },
+          { text: "Autenticación por roles con sesiones en servidor, sin librería de autenticación.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "data",
         name: "Datos",
-        claim: "Correctos bajo concurrencia.",
+        claim: "Coherencia bajo carga concurrente.",
+        tools: ["PostgreSQL", "Prisma", "Redis", "SQL"],
         points: [
-          { text: "Stock en tiempo real: sin sobreventa.", ref: "MK Tattoo Supply" },
-          { text: "Esquema relacional con integridad referencial.", ref: "Gym Victoria" },
+          { text: "Control de stock en tiempo real que evita la sobreventa.", ref: "MK Tattoo Supply" },
+          { text: "Gestión de inventario y pedidos para una tienda en producción.", ref: "Habaluna" },
+          { text: "Un esquema relacional con integridad referencial.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "money",
-        name: "Dinero",
-        claim: "Donde un bug cuesta dinero de verdad.",
+        name: "Pagos",
+        claim: "Sistemas en los que un error tiene un coste económico.",
+        tools: ["Integraciones bancarias", "APIs de pago"],
         points: [
           { text: "Una pasarela de pagos con integraciones bancarias.", ref: "Supernova" },
           { text: "Recargas de tarjetas clásicas y teléfonos móviles.", ref: "ACR Pay" },
-          { text: "Transferencias entre tarjetas.", ref: "ACR Card App" },
-          { text: "Una API de pagos en una tienda en producción.", ref: "MK Tattoo Supply" },
+          { text: "Pagos de una tienda procesados a través de la pasarela Supernova.", ref: "Habaluna" },
         ],
       },
       {
         id: "delivery",
         name: "Entrega",
-        claim: "Lanzado, y funcionando.",
+        claim: "Despliegue y operación fiables en producción.",
+        tools: ["Vercel", "CI/CD", "Git", "GitHub"],
         points: [
-          { text: "CI/CD sin downtime en cada push.", ref: "Gym Victoria" },
-          { text: "De cero a producción en ocho semanas.", ref: "MK Tattoo Supply" },
+          { text: "CI/CD sin interrupciones en cada push.", ref: "Gym Victoria" },
+          { text: "Puesta en producción en ocho semanas.", ref: "MK Tattoo Supply" },
         ],
       },
     ],
   },
-  path: {
-    title: "Trayectoria",
-    profile: {
-      title: "De un vistazo",
-      rows: [
-        { k: "Rol", v: "Ingeniero de Software Full-Stack" },
-        { k: "Ubicación", v: "Cuba, trabajando en remoto" },
-        { k: "Experiencia", v: "Trabajo profesional desde 2023" },
-        { k: "Enfoque", v: "Frontend, backend, APIs, bases de datos, integraciones, pagos y fintech" },
-        { k: "Trabajo reciente", v: "Pasarela de pagos Supernova, ACR Pay, ACR Card y la aplicación ACR Card" },
-      ],
-    },
-    about: [
-      "Trabajando en todo el stack desde 2023: frontend, backend, datos, integraciones y producto. Ingeniero en Ciencias Informáticas (UCI).",
+  work: {
+    title: "Proyectos seleccionados",
+    intro: "Cinco productos en orden cronológico inverso, cada uno definido por la garantía que debe cumplir.",
+    cases,
+    caseCta: "Leer el caso de estudio",
+    live: "Sitio en producción",
+    mustHold: "Garantía",
+    myPart: "Contribución",
+    hardPart: "Desafío principal",
+    layersLabel: "Alcance",
+    stackLabel: "Tecnologías",
+    moreTitle: "Otros proyectos",
+    also: [
+      {
+        name: "El Friñon",
+        text: "E-commerce de piezas y accesorios, con roles de usuario, punto de venta y gestión de almacén.",
+        url: "https://variedadeselfrinon.vercel.app",
+      },
+      {
+        name: "MotoMarket",
+        text: "Un marketplace para la compraventa de motocicletas en Cuba. Actualmente en desarrollo.",
+        url: "https://motomarket-three.vercel.app",
+      },
+    ],
+  },
+  record: {
+    title: "Experiencia profesional",
+    intro: "En orden cronológico inverso.",
+    stats: [
+      { v: "2023", k: "Desarrollando software profesionalmente desde" },
+      { v: "4", k: "Productos de pago en el ecosistema Supernova & ACR" },
+      { v: "7", k: "Productos documentados como casos de estudio" },
     ],
     rows: [
       {
-        period: "2026 - actualidad",
+        period: "2026 - Actualidad",
         title: "Ingeniero de Software",
-        place: "Ecosistema Supernova & ACR",
-        text: "Pasarela de pago, ACR Pay, ACR Card y la aplicación ACR Card. Dinero real, integraciones con bancos y servicios financieros.",
-        caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
+        place: "Supernova & ACR",
+        text: "Pasarela de pagos, ACR Pay, ACR Card y la aplicación ACR Card. Interfaces web, servicios backend, APIs e integraciones bancarias.",
+        slugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
+      },
+      {
+        period: "Dic 2024 - Mar 2025",
+        title: "Ingeniero único (freelance)",
+        place: "Habaluna, Luna S.U.R.L",
+        text: "Una tienda online desarrollada de principio a fin: catálogo, carrito, pagos con Supernova, inventario, pedidos y administración.",
+        slugs: ["habaluna"],
       },
       {
         period: "Ago - Dic 2024",
         title: "Ingeniero full-stack (freelance)",
         place: "Gym Victoria",
-        text: "SaaS multi-tenant para gimnasios: esquema, autenticación por roles, CI/CD.",
+        text: "SaaS multi-tenant de gestión de gimnasios: modelo de datos, autenticación por roles y CI/CD.",
+        slugs: ["gym-victoria"],
       },
       {
         period: "Dic 2023 - Feb 2024",
         title: "Ingeniero full-stack (freelance)",
         place: "MK Tattoo Supply",
-        text: "E-commerce con inventario en vivo, pedidos y pagos, en ocho semanas.",
+        text: "Plataforma de e-commerce con inventario en tiempo real, pedidos y pagos, entregada en ocho semanas.",
+        slugs: ["mk-tattoo-supply"],
       },
     ],
     educationLabel: "Formación",
     education: {
       period: "Sep 2018 - Dic 2023",
       title: "Ingeniero en Ciencias Informáticas",
-      place: "Universidad de Ciencias Informáticas (UCI), La Habana",
+      place: "Universidad de las Ciencias Informáticas (UCI), La Habana",
     },
   },
-  lab: {
-    title: "Lab",
-    intro: "Pequeños experimentos, separados del trabajo profesional.",
-    items: [
-      {
-        name: "Sudoku Web App",
-        period: "Jul - Ago 2024",
-        text: "Sudoku interactivo con generador procedural de tableros y motor de validación en tiempo real. Responsive, con React y Tailwind.",
-        href: "https://github.com/Dasieloski",
-      },
-      {
-        name: "Esta web",
-        period: "2026",
-        text: "Una esfera guilloché dibujada con un shader WebGL propio, secuencias de scroll con GSAP y una página que funciona sin nada de eso.",
-      },
-    ],
-  },
   contact: {
-    title: "Construyamos algo.",
-    text: "Estoy abierto a roles remotos y reubicación. Si hay un producto que necesita a alguien capaz de seguir el problema a través del stack, escríbeme.",
-    copy: "Copiar correo",
-    copied: "Copiado",
-    cvEn: "Descargar CV (PDF, inglés)",
-    cvEs: "Descargar CV (PDF, español)",
-    availability: "Abierto a remoto y reubicación",
+    title: "Actualmente valoro nuevas oportunidades.",
+    text: "Aporto más valor en equipos que necesitan un ingeniero capaz de llevar un problema desde la interfaz de usuario hasta la integración bancaria. Puede escribirme a la dirección indicada a continuación.",
+    write: "Contacto",
+    copy: "Copiar dirección",
+    copied: "Dirección copiada",
+    cvEn: "CV en inglés",
+    cvEs: "CV en español",
+    availability: "Disponible para posiciones en remoto y reubicación",
     location: "Radicado en Cuba, trabajando en remoto",
+    elsewhere: "Perfiles",
   },
   caseUi: {
-    back: "Todo el trabajo",
+    back: "Todos los proyectos",
     role: "Rol",
     period: "Periodo",
-    stack: "Stack",
+    stack: "Tecnologías",
+    layers: "Alcance",
     visit: "Visitar el sitio",
-    next: "Siguiente caso",
-    breadcrumbHome: "Inicio",
-    contactCta: "Hablemos de un proyecto como este",
-    architecture: "Arquitectura",
-    visualLabel: "La regla que cumple este sistema",
-    mustHold: "Debe cumplirse",
-    stepsLabel: "Pasos",
+    next: "Siguiente caso de estudio",
+    contactCta: "Conversar sobre un producto similar",
   },
-  footer: { rights: "© 2026 Dasiel Torres", top: "Volver arriba" },
+  footer: { rights: "© 2026 Dasiel Torres", top: "Volver arriba", built: "Desarrollado con Next.js y Three.js" },
   notFound: {
     title: "Página no encontrada",
-    text: "Esa página no existe, pero el trabajo sí.",
-    back: "Volver al inicio",
+    text: "La página solicitada no existe o ha sido trasladada.",
+    back: "Volver a la página de inicio",
   },
 };
 

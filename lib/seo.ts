@@ -19,6 +19,8 @@ const KNOWS_ABOUT = [
   "Node.js",
   "NestJS",
   "PostgreSQL",
+  "Prisma",
+  "Redis",
   "Strapi",
 ];
 
@@ -64,6 +66,7 @@ export const APP_CATEGORY: Record<string, string> = {
   "acr-card-app": "FinanceApplication",
   "supernova-gateway": "FinanceApplication",
   "acr-pay": "FinanceApplication",
+  habaluna: "ShoppingApplication",
   "gym-victoria": "BusinessApplication",
   "mk-tattoo-supply": "ShoppingApplication",
 };

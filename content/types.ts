@@ -1,3 +1,7 @@
+/** The six layers of a product. Order is top to bottom of the 3D stack. */
+export const LAYER_IDS = ["product", "interface", "api", "data", "money", "delivery"] as const;
+export type LayerId = (typeof LAYER_IDS)[number];
+
 export type CaseSection = { title: string; body: string[] };
 
 export type CaseStudy = {
@@ -8,82 +12,100 @@ export type CaseStudy = {
   period?: string;
   role: string;
   url?: string;
-  /** `main` cases get a full plate on the home page; `earlier` ones are listed compactly. */
+  /** `main` cases are full scenes on the home page; `earlier` ones are listed in the index. */
   tier: "main" | "earlier";
-  /** The one line that must never break in this product. */
+  /** The one rule this product must never break. */
   invariant: string;
   summary: string;
+  /** My part, in one sentence, as stated in the CV. */
+  contribution: string;
+  /** The hard part, in one sentence. */
+  challenge: string;
   stack: string[];
-  /** Add `{ title, body }` entries here (challenges, learnings, results…) and they render automatically. */
+  /** Add `{ title, body }` entries here and they render automatically on the case page. */
   sections: CaseSection[];
   seoDescription: string;
 };
 
 export type Layer = {
-  id: string;
+  id: LayerId;
   name: string;
   claim: string;
+  tools: string[];
   points: { text: string; ref: string }[];
 };
 
 export type Dictionary = {
   meta: { title: string; description: string; ogTagline: string };
-  nav: { work: string; stack: string; path: string; lab: string; contact: string; hire: string; skip: string;
-    menu: string; langLabel: string };
-  hero: {
-    role: string;
-    eyebrow: string;
-    line1: string;
-    line2: string;
-    lede: string;
-    primary: string;
-    secondary: string;
+  nav: {
+    layers: string;
+    work: string;
+    record: string;
+    contact: string;
+    cv: string;
+    skip: string;
+    menu: string;
+    close: string;
+    langLabel: string;
+    home: string;
   };
-  intro: { kicker: string; statement: string; emphasis: string[] };
+  hero: {
+    name: string;
+    role: string;
+    statement: string;
+    status: string;
+    primary: string;
+    canvasLabel: string;
+    loading: string;
+  };
+  /** Three short lines revealed one by one while the tokens fall into order, then one sentence. */
+  manifest: { lines: string[]; body: string };
+  layers: { title: string; intro: string; toolsLabel: string; items: Layer[] };
   work: {
     title: string;
-    titleEm: string;
     intro: string;
     cases: CaseStudy[];
     caseCta: string;
-    earlierTitle: string;
-    alsoTitle: string;
+    live: string;
+    mustHold: string;
+    myPart: string;
+    hardPart: string;
+    layersLabel: string;
+    stackLabel: string;
+    moreTitle: string;
     also: { name: string; text: string; url: string }[];
   };
-  stack: { title: string; intro: string; hint: string; layersLabel: string; layers: Layer[] };
-  path: {
+  record: {
     title: string;
-    profile: { title: string; rows: { k: string; v: string }[] };
-    about: string[];
-    rows: { period: string; title: string; place: string; text: string; caseSlugs?: string[] }[];
+    intro: string;
+    /** Figures that are true as stated: dates and counts taken from the CV and this site. */
+    stats: { v: string; k: string }[];
+    rows: { period: string; title: string; place: string; text: string; slugs?: string[] }[];
     educationLabel: string;
     education: { period: string; title: string; place: string };
   };
-  lab: { title: string; intro: string; items: { name: string; period: string; text: string; href?: string }[] };
   contact: {
     title: string;
     text: string;
+    write: string;
     copy: string;
     copied: string;
     cvEn: string;
     cvEs: string;
     availability: string;
     location: string;
+    elsewhere: string;
   };
   caseUi: {
     back: string;
     role: string;
     period: string;
     stack: string;
+    layers: string;
     visit: string;
     next: string;
-    breadcrumbHome: string;
     contactCta: string;
-    architecture: string;
-    visualLabel: string;
-    mustHold: string;
-    stepsLabel: string;
   };
-  footer: { rights: string; top: string };
+  footer: { rights: string; top: string; built: string };
   notFound: { title: string; text: string; back: string };
 };

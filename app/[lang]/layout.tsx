@@ -1,26 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Instrument_Sans, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { getDictionary } from "@/content";
 import { BASE_URL, CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import { personNode, websiteNode } from "@/lib/seo";
-import "../base.css";
-import "../hero.css";
-import "../sections.css";
-import "../diagrams.css";
-import "../case.css";
+import Cinema from "@/components/cinema/Cinema";
 import Analytics from "@/components/Analytics";
+import "../base.css";
+import "../home.css";
+import "../case.css";
 
-const sans = Instrument_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  axes: ["wdth"],
-  display: "swap",
-});
+const sans = Geist({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#0b0e0d",
+  themeColor: "#0a0a0b",
   colorScheme: "dark",
 };
 
@@ -64,17 +58,22 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
-  const { meta, nav } = getDictionary(lang);
+  const { meta, nav, hero } = getDictionary(lang);
 
   const jsonLd = { "@context": "https://schema.org", "@graph": [personNode(meta.description), websiteNode(lang)] };
 
   return (
-    <html lang={lang} className={`${sans.variable} ${mono.variable}`}>
+    // Reason: the inline script adds `js` before first paint; React must not treat that as a mismatch.
+    <html lang={lang} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <a className="skip" href="#main">
           {nav.skip}
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Cinema label={hero.canvasLabel} loading={hero.loading} />
         {children}
         <Analytics />
       </body>

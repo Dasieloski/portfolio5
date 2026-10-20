@@ -2,17 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
-import { CONTACT, LOCALES, OG_LOCALE, isLocale, languageAlternates, localeUrl } from "@/lib/site";
-import Header from "@/components/Header";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { Arrow } from "@/components/Arrow";
-import Chapter from "@/components/Chapter";
-import Roll from "@/components/Roll";
-import { DIAGRAM_NOTE, diagramText } from "@/content/diagrams";
-import LayerDiagram from "@/components/visuals/LayerDiagram";
-import { ARCH } from "@/content/visuals";
+import { litVector } from "@/content/stage";
+import { LOCALES, isLocale, languageAlternates, localeUrl } from "@/lib/site";
 import { APP_CATEGORY, PERSON_ID, WEBSITE_ID } from "@/lib/seo";
+import Header from "@/components/Header";
+import Contact from "@/components/home/Contact";
+import Director from "@/components/cinema/Director";
+import Roll from "@/components/Roll";
+import { Arrow } from "@/components/Arrow";
 
 export function generateStaticParams() {
   return LOCALES.flatMap((lang) => getDictionary(lang).work.cases.map((c) => ({ lang, slug: c.slug })));
@@ -33,8 +30,6 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/work/[slug
       description: c.seoDescription,
       url: localeUrl(lang, path),
       type: "article",
-      siteName: CONTACT.name,
-      locale: OG_LOCALE[lang],
       images: [{ url: `${localeUrl(lang)}/opengraph-image`, width: 1200, height: 630, alt: "Dasiel Torres - Full-Stack Software Engineer" }],
     },
     twitter: { card: "summary_large_image", title: `${c.name} - ${c.kind}`, description: c.seoDescription },
@@ -50,17 +45,19 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
   if (index < 0) notFound();
   const c = cases[index];
   const next = cases[(index + 1) % cases.length];
+  const lit = litVector(c.slug);
+  const layerNames = t.layers.items.map((l) => l.name);
 
+  const pageUrl = localeUrl(lang, `/work/${slug}`);
   const crumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: t.caseUi.breadcrumbHome, item: localeUrl(lang) },
+      { "@type": "ListItem", position: 1, name: t.nav.home, item: localeUrl(lang) },
       { "@type": "ListItem", position: 2, name: t.nav.work, item: `${localeUrl(lang)}#work` },
-      { "@type": "ListItem", position: 3, name: c.name, item: localeUrl(lang, `/work/${slug}`) },
+      { "@type": "ListItem", position: 3, name: c.name, item: pageUrl },
     ],
   };
-  const pageUrl = localeUrl(lang, `/work/${slug}`);
   // Reason: the page is a WebPage about one software product; the person is a contributor, not its owner.
   const page = {
     "@context": "https://schema.org",
@@ -86,115 +83,98 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
     ...(c.url ? { url: c.url } : {}),
   };
 
-  const text = diagramText(lang, c.slug);
-
   return (
     <>
       <Header lang={lang} nav={t.nav} />
       <main id="main">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([crumbs, page, software]) }} />
 
-        <section className="case-top dark" aria-labelledby="case-title">
-          <div className="wrap">
+        <section className="cs-top" data-scene="case" data-hero="true" data-slug={c.slug} data-i={index} data-chapter="work" aria-labelledby="case-title">
+          <div className="cs-head">
             <nav aria-label="Breadcrumb" className="crumbs mono">
               <Link href={`/${lang}`} className="ulink">
-                {t.caseUi.breadcrumbHome}
+                {t.nav.home.split(",")[0]}
               </Link>
               <span aria-hidden="true">/</span>
               <Link href={`/${lang}#work`} className="ulink">
                 {t.caseUi.back}
               </Link>
             </nav>
-
-            <header className="case-head">
-              <h1 id="case-title" className="case-title">
-                {c.name}
-              </h1>
-              <p className="case-kind">{c.kind}</p>
-              <p className="case-must">
-                <span className="mono">{t.caseUi.mustHold}</span>
-                {c.invariant}
-              </p>
-              <p className="lede">{c.summary}</p>
-              <dl className="case-facts">
+            <p className="shot-kind mono">{c.kind}</p>
+            <h1 id="case-title" className="cs-title">
+              {c.name}
+            </h1>
+            <p className="rule">{c.invariant}</p>
+            <p className="cs-lede">{c.summary}</p>
+            <dl className="cs-facts">
+              <div>
+                <dt className="mono">{t.caseUi.role}</dt>
+                <dd>{c.role}</dd>
+              </div>
+              {c.period && (
                 <div>
-                  <dt className="mono">{t.caseUi.role}</dt>
-                  <dd>{c.role}</dd>
+                  <dt className="mono">{t.caseUi.period}</dt>
+                  <dd>{c.period}</dd>
                 </div>
-                {c.period && (
-                  <div>
-                    <dt className="mono">{t.caseUi.period}</dt>
-                    <dd>{c.period}</dd>
-                  </div>
-                )}
-                {c.stack.length > 0 && (
-                  <div>
-                    <dt className="mono">{t.caseUi.stack}</dt>
-                    <dd>{c.stack.join(", ")}</dd>
-                  </div>
-                )}
-              </dl>
-              {c.url && (
-                <a className="btn btn-solid" href={c.url} target="_blank" rel="noopener noreferrer">
-                  <Roll>{t.caseUi.visit}</Roll>
-                  <span className="btn-ico" aria-hidden="true">
-                    <Arrow />
-                  </span>
-                </a>
               )}
-            </header>
-
-            {text && <Chapter slug={c.slug} text={text} note={DIAGRAM_NOTE[lang]} label={c.name} stepsLabel={t.caseUi.stepsLabel} />}
+              <div>
+                <dt className="mono">{t.work.myPart}</dt>
+                <dd>{c.contribution}</dd>
+              </div>
+              {c.stack.length > 0 && (
+                <div>
+                  <dt className="mono">{t.caseUi.stack}</dt>
+                  <dd>{c.stack.join(", ")}</dd>
+                </div>
+              )}
+              <div>
+                <dt className="mono">{t.caseUi.layers}</dt>
+                <dd>
+                  <ul className="chips">
+                    {layerNames.map((n, k) => (
+                      <li key={n} className={lit[k] ? "is-on" : undefined}>
+                        {n}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            {c.url && (
+              <a className="btn" href={c.url} target="_blank" rel="noopener noreferrer">
+                <Roll text={t.caseUi.visit} />
+                <Arrow />
+              </a>
+            )}
           </div>
         </section>
 
-        <div className="case-body light sheet">
-          <div className="wrap">
-            {c.sections.map((s, i) => {
-              const arch = ARCH[c.slug];
-              if (arch && i === arch.archSection) {
-                return (
-                  <section key={s.title} className="case-sec case-arch rv">
-                    <div className="case-sec-text">
-                      <h2>{s.title}</h2>
-                      {s.body.map((p) => (
-                        <p key={p}>{p}</p>
-                      ))}
-                    </div>
-                    <figure>
-                      <figcaption className="mono">{t.caseUi.architecture}</figcaption>
-                      <LayerDiagram arch={arch} label={`${c.name}. ${t.caseUi.architecture}`} />
-                    </figure>
-                  </section>
-                );
-              }
-              return (
-                <section key={s.title} className="case-sec rv">
-                  <h2>{s.title}</h2>
-                  <div className="case-sec-text">
-                    {s.body.map((p) => (
-                      <p key={p}>{p}</p>
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
+        <div className="cs-body" data-scene="calm" data-chapter="work">
+          {c.sections.map((s, i) => (
+            <section key={s.title} className="cs-sec" data-rv>
+              <p className="mono cs-sec-n">{String(i + 1).padStart(2, "0")}</p>
+              <h2>{s.title}</h2>
+              <div className="cs-sec-text">
+                {s.body.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+            </section>
+          ))}
 
-            <Link href={`/${lang}/work/${next.slug}`} className="case-next">
-              <span className="mono">{t.caseUi.next}</span>
-              <span className="case-next-name">
-                {next.name}
-                <span className="btn-ico" aria-hidden="true">
-                  <Arrow />
-                </span>
-              </span>
-            </Link>
-          </div>
+          <Link href={`/${lang}/work/${next.slug}`} className="cs-next">
+            <span className="mono">{t.caseUi.next}</span>
+            <span className="cs-next-name">
+              <Roll text={next.name} />
+              <Arrow />
+            </span>
+            <span className="cs-next-kind">{next.kind}</span>
+          </Link>
         </div>
 
-        <Contact contact={t.contact} />
+        <Contact t={t.contact} talk={t.nav.contact} footer={t.footer} />
       </main>
-      <Footer footer={t.footer} />
+      <Director />
     </>
   );
 }

@@ -3,18 +3,19 @@ import { getDictionary } from "@/content";
 import { isLocale, localeUrl } from "@/lib/site";
 import { PERSON_ID, WEBSITE_ID } from "@/lib/seo";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Statement from "@/components/Statement";
-import Work from "@/components/Work";
-import Practice from "@/components/Practice";
-import Path from "@/components/Path";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Director from "@/components/cinema/Director";
+import Hero from "@/components/home/Hero";
+import Manifest from "@/components/home/Manifest";
+import Work from "@/components/home/Work";
+import Capabilities from "@/components/home/Capabilities";
+import Record from "@/components/home/Record";
+import Contact from "@/components/home/Contact";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang);
+  const main = t.work.cases.filter((c) => c.tier === "main");
 
   const profile = {
     "@context": "https://schema.org",
@@ -27,20 +28,32 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     isPartOf: { "@id": WEBSITE_ID },
     mainEntity: { "@id": PERSON_ID },
   };
+  // Reason: an ordered list of the featured work helps search and AI systems read the page as a portfolio.
+  const work = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: t.work.title,
+    itemListElement: main.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      url: localeUrl(lang, `/work/${c.slug}`),
+    })),
+  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profile) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([profile, work]) }} />
       <Header lang={lang} nav={t.nav} />
       <main id="main">
-        <Hero lang={lang} hero={t.hero} />
-        <Statement intro={t.intro} profile={t.path.profile} />
-        <Work lang={lang} work={t.work} mustHold={t.caseUi.mustHold} stepsLabel={t.caseUi.stepsLabel} />
-        <Practice stack={t.stack} />
-        <Path lang={lang} path={t.path} work={t.work} lab={t.lab} />
-        <Contact contact={t.contact} />
+        <Hero t={t.hero} />
+        <Manifest t={t.manifest} />
+        <Work lang={lang} t={t.work} layerNames={t.layers.items.map((l) => l.name)} />
+        <Capabilities t={t.layers} />
+        <Record lang={lang} t={t.record} cases={t.work.cases} />
+        <Contact t={t.contact} talk={t.nav.contact} footer={t.footer} />
       </main>
-      <Footer footer={t.footer} />
+      <Director />
     </>
   );
 }

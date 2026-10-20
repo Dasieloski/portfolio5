@@ -1,417 +1,205 @@
 import type { Dictionary } from "./types";
+import cases from "./cases.en";
 
 const en: Dictionary = {
   meta: {
     title: "Dasiel Torres | Full-Stack Developer: TypeScript, Next.js, Node.js",
     description:
       "Dasiel Torres, full-stack developer (TypeScript, React, Next.js, Node.js, NestJS) working remotely from Cuba. Fintech, payment gateway, cards, e-commerce and SaaS.",
-    ogTagline: "Whole products, end to end.",
+    ogTagline: "Reliable software for the moment money moves.",
   },
   nav: {
+    layers: "Expertise",
     work: "Work",
-    stack: "Stack",
-    path: "Path",
-    lab: "Lab",
+    record: "Experience",
     contact: "Contact",
-    hire: "Hire me",
+    cv: "CV",
     skip: "Skip to content",
     menu: "Menu",
+    close: "Close",
     langLabel: "Language",
+    home: "Dasiel Torres, home",
   },
   hero: {
-    role: "Full-Stack Software Engineer",
-    eyebrow: "Full-Stack Software Engineer · Based in Cuba, working remotely",
-    line1: "Whole products,",
-    line2: "end to end.",
-    lede: "From the problem to the database, the interface, the payment and the deploy.",
-    primary: "Start a conversation",
-    secondary: "See the work",
+    name: "Dasiel Torres",
+    role: "Full-Stack Software Engineer, Payments & Fintech",
+    statement: "Full-stack engineer specialised in payment systems: interfaces, APIs, data models and banking integrations.",
+    status: "Available for remote positions",
+    primary: "View selected work",
+    canvasLabel: "Glossy tokens that float, respond to the cursor and arrange themselves into each product while scrolling.",
+    loading: "Loading",
   },
-  intro: {
-    kicker: "Profile",
-    statement:
-      "I build the whole product: the interface people touch, the API behind it, the database that has to stay correct, and the integrations where money moves.",
-    emphasis: ["whole product", "money moves"],
+  manifest: {
+    lines: ["Every payment is a commitment.", "It must be completed.", "Exactly once."],
+    body: "My work focuses on products where money moves, developed end to end: from the interface a customer uses to the banking systems on the other side.",
   },
-  work: {
-    title: "Four products,",
-    titleEm: "four things that can’t break.",
-    intro: "Payments products with real users, newest first.",
-    cases: [
-      {
-        slug: "acr-card",
-        name: "ACR Card",
-        kind: "Card issuing platform",
-        tier: "main",
-        role: "Software Engineer",
-        invariant: "One request, one card.",
-        summary: "A platform where people request Visa and Mastercard cards, part of the Supernova & ACR ecosystem.",
-        stack: [],
-        seoDescription:
-          "Case study: ACR Card, a platform to request Visa and Mastercard cards, part of the Supernova & ACR payments ecosystem.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "ACR Card is a platform to request Visa and Mastercard cards. It sits in the Supernova & ACR ecosystem, next to the payment gateway, ACR Pay and the card management app.",
-            ],
-          },
-          {
-            title: "What the product does",
-            body: [
-              "A person chooses a card network, submits a request and follows it until the card exists. Behind that single screen is a flow with real consequences: an application that moves through clear states, personal data that has to be handled with care, and an outcome that must never be ambiguous.",
-            ],
-          },
-          {
-            title: "The hard part: a request that can't get lost",
-            body: [
-              "Requests cross several systems and any step can fail halfway. The work is making every request end in exactly one state - approved, rejected or pending - so nobody is issued two cards and nobody waits on a request that silently disappeared.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "acr-card-app",
-        name: "ACR Card App",
-        kind: "Card management app",
-        tier: "main",
-        role: "Software Engineer",
-        invariant: "A transfer lands once, on the right card.",
-        summary: "A platform to manage ACR cards: review transactions and move money between cards.",
-        stack: [],
-        seoDescription:
-          "Case study: the ACR Card app, a platform to manage ACR cards, review transactions and transfer money between cards.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "app.acr-card is where cardholders manage their cards: review transactions, transfer between ACR cards and more.",
-            ],
-          },
-          {
-            title: "What the product does",
-            body: [
-              "Day to day it is a financial interface: a transaction history that has to be accurate and fast, and transfers where money leaves one card and arrives on another.",
-            ],
-          },
-          {
-            title: "The hard part: two balances, one transfer",
-            body: [
-              "A transfer changes two balances. Both changes must happen together or not at all, even if a request is retried or the connection drops. That rule shapes the data model, the API and what the interface shows while it waits.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "supernova-gateway",
-        name: "Supernova Payment Gateway",
-        kind: "Payment gateway",
-        tier: "main",
-        role: "Software Engineer",
-        invariant: "Every payment ends in one clear outcome.",
-        summary: "Supernova's payment gateway, with integrations to banks and financial services.",
-        stack: [],
-        seoDescription:
-          "Case study: the Supernova payment gateway, with integrations to banks and financial services, in the Supernova & ACR ecosystem.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "A payment gateway sits between a product that wants to charge someone and the banks and financial services that move the money. Supernova is that gateway, and it is part of the Supernova & ACR ecosystem.",
-            ],
-          },
-          {
-            title: "The hard part: payments that fail halfway",
-            body: [
-              "Payments cross networks that fail halfway. A gateway has to turn every attempt into exactly one outcome - paid or not paid - and keep its records in agreement with the bank's. Retries, timeouts and duplicates are the normal case, not the exception.",
-            ],
-          },
-          {
-            title: "Integrations",
-            body: [
-              "Each bank or financial service has its own protocol and its own failure modes. The job is keeping those differences behind one clean interface for the products that charge through the gateway.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "acr-pay",
-        name: "ACR Pay",
-        kind: "Top-up platform",
-        tier: "main",
-        role: "Software Engineer",
-        invariant: "A top-up is credited once, to the right target.",
-        summary: "A platform to top up classic cards and mobile phones in Cuba.",
-        stack: [],
-        seoDescription:
-          "Case study: ACR Pay, a platform to top up classic cards and mobile phones in Cuba, part of the Supernova & ACR ecosystem.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "ACR Pay is a platform to top up classic cards and mobile phones in Cuba, inside the Supernova & ACR ecosystem.",
-            ],
-          },
-          {
-            title: "Two kinds of target",
-            body: [
-              "Topping up a classic card and topping up a phone line are different operations with different confirmation paths. The platform presents them as one simple action.",
-            ],
-          },
-          {
-            title: "The hard part: money in motion",
-            body: [
-              "A top-up is money in motion: if a confirmation is slow or repeated, the credit must still land exactly once. Making retries safe is what keeps people's trust.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "gym-victoria",
-        name: "Gym Victoria",
-        kind: "Multi-tenant SaaS",
-        tier: "earlier",
-        period: "Aug - Dec 2024",
-        role: "Full-stack engineer · freelance",
-        invariant: "No orphan records.",
-        summary:
-          "A multi-location gym management SaaS designed and built from zero: members, trainers and tiered plans.",
-        stack: ["Next.js", "PostgreSQL", "Tailwind CSS", "Vercel"],
-        seoDescription:
-          "Case study: Gym Victoria, a multi-tenant gym SaaS with role-based auth, a relational schema for members, trainers, memberships and payments, and zero-downtime CI/CD.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "A gym SaaS that supports member registration, trainer assignment and tiered membership plans across multiple locations.",
-            ],
-          },
-          {
-            title: "Data model",
-            body: [
-              "I designed the full relational schema - members, trainers, memberships, payments - with referential integrity, so query bottlenecks and inconsistent states were designed out before reaching production.",
-            ],
-          },
-          {
-            title: "Auth without shortcuts",
-            body: [
-              "Role-based access for admin, trainer and member, with secure server-side session management. I implemented it directly instead of reaching for an auth library.",
-            ],
-          },
-          {
-            title: "Delivery",
-            body: [
-              "A Tailwind-optimized interface with sub-2-second page loads, deployed to Vercel with automated zero-downtime CI/CD on every push.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "mk-tattoo-supply",
-        name: "MK Tattoo Supply",
-        kind: "E-commerce",
-        tier: "earlier",
-        period: "Dec 2023 - Feb 2024",
-        role: "Full-stack engineer · freelance",
-        invariant: "One unit, sold once.",
-        summary:
-          "An e-commerce platform with live inventory, order processing and payment integration - from zero to production in eight weeks.",
-        stack: ["Next.js", "Strapi", "REST API"],
-        seoDescription:
-          "Case study: MK Tattoo Supply, a Next.js and Strapi e-commerce platform with real-time stock control that prevents overselling and a no-code admin for 200+ SKUs.",
-        sections: [
-          {
-            title: "Context",
-            body: [
-              "A full-stack e-commerce platform on Next.js and Strapi (headless CMS) handling live inventory, order processing and a payment API integration. From nothing to production in eight weeks.",
-            ],
-          },
-          {
-            title: "The hard part: overselling",
-            body: [
-              "With concurrent orders, naive stock checks sell the same unit twice. I engineered real-time stock control that prevents overselling, protecting both revenue and customer trust.",
-            ],
-          },
-          {
-            title: "Operating it without engineers",
-            body: [
-              "I delivered a no-code admin dashboard so non-technical staff can manage 200+ SKUs, orders and fulfillment on their own.",
-            ],
-          },
-        ],
-      },
-    ],
-    caseCta: "Read case study",
-    earlierTitle: "Earlier work",
-    alsoTitle: "Also shipped",
-    also: [
-      {
-        name: "El Friñon",
-        text: "E-commerce for parts and accessories, with multiple roles, a point of sale and warehouse management.",
-        url: "https://variedadeselfrinon.vercel.app",
-      },
-      {
-        name: "MotoMarket",
-        text: "Marketplace for buying and selling motorcycles in Cuba. In development.",
-        url: "https://motomarket-three.vercel.app",
-      },
-    ],
-  },
-  stack: {
-    title: "Anatomy of a product",
-    intro: "The layers a product needs, and where I've had to get each one right.",
-    hint: "Scroll to take it apart",
-    layersLabel: "Layers of a product",
-    layers: [
+  layers: {
+    title: "Expertise across the full stack.",
+    intro: "The layers of a software product, and the work I have delivered in each of them.",
+    toolsLabel: "Tools",
+    items: [
       {
         id: "product",
         name: "Product",
-        claim: "I own the decisions, not just the tickets.",
+        claim: "Ownership of product and technical decisions.",
+        tools: ["Product decisions", "UX/UI"],
         points: [
-          { text: "Gateway, top-ups, card issuing and a card app, working as one ecosystem.", ref: "Supernova & ACR" },
-          { text: "Admin tools so non-technical staff run 200+ SKUs.", ref: "MK Tattoo Supply" },
+          { text: "A payment gateway, top-ups, card issuing and a card application operating as one ecosystem.", ref: "Supernova & ACR" },
+          { text: "Product, architecture and UX/UI of an online store, as its sole engineer.", ref: "Habaluna" },
         ],
       },
       {
         id: "interface",
         name: "Interface",
-        claim: "Clear flows where people handle their money.",
+        claim: "Clear, dependable flows for financial operations.",
+        tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
         points: [
-          { text: "Card management: transactions and transfers.", ref: "ACR Card App" },
-          { text: "The flow to request a Visa or Mastercard.", ref: "ACR Card" },
-          { text: "Pages that load in under two seconds.", ref: "Gym Victoria" },
+          { text: "Card management: transaction history and transfers.", ref: "ACR Card App" },
+          { text: "The request flow for Visa and Mastercard cards.", ref: "ACR Card" },
+          { text: "Page loads under two seconds.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "api",
         name: "API & logic",
-        claim: "Boundaries that stay clean as things grow.",
+        claim: "Well-defined boundaries that hold as the product grows.",
+        tools: ["Node.js", "NestJS", "REST", "Strapi"],
         points: [
-          { text: "Bank and financial-service integrations behind one gateway.", ref: "Supernova" },
-          { text: "Role-based auth with server-side sessions.", ref: "Gym Victoria" },
-          { text: "REST APIs with Node.js, NestJS and Strapi.", ref: "Across projects" },
+          { text: "Bank and financial-service integrations behind a single gateway.", ref: "Supernova" },
+          { text: "Role-based authentication with server-side sessions, without an auth library.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "data",
         name: "Data",
-        claim: "Correct under concurrency.",
+        claim: "Consistency under concurrent load.",
+        tools: ["PostgreSQL", "Prisma", "Redis", "SQL"],
         points: [
-          { text: "Real-time stock control: no overselling.", ref: "MK Tattoo Supply" },
-          { text: "Relational schema with referential integrity.", ref: "Gym Victoria" },
+          { text: "Real-time stock control that prevents overselling.", ref: "MK Tattoo Supply" },
+          { text: "Inventory and order management for a production store.", ref: "Habaluna" },
+          { text: "A relational schema with referential integrity.", ref: "Gym Victoria" },
         ],
       },
       {
         id: "money",
-        name: "Money",
-        claim: "Where a bug costs real money.",
+        name: "Payments",
+        claim: "Systems in which an error carries a financial cost.",
+        tools: ["Banking integrations", "Payment APIs"],
         points: [
-          { text: "A payment gateway with bank integrations.", ref: "Supernova" },
+          { text: "A payment gateway with banking integrations.", ref: "Supernova" },
           { text: "Top-ups for classic cards and mobile phones.", ref: "ACR Pay" },
-          { text: "Transfers between cards.", ref: "ACR Card App" },
-          { text: "A payment API inside a live store.", ref: "MK Tattoo Supply" },
+          { text: "Store payments processed through the Supernova gateway.", ref: "Habaluna" },
         ],
       },
       {
         id: "delivery",
         name: "Delivery",
-        claim: "Shipped, and kept running.",
+        claim: "Reliable deployment and operation in production.",
+        tools: ["Vercel", "CI/CD", "Git", "GitHub"],
         points: [
           { text: "Zero-downtime CI/CD on every push.", ref: "Gym Victoria" },
-          { text: "From zero to production in eight weeks.", ref: "MK Tattoo Supply" },
+          { text: "Delivered to production in eight weeks.", ref: "MK Tattoo Supply" },
         ],
       },
     ],
   },
-  path: {
-    title: "Path",
-    profile: {
-      title: "At a glance",
-      rows: [
-        { k: "Role", v: "Full-Stack Software Engineer" },
-        { k: "Based in", v: "Cuba, working remotely" },
-        { k: "Experience", v: "Professional work since 2023" },
-        { k: "Focus", v: "Frontend, backend, APIs, databases, integrations, payments and fintech" },
-        { k: "Recent work", v: "Supernova payment gateway, ACR Pay, ACR Card and the ACR Card app" },
-      ],
-    },
-    about: [
-      "Working across the whole stack since 2023: frontend, backend, data, integrations and product. Computer science engineer (UCI).",
+  work: {
+    title: "Selected work",
+    intro: "Five products in reverse chronological order, each defined by the guarantee it must uphold.",
+    cases,
+    caseCta: "Read the case study",
+    live: "Live site",
+    mustHold: "Guarantee",
+    myPart: "Contribution",
+    hardPart: "Key challenge",
+    layersLabel: "Scope",
+    stackLabel: "Technologies",
+    moreTitle: "Additional projects",
+    also: [
+      {
+        name: "El Friñon",
+        text: "E-commerce for parts and accessories, with user roles, a point of sale and warehouse management.",
+        url: "https://variedadeselfrinon.vercel.app",
+      },
+      {
+        name: "MotoMarket",
+        text: "A marketplace for buying and selling motorcycles in Cuba. Currently in development.",
+        url: "https://motomarket-three.vercel.app",
+      },
+    ],
+  },
+  record: {
+    title: "Professional experience",
+    intro: "In reverse chronological order.",
+    stats: [
+      { v: "2023", k: "Developing software professionally since" },
+      { v: "4", k: "Payment products in the Supernova & ACR ecosystem" },
+      { v: "7", k: "Products documented as case studies" },
     ],
     rows: [
       {
         period: "2026 - Present",
         title: "Software Engineer",
-        place: "Supernova & ACR ecosystem",
-        text: "Payment gateway, ACR Pay, ACR Card and the ACR Card app. Real money, bank and financial-service integrations.",
-        caseSlugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
+        place: "Supernova & ACR",
+        text: "Payment gateway, ACR Pay, ACR Card and the ACR Card application. Web interfaces, backend services, APIs and banking integrations.",
+        slugs: ["supernova-gateway", "acr-pay", "acr-card", "acr-card-app"],
+      },
+      {
+        period: "Dec 2024 - Mar 2025",
+        title: "Sole engineer (freelance)",
+        place: "Habaluna, Luna S.U.R.L",
+        text: "An online store delivered end to end: catalogue, cart, payments through Supernova, inventory, orders and administration.",
+        slugs: ["habaluna"],
       },
       {
         period: "Aug - Dec 2024",
         title: "Full-stack engineer (freelance)",
         place: "Gym Victoria",
-        text: "Multi-tenant gym SaaS: schema, role-based auth, CI/CD.",
+        text: "Multi-tenant gym management SaaS: data model, role-based authentication and CI/CD.",
+        slugs: ["gym-victoria"],
       },
       {
         period: "Dec 2023 - Feb 2024",
         title: "Full-stack engineer (freelance)",
         place: "MK Tattoo Supply",
-        text: "E-commerce with live inventory, orders and payments, in eight weeks.",
+        text: "E-commerce platform with live inventory, orders and payments, delivered in eight weeks.",
+        slugs: ["mk-tattoo-supply"],
       },
     ],
     educationLabel: "Education",
     education: {
       period: "Sep 2018 - Dec 2023",
       title: "B.Eng. in Computer Science",
-      place: "Universidad de Ciencias Informáticas (UCI), Havana",
+      place: "Universidad de las Ciencias Informáticas (UCI), Havana",
     },
   },
-  lab: {
-    title: "Lab",
-    intro: "Small experiments, kept apart from the professional work.",
-    items: [
-      {
-        name: "Sudoku Web App",
-        period: "Jul - Aug 2024",
-        text: "Interactive Sudoku with a procedural board generator and a real-time validation engine. Responsive, built with React and Tailwind.",
-        href: "https://github.com/Dasieloski",
-      },
-      {
-        name: "This site",
-        period: "2026",
-        text: "An engine-turned dial drawn in a custom WebGL shader, scroll sequences timed with GSAP, and a page that works without any of it.",
-      },
-    ],
-  },
   contact: {
-    title: "Let's build something.",
-    text: "I'm open to remote roles and relocation. If there's a product that needs someone who can follow the problem across the stack, write to me.",
-    copy: "Copy email",
-    copied: "Copied",
-    cvEn: "Download CV (PDF, English)",
-    cvEs: "Download CV (PDF, Spanish)",
-    availability: "Open to remote & relocation",
+    title: "I am currently considering new opportunities.",
+    text: "I am most effective in teams that need an engineer able to take a problem from the user interface through to the banking integration. Please write to the address below.",
+    write: "Contact",
+    copy: "Copy address",
+    copied: "Address copied",
+    cvEn: "CV in English",
+    cvEs: "CV in Spanish",
+    availability: "Available for remote positions and relocation",
     location: "Based in Cuba, working remotely",
+    elsewhere: "Profiles",
   },
   caseUi: {
     back: "All work",
     role: "Role",
     period: "Period",
-    stack: "Stack",
+    stack: "Technologies",
+    layers: "Scope",
     visit: "Visit the live site",
     next: "Next case study",
-    breadcrumbHome: "Home",
-    contactCta: "Talk about a project like this",
-    architecture: "Architecture",
-    visualLabel: "The rule this system holds",
-    mustHold: "Must hold",
-    stepsLabel: "Steps",
+    contactCta: "Discuss a similar product",
   },
-  footer: { rights: "© 2026 Dasiel Torres", top: "Back to top" },
+  footer: { rights: "© 2026 Dasiel Torres", top: "Back to top", built: "Built with Next.js and Three.js" },
   notFound: {
     title: "Page not found",
-    text: "That page doesn't exist - but the work does.",
-    back: "Back to home",
+    text: "The page you requested does not exist or has been moved.",
+    back: "Return to the home page",
   },
 };
 
